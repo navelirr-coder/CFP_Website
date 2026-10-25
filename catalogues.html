@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catalogues | Chaudhary Farm Products</title>
+  <meta name="description" content="Explore official product catalogues for Chaudhary Farm Products (CFP). View and download our Crunchies, Bites, and Turmeric ranges.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="catalogues-page">
+
+  <!-- =========================================================================
+       MINIMAL HEADER (Standard CFP Header)
+       ========================================================================= -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-left">
+        <button class="icon-btn" id="hamburgerToggle" aria-label="Open Navigation Menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="header-center">
+        <a href="index.html" class="logo-icon-only" title="Chaudhary Farm Products Homepage">
+          <img src="CFP LOGO@3x-8.png" alt="CFP Logo" class="site-logo-img">
+        </a>
+      </div>
+
+      <div class="header-right">
+        <a href="cart.html" class="icon-btn cart-icon-btn" title="View Shopping Cart">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span class="cart-badge-count">0</span>
+        </a>
+
+        <a href="login.html" class="icon-btn" title="Login / Account">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 1-8 0"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       NAVIGATION SIDE DRAWER
+       ========================================================================= -->
+  <div class="drawer-overlay" id="drawerOverlay" aria-hidden="true"></div>
+
+  <aside class="nav-drawer" id="navDrawer" aria-label="Main Navigation Menu">
+    <div class="drawer-header">
+      <div class="drawer-title-box">
+        <div class="drawer-logo-icon">
+          <img src="CFP LOGO@3x-8.png" alt="CFP Logo" class="drawer-logo-img">
+        </div>
+        <span class="drawer-brand-name">Chaudhary Farm Products</span>
+      </div>
+      <button class="drawer-close-btn" id="closeNavBtn" aria-label="Close navigation">&times;</button>
+    </div>
+
+    <nav class="drawer-nav-menu">
+      <a href="index.html" class="nav-menu-item">Home <span class="arrow">→</span></a>
+      <a href="shop.html" class="nav-menu-item">SHOP <span class="arrow">→</span></a>
+      <a href="about.html" class="nav-menu-item">About Us <span class="arrow">→</span></a>
+      <a href="catalogues.html" class="nav-menu-item active">CATALOGUES <span class="arrow">→</span></a>
+      <a href="contact.html" class="nav-menu-item">Contact Us <span class="arrow">→</span></a>
+    </nav>
+  </aside>
+
+  <!-- =========================================================================
+       SECTION 1: CATALOGUES HERO
+       Spacious, clean typographic hero with no required imagery
+       ========================================================================= -->
+  <section class="catalogues-hero-section">
+    <div class="container">
+      <div class="catalogues-hero-container">
+        <span class="editorial-eyebrow">OUR PRODUCT RANGE</span>
+        <h1 class="editorial-headline">
+          Goodness Worth Exploring.
+        </h1>
+        <p class="editorial-prose" style="max-width: 660px; margin: 0 auto; font-size: 1.15rem;">
+          Discover the range from Chaudhary Farm Products. From savoury, satisfying crunch to little bites made for sweeter moments, explore our collections and find the snacks that suit your day.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SECTION 2: CATALOGUE CARDS
+       Three equal-width cards with cover-image placeholders and PDF actions
+       ========================================================================= -->
+  <section class="catalogues-grid-section">
+    <div class="container">
+      <div class="catalogues-grid">
+        
+        <!-- CARD 1: CRUNCHIES -->
+        <article class="catalogue-card" id="cardCatalogueCrunchies">
+          <!-- Future asset: Crunchies catalogue cover artwork -->
+          <div class="catalogue-cover-placeholder editorial-placeholder" role="img" aria-label="Crunchies catalogue cover placeholder"></div>
+          
+          <div class="catalogue-card-body">
+            <div>
+              <div class="catalogue-header-row">
+                <h2 class="catalogue-title">Crunchies</h2>
+                <span class="doc-status-badge coming-soon" id="badgeCrunchiesCat">Coming Soon</span>
+              </div>
+              <p class="catalogue-desc">
+                Explore our savoury side. Discover crunchy millet-based snacks created for those moments when only a satisfying bite will do.
+              </p>
+            </div>
+            
+            <div class="catalogue-btn-wrap">
+              <a href="assets/catalogues/crunchies-catalogue.pdf" target="_blank" rel="noopener noreferrer" class="catalogue-cta-btn" id="btnCrunchiesCat" data-cat="crunchies">
+                <span>VIEW CATALOGUE</span>
+                <span>↗</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 2: BITES -->
+        <article class="catalogue-card" id="cardCatalogueBites">
+          <!-- Future asset: Bites catalogue cover artwork -->
+          <div class="catalogue-cover-placeholder editorial-placeholder" role="img" aria-label="Bites catalogue cover placeholder"></div>
+          
+          <div class="catalogue-card-body">
+            <div>
+              <div class="catalogue-header-row">
+                <h2 class="catalogue-title">Bites</h2>
+                <span class="doc-status-badge coming-soon" id="badgeBitesCat">Coming Soon</span>
+              </div>
+              <p class="catalogue-desc">
+                Small treats, different textures and plenty to discover. Explore our Bites range, from millet ladoos to cookies and nutri bars.
+              </p>
+            </div>
+            
+            <div class="catalogue-btn-wrap">
+              <a href="assets/catalogues/bites-catalogue.pdf" target="_blank" rel="noopener noreferrer" class="catalogue-cta-btn" id="btnBitesCat" data-cat="bites">
+                <span>VIEW CATALOGUE</span>
+                <span>↗</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 3: TURMERIC -->
+        <article class="catalogue-card" id="cardCatalogueTurmeric">
+          <!-- Future asset: Turmeric catalogue cover artwork -->
+          <div class="catalogue-cover-placeholder editorial-placeholder" role="img" aria-label="Turmeric catalogue cover placeholder"></div>
+          
+          <div class="catalogue-card-body">
+            <div>
+              <div class="catalogue-header-row">
+                <h2 class="catalogue-title">Turmeric</h2>
+                <span class="doc-status-badge coming-soon" id="badgeTurmericCat">Coming Soon</span>
+              </div>
+              <p class="catalogue-desc">
+                Discover our turmeric range and explore the products in this collection.
+              </p>
+            </div>
+            
+            <div class="catalogue-btn-wrap">
+              <a href="assets/catalogues/turmeric-catalogue.pdf" target="_blank" rel="noopener noreferrer" class="catalogue-cta-btn" id="btnTurmericCat" data-cat="turmeric">
+                <span>VIEW CATALOGUE</span>
+                <span>↗</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       FOOTER
+       ========================================================================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h3 class="footer-brand-title">
+            <img src="CFP LOGO@3x-8.png" alt="CFP Logo" style="height: 36px; vertical-align: middle; margin-right: 8px;">
+            Chaudhary Farm Products
+          </h3>
+          <p class="footer-desc">India's favorite light, wholesome, and crunchy millet snacks. 100% natural super-grains.</p>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">SHOP</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="catalogues.html">CATALOGUES</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Customer Account</h4>
+          <ul class="footer-links">
+            <li><a href="cart.html">Shopping Cart</a></li>
+            <li><a href="checkout.html">Checkout</a></li>
+            <li><a href="login.html">Login / Account</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Contact Info</h4>
+          <ul class="footer-links">
+            <li>📍 Maharashtra, India</li>
+            <li>✉️ chaudharifarmproducts@gmail.com</li>
+            <li>📞 +91 97646 58181</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Chaudhary Farm Products. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

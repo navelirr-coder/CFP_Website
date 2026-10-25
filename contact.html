@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | Chaudhary Farm Products</title>
+  <meta name="description" content="Have questions about our millet snacks, bulk orders, or shipping? Contact the Chaudhary Farm Products team.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- MINIMAL HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-left">
+        <button class="icon-btn" id="hamburgerToggle" aria-label="Open Navigation Menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="header-center">
+        <a href="index.html" class="logo-icon-only" title="Chaudhary Farm Products Homepage">
+          <img src="CFP LOGO@3x-8.png" alt="CFP Logo" class="site-logo-img">
+        </a>
+      </div>
+
+      <div class="header-right">
+        <a href="cart.html" class="icon-btn cart-icon-btn" title="View Shopping Cart">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span class="cart-badge-count">0</span>
+        </a>
+
+        <a href="login.html" class="icon-btn" title="Login / Account">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAVIGATION SIDE DRAWER -->
+  <div class="drawer-overlay" id="drawerOverlay" aria-hidden="true"></div>
+
+  <aside class="nav-drawer" id="navDrawer" aria-label="Main Navigation Menu">
+    <div class="drawer-header">
+      <div class="drawer-title-box">
+        <div class="drawer-logo-icon">
+          <img src="CFP LOGO@3x-8.png" alt="CFP Logo" class="drawer-logo-img">
+        </div>
+        <span class="drawer-brand-name">Chaudhary Farm Products</span>
+      </div>
+      <button class="drawer-close-btn" id="closeNavBtn" aria-label="Close navigation">&times;</button>
+    </div>
+
+    <nav class="drawer-nav-menu">
+      <a href="index.html" class="nav-menu-item">Home <span class="arrow">→</span></a>
+      <a href="shop.html" class="nav-menu-item">SHOP <span class="arrow">→</span></a>
+      <a href="about.html" class="nav-menu-item">About Us <span class="arrow">→</span></a>
+      <a href="catalogues.html" class="nav-menu-item">CATALOGUES <span class="arrow">→</span></a>
+      <a href="contact.html" class="nav-menu-item active">Contact Us <span class="arrow">→</span></a>
+    </nav>
+  </aside>
+
+  <!-- PAGE BANNER -->
+  <div class="page-banner">
+    <div class="container">
+      <h1 class="page-title">Contact Us</h1>
+      <div class="breadcrumbs">
+        <a href="index.html">Home</a> <span>/</span> <span>Contact</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT CONTENT -->
+  <main class="container">
+    <div class="contact-layout">
+      
+      <!-- Column 1: Contact Form -->
+      <div>
+        <span class="badge-tag green">GET IN TOUCH</span>
+        <h2 style="margin: 10px 0 20px 0;">We'd Love to Hear From You</h2>
+        
+        <form id="contactForm" onsubmit="event.preventDefault(); alert('Thank you for reaching out to Chaudhary Farm Products! We will respond within 24 hours.');">
+          <div class="form-group">
+            <label class="form-label" for="contactName">Your Full Name</label>
+            <input type="text" id="contactName" class="form-input" placeholder="John Doe" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="contactEmail">Email Address</label>
+            <input type="email" id="contactEmail" class="form-input" placeholder="john.doe@example.com" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="contactSubject">Subject</label>
+            <input type="text" id="contactSubject" class="form-input" placeholder="Product query, bulk order, feedback..." required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="contactMessage">Your Message</label>
+            <textarea id="contactMessage" class="form-input" rows="5" placeholder="Write your message here..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg btn-block">Send Message →</button>
+        </form>
+      </div>
+
+      <!-- Column 2: Contact Info & Location -->
+      <div>
+        <span class="badge-tag">REACH US DIRECTLY</span>
+        <h2 style="margin: 10px 0 20px 0;">Office & Farm Headquarters</h2>
+
+        <div style="margin-bottom: 24px;">
+          <div style="display: flex; gap: 14px; margin-bottom: 18px;">
+            <div style="font-size: 1.5rem;">📍</div>
+            <div>
+              <strong>Factory & Farm Address</strong>
+              <p style="color: var(--color-text-muted); font-size: 0.9rem;">Chaudhary Farm Products, Agro Industrial Park, Maharashtra, India</p>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 14px; margin-bottom: 18px;">
+            <div style="font-size: 1.5rem;">✉️</div>
+            <div>
+              <strong>Email Us</strong>
+              <p style="color: var(--color-text-muted); font-size: 0.9rem;">chaudharifarmproducts@gmail.com</p>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 14px; margin-bottom: 18px;">
+            <div style="font-size: 1.5rem;">📞</div>
+            <div>
+              <strong>Phone / WhatsApp</strong>
+              <p style="color: var(--color-text-muted); font-size: 0.9rem;">+91 97646 58181 (Mon-Sat, 9am - 7pm IST)</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Location Placeholder -->
+        <div class="image-placeholder" style="height: 220px;" title="Map / Farm Location Placeholder">
+          <div class="placeholder-icon">🗺️</div>
+          <div class="placeholder-text">
+            <strong>Google Maps / Farm Location Placeholder</strong>
+            <span>Interactive Map will be embedded here</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- FAQ SECTION -->
+    <div style="margin: 40px 0 80px 0;">
+      <div class="text-center" style="margin-bottom: 32px;">
+        <span class="badge-tag green">COMMON QUESTIONS</span>
+        <h2>FREQUENTLY ASKED QUESTIONS</h2>
+      </div>
+
+      <div style="max-width: 800px; margin: 0 auto;">
+        <div class="faq-item">
+          <div class="faq-question">Q: Are your snacks 100% palm oil free?</div>
+          <p style="color: var(--color-text-muted); font-size: 0.9rem;">Yes! We never use palm oil. Our snacks are either air-puffed or lightly roasted using cold-pressed oils.</p>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">Q: Are CFP Millet Bites suitable for children?</div>
+          <p style="color: var(--color-text-muted); font-size: 0.9rem;">Absolutely! Our Cheese Puffs and Tangy Tomato Loops are crafted specifically with zero artificial preservatives for kids.</p>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">Q: Do you offer bulk orders for events or corporate gifting?</div>
+          <p style="color: var(--color-text-muted); font-size: 0.9rem;">Yes, we offer customized gift boxes and bulk discount pricing. Fill out the contact form above to get a custom quote.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h3 class="footer-brand-title">
+            <img src="CFP LOGO@3x-8.png" alt="CFP Logo" style="height: 36px; vertical-align: middle; margin-right: 8px;">
+            Chaudhary Farm Products
+          </h3>
+          <p class="footer-desc">India's favorite light, wholesome, and crunchy millet snacks.</p>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">SHOP</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="catalogues.html">CATALOGUES</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Customer Account</h4>
+          <ul class="footer-links">
+            <li><a href="cart.html">Shopping Cart</a></li>
+            <li><a href="checkout.html">Checkout</a></li>
+            <li><a href="login.html">Login / Account</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Contact Info</h4>
+          <ul class="footer-links">
+            <li>📍 Maharashtra, India</li>
+            <li>✉️ chaudharifarmproducts@gmail.com</li>
+            <li>📞 +91 97646 58181</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Chaudhary Farm Products. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="turmeric-export.js"></script>
+</body>
+</html>

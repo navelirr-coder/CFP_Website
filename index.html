@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chaudhary Farm Products | Wholesome, Light & Healthy Indian Millet Snacks</title>
+  <meta name="description" content="Discover India's favorite healthy millet snacks! Roasted & air-puffed ragi, jowar, and bajra munchies made with 0% palm oil.">
+  
+  <!-- Clean Modern Sans-Serif Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="hero-slide-one.css">
+  <script>
+    if ('IntersectionObserver' in window) {
+      document.documentElement.classList.add('js-story-ready');
+    }
+  </script>
+</head>
+<body>
+
+  <!-- =========================================================================
+       1. MINIMAL HEADER (EXACTLY 4 ELEMENTS: Left Hamburger, Center Logo Icon, Right Cart & Login)
+       ========================================================================= -->
+  <header class="site-header">
+    <div class="header-inner">
+      
+      <!-- 1. Left: Hamburger Menu Icon -->
+      <div class="header-left">
+        <button class="icon-btn" id="hamburgerToggle" aria-label="Open Navigation Menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <!-- 2. Center: Logo Icon Placeholder ONLY (CFP LOGO@3x-8.png) -->
+      <div class="header-center">
+        <a href="index.html" class="logo-icon-only" title="Chaudhary Farm Products Homepage">
+          <img src="CFP LOGO@3x-8.png" alt="CFP Logo" class="site-logo-img">
+        </a>
+      </div>
+
+      <!-- 3 & 4. Right: Shopping Cart Icon + Login Icon -->
+      <div class="header-right">
+        <a href="cart.html" class="icon-btn cart-icon-btn" title="View Shopping Cart">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span class="cart-badge-count">0</span>
+        </a>
+
+        <a href="login.html" class="icon-btn" title="Login / Account">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       2. NAVIGATION SIDE DRAWER & OVERLAY (Links to Independent Pages)
+       ========================================================================= -->
+  <div class="drawer-overlay" id="drawerOverlay" aria-hidden="true"></div>
+
+  <aside class="nav-drawer" id="navDrawer" aria-label="Main Navigation Menu">
+    <div class="drawer-header">
+      <div class="drawer-title-box">
+        <div class="drawer-logo-icon">
+          <img src="CFP LOGO@3x-8.png" alt="CFP Logo" class="drawer-logo-img">
+        </div>
+        <span class="drawer-brand-name">Chaudhary Farm Products</span>
+      </div>
+      <button class="drawer-close-btn" id="closeNavBtn" aria-label="Close navigation">&times;</button>
+    </div>
+
+    <nav class="drawer-nav-menu">
+      <a href="index.html" class="nav-menu-item active">Home <span class="arrow">→</span></a>
+      <a href="shop.html" class="nav-menu-item">SHOP <span class="arrow">→</span></a>
+      <a href="about.html" class="nav-menu-item">About Us <span class="arrow">→</span></a>
+      <a href="catalogues.html" class="nav-menu-item">CATALOGUES <span class="arrow">→</span></a>
+      <a href="contact.html" class="nav-menu-item">Contact Us <span class="arrow">→</span></a>
+    </nav>
+
+    <div class="drawer-footer-box">
+      <p>Need support or custom bulk orders?</p>
+      <a href="contact.html" class="btn btn-primary btn-sm btn-block">Get In Touch</a>
+    </div>
+  </aside>
+
+  <!-- =========================================================================
+       3. HOMEPAGE HERO SECTION: 3-SLIDE CAROUSEL (FULL SCREEN IMAGE PLACEHOLDERS)
+       Starts from header and extends to the end of the screen for all 3 slides.
+       ========================================================================= -->
+  <section class="hero-carousel-wrapper">
+    <div class="carousel-viewport">
+      <div class="carousel-slides-container" id="carouselTrack">
+        
+        <!-- Hero Slide 1 (Full Screen Image Placeholder, text removed as requested) -->
+        <article class="hero-slide hero-slide-full-screen cfp-campaign-slide" aria-labelledby="cfp-campaign-headline">
+          <div class="cfp-campaign-grid">
+            <figure class="cfp-campaign-panel cfp-campaign-texture"><img src="CFP_Slide1.png" alt="Crunchy millet snacks with visible seasoning and crumbs" width="1672" height="941" fetchpriority="high"></figure>
+            <div class="cfp-campaign-panel cfp-campaign-support"><p>With the goodness of millets for every snacking.</p></div>
+            <figure class="cfp-campaign-panel cfp-campaign-bowl"><img src="CFP_Slide2.png" alt="A hand reaching into a bowl of mixed millet snacks outdoors" width="1672" height="941" fetchpriority="high"></figure>
+            <figure class="cfp-campaign-panel cfp-campaign-grain"><img src="ingredient-seeds.jpg" alt="Pumpkin and sunflower seeds in a wooden scoop" width="600" height="600"></figure>
+            <div class="cfp-campaign-panel cfp-campaign-main">
+              <p class="cfp-campaign-label">INDIAN MILLETS. EVERYDAY CRUNCH.</p>
+              <h1 class="cfp-campaign-headline" id="cfp-campaign-headline"><span>Seriously good</span><span>Snacking.</span></h1>
+              <a class="cfp-campaign-shop" href="shop.html">SHOP THE GOODNESS →</a>
+            </div>
+            <figure class="cfp-campaign-panel cfp-campaign-nuts"><img src="ingredient-nuts-seeds.jpg" alt="Nuts, seeds and grains in close-up" width="700" height="700"></figure>
+            <figure class="cfp-campaign-panel cfp-campaign-product"><img src="Jowar%20Chips%20Product%20image.png" alt="Original CFP Jowar Chips pouch with its green label and illustrated character" width="1379" height="1141"></figure>
+          </div>
+        </article>
+
+        <!-- Hero Slide 2 (Full Screen Image Placeholder) -->
+        <article class="hero-slide hero-slide-full-screen">
+          <!-- HERO SLIDE 2 FULL SCREEN BANNER IMAGE PLACEHOLDER -->
+          <img src="CFP_Slide2.png" alt="CFP Slide 2" style="width: 100%; height: 100%; object-fit: cover;">
+        </article>
+
+        <!-- Hero Slide 3 (Full Screen Image Placeholder) -->
+        <article class="hero-slide hero-slide-full-screen">
+          <!-- HERO SLIDE 3 FULL SCREEN BANNER IMAGE PLACEHOLDER -->
+          <img src="CFP_Slide3.png" alt="CFP Slide 3" style="width: 100%; height: 100%; object-fit: cover;">
+        </article>
+
+      </div>
+    </div>
+
+    <!-- Carousel Controls -->
+    <div class="carousel-controls">
+      <button class="carousel-btn" id="prevSlideBtn" aria-label="Previous Slide">❮</button>
+      <div class="carousel-indicators">
+        <button class="dot-btn active" data-slide="0" aria-label="Slide 1"></button>
+        <button class="dot-btn" data-slide="1" aria-label="Slide 2"></button>
+        <button class="dot-btn" data-slide="2" aria-label="Slide 3"></button>
+      </div>
+      <button class="carousel-btn" id="nextSlideBtn" aria-label="Next Slide">❯</button>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       BRAND PROMISE / ATTRIBUTES MARQUEE (AFTER HERO SECTION)
+       ========================================================================= -->
+  <div class="brand-marquee-ribbon" aria-label="Brand Attributes Marquee">
+    <div class="marquee-track">
+      <span class="marquee-word">Light</span>
+      <span class="marquee-word">Nutritious</span>
+      <span class="marquee-word">Gluten-Free</span>
+      <span class="marquee-word">Made in India</span>
+      <span class="marquee-word">No Nasties</span>
+      <span class="marquee-word">Wholesome Ingredients</span>
+      <span class="marquee-word">Light</span>
+      <span class="marquee-word">Nutritious</span>
+      <span class="marquee-word">Gluten-Free</span>
+      <span class="marquee-word">Made in India</span>
+      <span class="marquee-word">No Nasties</span>
+      <span class="marquee-word">Wholesome Ingredients</span>
+    </div>
+    <div class="marquee-track" aria-hidden="true">
+      <span class="marquee-word">Light</span>
+      <span class="marquee-word">Nutritious</span>
+      <span class="marquee-word">Gluten-Free</span>
+      <span class="marquee-word">Made in India</span>
+      <span class="marquee-word">No Nasties</span>
+      <span class="marquee-word">Wholesome Ingredients</span>
+      <span class="marquee-word">Light</span>
+      <span class="marquee-word">Nutritious</span>
+      <span class="marquee-word">Gluten-Free</span>
+      <span class="marquee-word">Made in India</span>
+      <span class="marquee-word">No Nasties</span>
+      <span class="marquee-word">Wholesome Ingredients</span>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       4. SECTION ONE: THE NUTRITIONAL POWER OF MILLETS
+       ========================================================================= -->
+  <section class="pom-section pom-section-nutrition" id="pomNutrition" aria-labelledby="pomNutritionTitle">
+    <div class="container pom-container">
+      
+      <!-- Editorial Header -->
+      <header class="pom-header text-center">
+        <span class="pom-eyebrow">ANCIENT INDIAN GRAINS</span>
+        <h2 id="pomNutritionTitle" class="pom-main-heading">THE NUTRITIONAL POWER OF MILLETS</h2>
+        <p class="pom-intro-prose">
+          Ancient Indian grains with naturally occurring fibre, protein, minerals, and other nutrients. Discover what Ragi, Jowar, and Bajra bring to the table.
+        </p>
+      </header>
+
+      <!-- Information Area with Animated Editorial Annotations -->
+      <div class="pom-annotation-stage" id="pomAnnotationStage" role="region" aria-label="Millet Nutritional Features with Animated Editorial Connections">
+        
+        <!-- SVG Overlay for Leader Lines & Anchor Markers -->
+        <svg class="pom-annotation-svg" id="pomAnnotationSvg" aria-hidden="true"></svg>
+
+        <!-- 3 Editorial Content Zones on Dark Green Surface -->
+        <div class="pom-nutrition-grid">
+          
+          <!-- Left Zone: Nutritional Qualities -->
+          <div class="pom-zone pom-zone-left">
+            <div class="pom-feature-item" id="pomBlock0" data-annot-index="0">
+              <span class="pom-feature-label">NATURALLY OCCURRING FIBRE</span>
+              <h3 class="pom-feature-title">High Dietary Fibre</h3>
+              <p class="pom-feature-desc">
+                Millets contain dietary fibre, with amounts varying by grain and product. Fibre contributes to a balanced diet.
+              </p>
+            </div>
+
+            <div class="pom-feature-divider"></div>
+
+            <div class="pom-feature-item" id="pomBlock1" data-annot-index="1">
+              <span class="pom-feature-label">GRAIN-BASED NOURISHMENT</span>
+              <h3 class="pom-feature-title">Plant-Based Protein</h3>
+              <p class="pom-feature-desc">
+                Ragi, Jowar, and Bajra contribute plant-based protein. Their nutritional composition varies by grain and preparation.
+              </p>
+            </div>
+          </div>
+
+          <!-- Centre Zone: Visual Anchor Comparison -->
+          <div class="pom-zone pom-zone-center">
+            <div class="pom-center-card" id="pomCenterCard">
+              <div class="pom-center-head">
+                <h3 class="pom-center-title">Ragi • Jowar • Bajra</h3>
+                <p class="pom-center-subtitle">Three traditional grains. Different nutritional profiles.</p>
+              </div>
+
+              <!-- Verified Nutrient Comparison Data -->
+              <div class="pom-nutrient-bars">
+                <div class="pom-bar-item">
+                  <div class="pom-bar-header">
+                    <span class="pom-metric-name">Calcium (Ragi)</span>
+                    <span class="pom-metric-value">344 mg <small>/ 100g</small></span>
+                  </div>
+                  <div class="pom-bar-track">
+                    <div class="pom-bar-fill" style="width: 92%;"></div>
+                  </div>
+                </div>
+
+                <div class="pom-bar-item">
+                  <div class="pom-bar-header">
+                    <span class="pom-metric-name">Vital Iron &amp; Zinc (Bajra)</span>
+                    <span class="pom-metric-value">8.0 mg <small>/ 100g</small></span>
+                  </div>
+                  <div class="pom-bar-track">
+                    <div class="pom-bar-fill" style="width: 80%;"></div>
+                  </div>
+                </div>
+
+                <div class="pom-bar-item">
+                  <div class="pom-bar-header">
+                    <span class="pom-metric-name">Dietary Fibre (Jowar)</span>
+                    <span class="pom-metric-value">9.7 g <small>/ 100g</small></span>
+                  </div>
+                  <div class="pom-bar-track">
+                    <div class="pom-bar-fill" style="width: 85%;"></div>
+                  </div>
+                </div>
+
+                <div class="pom-bar-item">
+                  <div class="pom-bar-header">
+                    <span class="pom-metric-name">Glycemic Response</span>
+                    <span class="pom-metric-value">Low Response <small>&lt; 55</small></span>
+                  </div>
+                  <div class="pom-bar-track">
+                    <div class="pom-bar-fill" style="width: 76%;"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="pom-center-footer">
+                <span class="pom-center-note">Whole grains, thoughtfully chosen.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Zone: Additional Qualities -->
+          <div class="pom-zone pom-zone-right">
+            <div class="pom-feature-item" id="pomBlock2" data-annot-index="2">
+              <span class="pom-feature-label">BALANCED DIGESTION</span>
+              <h3 class="pom-feature-title">Glycemic Response</h3>
+              <p class="pom-feature-desc">
+                The effect of a grain on blood glucose depends on the grain, processing, portion size, and how it is prepared and eaten.
+              </p>
+            </div>
+
+            <div class="pom-feature-divider"></div>
+
+            <div class="pom-feature-item" id="pomBlock3" data-annot-index="3">
+              <span class="pom-feature-label">NATURALLY GENTLE</span>
+              <h3 class="pom-feature-title">Naturally Gluten-Free Grains</h3>
+              <p class="pom-feature-desc">
+                Ragi, Jowar, and Bajra are naturally gluten-free grains. Finished products should be described as gluten-free only when their ingredients and manufacturing controls support that claim.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Bottom Information Strip: 4 Editorial Columns -->
+      <footer class="pom-bottom-strip">
+        <div class="pom-strip-item">
+          <h4 class="pom-strip-title">Traditional Grains</h4>
+          <p class="pom-strip-desc">Ragi, Jowar, and Bajra have long-standing roots in Indian food culture.</p>
+        </div>
+        <div class="pom-strip-item">
+          <h4 class="pom-strip-title">Climate and Agriculture</h4>
+          <p class="pom-strip-desc">Millet crops differ in their growing requirements and resilience.</p>
+        </div>
+        <div class="pom-strip-item">
+          <h4 class="pom-strip-title">Nutritional Variety</h4>
+          <p class="pom-strip-desc">Different grains contribute different combinations of nutrients to the diet.</p>
+        </div>
+        <div class="pom-strip-item">
+          <h4 class="pom-strip-title">Thoughtful Ingredients</h4>
+          <p class="pom-strip-desc">Discover the ingredients and product choices behind CFP snacks.</p>
+        </div>
+      </footer>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       5. SECTION TWO: THE INGREDIENTS BEHIND EVERY BITE (CIRCULAR 3D FLIP MARQUEE)
+       ========================================================================= -->
+  <section class="pom-section pom-section-ingredients" id="pomIngredients" aria-labelledby="pomIngredientsTitle">
+    <div class="container pom-container">
+      
+      <!-- Horizontal Editorial Header -->
+      <header class="pom-ingredients-header">
+        <div class="pom-ing-head-left">
+          <span class="pom-eyebrow">A CLOSER LOOK AT WHAT GOES IN</span>
+          <h2 id="pomIngredientsTitle" class="pom-main-heading">THE INGREDIENTS BEHIND EVERY BITE</h2>
+        </div>
+        <div class="pom-ing-head-right">
+          <p class="pom-intro-prose">
+            Good snacks begin with thoughtful ingredients. Explore the grains, nuts, seeds, spices, and other ingredients that make each CFP product what it is.
+          </p>
+        </div>
+      </header>
+    </div>
+
+    <!-- Circular 3D Flip Ingredient Infinite Marquee (Edge to Edge Full Width) -->
+    <div class="pom-carousel-viewport" id="pomCarouselViewport" aria-label="Interactive Ingredient Carousel">
+      
+      <!-- Marquee Track 1 -->
+      <div class="pom-carousel-track" role="region" aria-label="Interactive Ingredient Cards">
+          
+          <!-- Card 1: Ragi -->
+          <div class="pom-flip-card" tabindex="0" role="button" aria-pressed="false" aria-label="Ragi: Finger Millet. Tap or hover to flip for details.">
+            <div class="pom-card-3d-inner">
+              <div class="pom-circle-face pom-face-front">
+                <img src="ingredient-ragi.jpg" alt="Ragi Finger Millet grains" width="500" height="500" loading="lazy">
+                <div class="pom-circle-badge">
+                  <span class="pom-badge-cat">Grain</span>
+                  <strong class="pom-badge-name">Ragi</strong>
+                </div>
+              </div>
+              <div class="pom-circle-face pom-face-back">
+                <span class="pom-back-cat">Traditional Grain</span>
+                <h4 class="pom-back-title">Ragi | Finger Millet</h4>
+                <p class="pom-back-desc">A traditional Indian grain packed with naturally occurring calcium, used as the wholesome base for CFP's roasted snacks.</p>
+                <span class="pom-flip-hint">Tap to flip back</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Jowar -->
+          <div class="pom-flip-card" tabindex="0" role="button" aria-pressed="false" aria-label="Jowar: Sorghum. Tap or hover to flip for details.">
+            <div class="pom-card-3d-inner">
+              <div class="pom-circle-face pom-face-front">
+                <img src="ingredient-jowar.jpg" alt="Jowar Sorghum grains" width="500" height="500" loading="lazy">
+                <div class="pom-circle-badge">
+                  <span class="pom-badge-cat">Grain</span>
+                  <strong class="pom-badge-name">Jowar</strong>
+                </div>
+              </div>
+              <div class="pom-circle-face pom-face-back">
+                <span class="pom-back-cat">Super Grain</span>
+                <h4 class="pom-back-title">Jowar | Sorghum</h4>
+                <p class="pom-back-desc">A versatile whole grain with dietary fibre and a light, crisp texture, featured in CFP's air-puffed chips and chivda.</p>
+                <span class="pom-flip-hint">Tap to flip back</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: Bajra -->
+          <div class="pom-flip-card" tabindex="0" role="button" aria-pressed="false" aria-label="Bajra: Pearl Millet. Tap or hover to flip for details.">
+            <div class="pom-card-3d-inner">
+              <div class="pom-circle-face pom-face-front">
+                <img src="ingredient-bajra.jpg" alt="Bajra Pearl Millet golden grains" width="500" height="500" loading="lazy">
+                <div class="pom-circle-badge">
+                  <span class="pom-badge-cat">Grain</span>
+                  <strong class="pom-badge-name">Bajra</strong>
+                </div>
+              </div>
+              <div class="pom-circle-face pom-face-back">
+                <span class="pom-back-cat">Ancient Grain</span>
+                <h4 class="pom-back-title">Bajra | Pearl Millet</h4>
+                <p class="pom-back-desc">A nutrient-dense grain known for iron and zinc, roasted to golden perfection in CFP's crunchy chivda recipes.</p>
+                <span class="pom-flip-hint">Tap to flip back</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4: Nuts & Seeds -->
+          <div class="pom-flip-card" tabindex="0" role="button" aria-pressed="false" aria-label="Nuts and Seeds. Tap or hover to flip for details.">
+            <div class="pom-card-3d-inner">
+              <div class="pom-circle-face pom-face-front">
+                <img src="ingredient-nuts-seeds.jpg" alt="Wholesome roasted nuts and seeds" width="500" height="500" loading="lazy">
+                <div class="pom-circle-badge">
+                  <span class="pom-badge-cat">Nut &amp; Seed</span>
+                  <strong class="pom-badge-name">Nuts &amp; Seeds</strong>
+                </div>
+              </div>
+              <div class="pom-circle-face pom-face-back">
+                <span class="pom-back-cat">Plant Nourishment</span>
+                <h4 class="pom-back-title">Nuts and Seeds</h4>
+                <p class="pom-back-desc">Carefully selected peanuts, flaxseeds, and sesame seeds roasted to contribute texture, flavour, and wholesome variety.</p>
+                <span class="pom-flip-hint">Tap to flip back</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 5: Turmeric -->
+          <div class="pom-flip-card" tabindex="0" role="button" aria-pressed="false" aria-label="Golden Turmeric. Tap or hover to flip for details.">
+            <div class="pom-card-3d-inner">
+              <div class="pom-circle-face pom-face-front">
+                <img src="ingredient-turmeric.jpg" alt="Golden Turmeric crispy snack seasoning" width="500" height="500" loading="lazy">
+                <div class="pom-circle-badge">
+                  <span class="pom-badge-cat">Spice</span>
+                  <strong class="pom-badge-name">Turmeric</strong>
+                </div>
+              </div>
+              <div class="pom-circle-face pom-face-back">
+                <span class="pom-back-cat">Traditional Spice</span>
+                <h4 class="pom-back-title">Pure Turmeric</h4>
+                <p class="pom-back-desc">Pure Indian turmeric celebrated for its earthy warmth and aroma, blended into CFP's golden snack formulations.</p>
+                <span class="pom-flip-hint">Tap to flip back</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 6: Wholesome Seeds -->
+          <div class="pom-flip-card" tabindex="0" role="button" aria-pressed="false" aria-label="Wholesome Seeds. Tap or hover to flip for details.">
+            <div class="pom-card-3d-inner">
+              <div class="pom-circle-face pom-face-front">
+                <img src="ingredient-seeds.jpg" alt="Wholesome pumpkin and sunflower seeds" width="500" height="500" loading="lazy">
+                <div class="pom-circle-badge">
+                  <span class="pom-badge-cat">Seeds</span>
+                  <strong class="pom-badge-name">Pumpkin Seeds</strong>
+                </div>
+              </div>
+              <div class="pom-circle-face pom-face-back">
+                <span class="pom-back-cat">Seed Variety</span>
+                <h4 class="pom-back-title">Pumpkin &amp; Melon Seeds</h4>
+                <p class="pom-back-desc">Used in selected recipes to contribute natural crunch, delicate flavour, and variety to every snack bite.</p>
+                <span class="pom-flip-hint">Tap to flip back</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Marquee Track 2 (Clone for infinite seamless loop) -->
+        <div class="pom-carousel-track" aria-hidden="true">
+          
+          <!-- Card 1 Clone: Ragi -->
+          <div class="pom-flip-card" tabindex="-1">
+            <div class="pom-card-3d-inner">
+              <div class="pom-circle-face pom-face-front">
+                <img src="ingredient-ragi.jpg" alt="" width="500" height="500" loading="lazy">
+                <div class="pom-circle-badge">
+                  <span class="pom-badge-cat">Grain</span>
+                  <strong class="pom-badge-name">Ragi</strong>
+                </div>
+              </div>
+              <div class="pom-circle-face pom-face-back">
+                <span class="pom-back-cat">Traditional Grain</span>
+                <h4 class="pom-back-title">Ragi | Finger Millet</h4>
+                <p class="pom-back-desc">A traditional Indian grain packed with naturally occurring calcium, used as the wholesome base for CFP's roasted snacks.</p>
+                <span class="pom-flip-hint">Tap to flip back</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 Clone: Jowar -->
+          <div class="pom-flip-card" tabindex="-1">
+            <div class="pom-card-3d-inner">
+              <div class="pom-circle-face pom-face-front">
+                <img src="ingredient-jowar.jpg" alt="" width="500" height="500" loading="lazy">
+                <div class="pom-circle-badge">
+                  <span class="pom-badge-cat">Grain</span>
+                  <strong class="pom-badge-name">Jowar</strong>
+                </div>
+              </div>
+              <div class="pom-circle-face pom-face-back">
+                <span class="pom-back-cat">Super Grain</span>
+                <h4 class="pom-back-title">Jowar | Sorghum</h4>
+                <p class="pom-back-desc">A versatile whole grain with dietary fibre and a light, crisp texture, featured in CFP's air-puffed chips and chivda.</p>
+                <span class="pom-flip-hint">Tap to flip back</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 Clone: Bajra -->
+          <div class="pom-flip-card" tabindex="-1">
+            <div class="pom-card-3d-inner">
+              <div class="pom-circle-face pom-face-front">
+                <img src="ingredient-bajra.jpg" alt="" width="500" height="500" loading="lazy">
+                <div class="pom-circle-badge">
+                  <span class="pom-badge-cat">Grain</span>
+                  <strong class="pom-badge-name">Bajra</strong>
+                </div>
+              </div>
+              <div class="pom-circle-face pom-face-back">
+                <span class="pom-back-cat">Ancient Grain</span>
+                <h4 class="pom-back-title">Bajra | Pearl Millet</h4>
+                <p class="pom-back-desc">A nutrient-dense grain known for iron and zinc, roasted to golden perfection in CFP's crunchy chivda recipes.</p>
+                <span class="pom-flip-hint">Tap to flip back</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4 Clone: Nuts & Seeds -->
+          <div class="pom-flip-card" tabindex="-1">
+            <div class="pom-card-3d-inner">
+              <div class="pom-circle-face pom-face-front">
+                <img src="ingredient-nuts-seeds.jpg" alt="" width="500" height="500" loading="lazy">
+                <div class="pom-circle-badge">
+                  <span class="pom-badge-cat">Nut &amp; Seed</span>
+                  <strong class="pom-badge-name">Nuts &amp; Seeds</strong>
+                </div>
+              </div>
+              <div class="pom-circle-face pom-face-back">
+                <span class="pom-back-cat">Plant Nourishment</span>
+                <h4 class="pom-back-title">Nuts and Seeds</h4>
+                <p class="pom-back-desc">Carefully selected peanuts, flaxseeds, and sesame seeds roasted to contribute texture, flavour, and wholesome variety.</p>
+                <span class="pom-flip-hint">Tap to flip back</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 5 Clone: Turmeric -->
+          <div class="pom-flip-card" tabindex="-1">
+            <div class="pom-card-3d-inner">
+              <div class="pom-circle-face pom-face-front">
+                <img src="ingredient-turmeric.jpg" alt="" width="500" height="500" loading="lazy">
+                <div class="pom-circle-badge">
+                  <span class="pom-badge-cat">Spice</span>
+                  <strong class="pom-badge-name">Turmeric</strong>
+                </div>
+              </div>
+              <div class="pom-circle-face pom-face-back">
+                <span class="pom-back-cat">Traditional Spice</span>
+                <h4 class="pom-back-title">Pure Turmeric</h4>
+                <p class="pom-back-desc">Pure Indian turmeric celebrated for its earthy warmth and aroma, blended into CFP's golden snack formulations.</p>
+                <span class="pom-flip-hint">Tap to flip back</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 6 Clone: Wholesome Seeds -->
+          <div class="pom-flip-card" tabindex="-1">
+            <div class="pom-card-3d-inner">
+              <div class="pom-circle-face pom-face-front">
+                <img src="ingredient-seeds.jpg" alt="" width="500" height="500" loading="lazy">
+                <div class="pom-circle-badge">
+                  <span class="pom-badge-cat">Seeds</span>
+                  <strong class="pom-badge-name">Pumpkin Seeds</strong>
+                </div>
+              </div>
+              <div class="pom-circle-face pom-face-back">
+                <span class="pom-back-cat">Seed Variety</span>
+                <h4 class="pom-back-title">Pumpkin &amp; Melon Seeds</h4>
+                <p class="pom-back-desc">Used in selected recipes to contribute natural crunch, delicate flavour, and variety to every snack bite.</p>
+                <span class="pom-flip-hint">Tap to flip back</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="container pom-container">
+        <!-- Section Closing Callout -->
+        <div class="pom-closing-wrap text-center">
+          <a href="shop.html" class="btn btn-secondary pom-shop-link">Explore All Millet Snacks →</a>
+        </div>
+      </div>
+    </section>
+
+  <!-- =========================================================================
+       BRAND PROMISE / ATTRIBUTES MARQUEE
+       Individual words separated equally without batch distinction
+       ========================================================================= -->
+  <div class="brand-marquee-ribbon" aria-label="Brand Attributes Marquee">
+    <div class="marquee-track">
+      <span class="marquee-word">Light</span>
+      <span class="marquee-word">Nutritious</span>
+      <span class="marquee-word">Gluten-Free</span>
+      <span class="marquee-word">Made in India</span>
+      <span class="marquee-word">No Nasties</span>
+      <span class="marquee-word">Wholesome Ingredients</span>
+      <span class="marquee-word">Light</span>
+      <span class="marquee-word">Nutritious</span>
+      <span class="marquee-word">Gluten-Free</span>
+      <span class="marquee-word">Made in India</span>
+      <span class="marquee-word">No Nasties</span>
+      <span class="marquee-word">Wholesome Ingredients</span>
+    </div>
+    <div class="marquee-track" aria-hidden="true">
+      <span class="marquee-word">Light</span>
+      <span class="marquee-word">Nutritious</span>
+      <span class="marquee-word">Gluten-Free</span>
+      <span class="marquee-word">Made in India</span>
+      <span class="marquee-word">No Nasties</span>
+      <span class="marquee-word">Wholesome Ingredients</span>
+      <span class="marquee-word">Light</span>
+      <span class="marquee-word">Nutritious</span>
+      <span class="marquee-word">Gluten-Free</span>
+      <span class="marquee-word">Made in India</span>
+      <span class="marquee-word">No Nasties</span>
+      <span class="marquee-word">Wholesome Ingredients</span>
+    </div>
+  </div>
+
+
+
+
+  <!-- =========================================================================
+       9. SECTION 7: FINAL CTA BANNER
+       ========================================================================= -->
+  <section class="cta-banner-section">
+    <div class="container">
+      <h2>READY FOR A HEALTHIER CRUNCH?</h2>
+      <p>Order your favorite millet snacks today and enjoy wholesome, authentic super-grain nourishment delivered directly to your doorstep.</p>
+      <a href="shop.html" class="btn btn-primary btn-lg">SHOP NOW →</a>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       10. FOOTER
+       ========================================================================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h3 class="footer-brand-title">
+            <img src="CFP LOGO@3x-8.png" alt="CFP Logo" style="height: 36px; vertical-align: middle; margin-right: 8px;">
+            Chaudhary Farm Products
+          </h3>
+          <p class="footer-desc">India's favorite light, wholesome, and crunchy millet snacks. 100% natural super-grains crafted with love.</p>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">SHOP</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="catalogues.html">CATALOGUES</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Customer Account</h4>
+          <ul class="footer-links">
+            <li><a href="cart.html">Shopping Cart</a></li>
+            <li><a href="checkout.html">Checkout</a></li>
+            <li><a href="login.html">Login / Account</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Contact Info</h4>
+          <ul class="footer-links">
+            <li>📍 Maharashtra, India</li>
+            <li>✉️ chaudharifarmproducts@gmail.com</li>
+            <li>📞 +91 97646 58181</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Chaudhary Farm Products. All rights reserved.</p>
+        <p>Crafted with 🌾 for healthy Indian snacking.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="hero-slide-one.js"></script>
+</body>
+</html>

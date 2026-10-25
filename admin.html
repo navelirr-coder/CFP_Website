@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Operations Dashboard | Choudhari Farm Products</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body class="admin-body">
+
+  <!-- ADMIN LOGIN VIEW (Visible when unauthenticated) -->
+  <div id="adminLoginSection" class="admin-login-wrapper">
+    <div class="admin-login-card">
+      <div class="admin-login-brand">
+        <img src="CFP LOGO.svg" alt="Choudhari Farm Products" class="admin-logo-img">
+        <h2>Operations Portal</h2>
+        <p>Authorized Staff and Management Access Only</p>
+      </div>
+
+      <div id="loginAlert" class="admin-alert hidden"></div>
+
+      <form id="adminLoginForm" class="admin-form">
+        <div class="form-group">
+          <label for="adminEmail">Staff Email Address</label>
+          <input type="email" id="adminEmail" class="form-control" placeholder="staff@choudharifarmproducts.com" required autocomplete="username">
+        </div>
+
+        <div class="form-group">
+          <label for="adminPassword">Security Password</label>
+          <input type="password" id="adminPassword" class="form-control" placeholder="••••••••••••" required autocomplete="current-password">
+        </div>
+
+        <button type="submit" id="adminLoginBtn" class="btn btn-primary btn-block">
+          Authenticate & Enter Dashboard
+        </button>
+      </form>
+
+      <div class="admin-login-footer">
+        <small>Protected by role-based authorization and session audit logging.</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADMIN MAIN APPLICATION (Visible when authenticated) -->
+  <div id="adminMainApp" class="admin-app hidden">
+    <!-- Top Bar -->
+    <header class="admin-topbar">
+      <div class="admin-topbar-left">
+        <img src="CFP LOGO.svg" alt="CFP Logo" class="admin-brand-icon">
+        <div class="admin-title-wrap">
+          <h1 class="admin-portal-title">CFP Store Operations</h1>
+          <span class="live-pill"><span class="live-dot"></span> System Live</span>
+        </div>
+      </div>
+
+      <div class="admin-topbar-right">
+        <div class="admin-user-info">
+          <span id="adminUserName" class="admin-staff-name">Operations Staff</span>
+          <span id="adminUserRole" class="admin-role-badge">Order Manager</span>
+        </div>
+        <button id="adminLogoutBtn" class="btn btn-outline-sm">Log Out</button>
+      </div>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav class="admin-subnav">
+      <div class="admin-container nav-container">
+        <button class="subnav-tab active" data-tab="overviewTab">Overview Dashboard</button>
+        <button class="subnav-tab" data-tab="ordersTab">Orders Management</button>
+      </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <main class="admin-container main-content">
+
+      <!-- TAB 1: OVERVIEW DASHBOARD -->
+      <section id="overviewTab" class="tab-pane active">
+        <div class="section-header">
+          <div>
+            <h2>Operational Overview</h2>
+            <p class="section-subtext">Real-time database metrics for store orders and fulfillment pipelines.</p>
+          </div>
+          <button id="refreshMetricsBtn" class="btn btn-secondary-sm">↻ Refresh Metrics</button>
+        </div>
+
+        <!-- Metrics Grid -->
+        <div class="metrics-grid">
+          <div class="metric-card urgent" data-filter="placed">
+            <span class="metric-label">Awaiting Review</span>
+            <span id="metricAwaitingReview" class="metric-val">0</span>
+            <span class="metric-hint">New orders placed</span>
+          </div>
+
+          <div class="metric-card warning" data-filter="confirmed">
+            <span class="metric-label">Awaiting Packing</span>
+            <span id="metricAwaitingPacking" class="metric-val">0</span>
+            <span class="metric-hint">Confirmed orders</span>
+          </div>
+
+          <div class="metric-card info" data-filter="packed">
+            <span class="metric-label">Awaiting Dispatch</span>
+            <span id="metricAwaitingDispatch" class="metric-val">0</span>
+            <span class="metric-hint">Packed and ready</span>
+          </div>
+
+          <div class="metric-card success" data-filter="shipped">
+            <span class="metric-label">In Transit</span>
+            <span id="metricShipped" class="metric-val">0</span>
+            <span class="metric-hint">Dispatched via courier</span>
+          </div>
+
+          <div class="metric-card highlight" data-filter="out_for_delivery">
+            <span class="metric-label">Out for Delivery</span>
+            <span id="metricOutForDelivery" class="metric-val">0</span>
+            <span class="metric-hint">Courier on local run</span>
+          </div>
+
+          <div class="metric-card success-dark" data-filter="delivered">
+            <span class="metric-label">Delivered</span>
+            <span id="metricDelivered" class="metric-val">0</span>
+            <span class="metric-hint">Completed orders</span>
+          </div>
+
+          <div class="metric-card muted" data-filter="cancelled">
+            <span class="metric-label">Cancelled / Failed</span>
+            <span id="metricCancelled" class="metric-val">0</span>
+            <span class="metric-hint">Terminated orders</span>
+          </div>
+
+          <div class="metric-card alert" data-filter="exceptions">
+            <span class="metric-label">Exceptions</span>
+            <span id="metricExceptions" class="metric-val">0</span>
+            <span class="metric-hint">Delivery exceptions</span>
+          </div>
+        </div>
+
+        <!-- Secondary Summary Cards -->
+        <div class="summary-cards-row">
+          <div class="summary-card">
+            <h4>Total Verified Orders</h4>
+            <span id="metricTotalOrders" class="summary-val">0</span>
+          </div>
+          <div class="summary-card">
+            <h4>Verified Revenue (Paid)</h4>
+            <span id="metricTotalRevenue" class="summary-val">₹0.00</span>
+          </div>
+          <div class="summary-card">
+            <h4>Notification Failures</h4>
+            <span id="metricFailedNotifs" class="summary-val">0</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 2: ORDERS MANAGEMENT -->
+      <section id="ordersTab" class="tab-pane">
+        <div class="section-header">
+          <div>
+            <h2>Orders Management</h2>
+            <p class="section-subtext">Search, filter, inspect snapshots, and execute order lifecycle transitions.</p>
+          </div>
+        </div>
+
+        <!-- Filter Controls -->
+        <div class="orders-filter-bar">
+          <div class="filter-group search-group">
+            <input type="text" id="orderSearchInput" class="filter-input" placeholder="Search order #, customer, email, phone...">
+          </div>
+
+          <div class="filter-group">
+            <select id="filterFulfillmentStatus" class="filter-select">
+              <option value="">All Fulfillment States</option>
+              <option value="placed">Placed (Awaiting Review)</option>
+              <option value="confirmed">Confirmed</option>
+              <option value="packed">Packed</option>
+              <option value="shipped">Shipped</option>
+              <option value="out_for_delivery">Out for Delivery</option>
+              <option value="delivered">Delivered</option>
+              <option value="cancelled">Cancelled</option>
+              <option value="delivery_exception">Delivery Exception</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <select id="filterPaymentStatus" class="filter-select">
+              <option value="">All Payment States</option>
+              <option value="pending">Pending</option>
+              <option value="paid">Paid</option>
+              <option value="failed">Failed</option>
+              <option value="refunded">Refunded</option>
+            </select>
+          </div>
+
+          <button id="applyFiltersBtn" class="btn btn-secondary-sm">Apply Filters</button>
+          <button id="resetFiltersBtn" class="btn btn-text-sm">Reset</button>
+        </div>
+
+        <!-- Orders Table -->
+        <div class="table-responsive">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Order Number</th>
+                <th>Date & Time</th>
+                <th>Customer</th>
+                <th>Payment</th>
+                <th>Status</th>
+                <th>Total</th>
+                <th>Next Action</th>
+                <th>Details</th>
+              </tr>
+            </thead>
+            <tbody id="ordersTableBody">
+              <tr>
+                <td colspan="8" class="text-center py-4">Loading operational order data...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Pagination Controls -->
+        <div class="pagination-bar">
+          <span id="paginationInfo" class="pagination-info">Showing page 1 of 1</span>
+          <div class="pagination-buttons">
+            <button id="prevPageBtn" class="btn btn-outline-sm" disabled>&larr; Previous</button>
+            <button id="nextPageBtn" class="btn btn-outline-sm" disabled>Next &rarr;</button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ORDER DETAILS MODAL / DRAWER -->
+  <div id="orderDetailsModal" class="modal-backdrop hidden">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div>
+          <h3 id="modalOrderTitle">Order Details: CFP-XXXX</h3>
+          <span id="modalOrderDate" class="modal-subtitle">Created on ...</span>
+        </div>
+        <button id="closeOrderModalBtn" class="modal-close-btn">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="modal-grid">
+          <!-- Left Column: Customer & Delivery Info -->
+          <div class="modal-col">
+            <div class="detail-card">
+              <h4>Customer Information</h4>
+              <p><strong>Name:</strong> <span id="modalCustomerName">-</span></p>
+              <p><strong>Email:</strong> <span id="modalCustomerEmail">-</span></p>
+              <p><strong>Phone:</strong> <span id="modalCustomerPhone">-</span></p>
+            </div>
+
+            <div class="detail-card">
+              <h4>Shipping Destination Snapshot</h4>
+              <div id="modalShippingAddress" class="address-box">-</div>
+            </div>
+
+            <div class="detail-card">
+              <h4>Payment & Settlement</h4>
+              <p><strong>Status:</strong> <span id="modalPaymentStatus" class="status-badge">-</span></p>
+              <p><strong>Subtotal:</strong> <span id="modalSubtotal">₹0.00</span></p>
+              <p><strong>Shipping Charges:</strong> <span id="modalShippingFee">₹0.00</span></p>
+              <p><strong>Final Payable:</strong> <strong id="modalTotalAmount">₹0.00</strong></p>
+            </div>
+
+            <div class="detail-card">
+              <h4>Internal Admin Notes</h4>
+              <textarea id="modalAdminNoteInput" class="form-control" rows="3" placeholder="Add confidential internal kitchen or depot notes..."></textarea>
+              <button id="saveNoteBtn" class="btn btn-outline-sm mt-2">Save Internal Note</button>
+            </div>
+          </div>
+
+          <!-- Right Column: Items, Status Timeline, Shipments -->
+          <div class="modal-col">
+            <div class="detail-card">
+              <h4>Items Ordered</h4>
+              <div class="table-responsive">
+                <table class="items-table">
+                  <thead>
+                    <tr>
+                      <th>Product</th>
+                      <th>Qty</th>
+                      <th>Unit</th>
+                      <th>Total</th>
+                    </tr>
+                  </thead>
+                  <tbody id="modalItemsTableBody"></tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="detail-card">
+              <h4>Fulfillment Timeline & History</h4>
+              <div id="modalTimeline" class="timeline-container"></div>
+            </div>
+
+            <div class="detail-card">
+              <h4>Logistics & Shipments</h4>
+              <div id="modalShipmentsBox">No shipment records yet.</div>
+            </div>
+
+            <div class="detail-card">
+              <h4>Outbox Notification History</h4>
+              <div id="modalNotificationsBox">No notifications sent yet.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Footer with Contextual Actions -->
+      <div class="modal-footer">
+        <div id="orderActionButtons" class="action-buttons-group">
+          <!-- Dynamically filled with allowed actions -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DISPATCH / SHIPMENT MODAL -->
+  <div id="shipModal" class="modal-backdrop hidden">
+    <div class="modal-dialog-sm">
+      <div class="modal-header">
+        <h3>Verify & Dispatch Shipment</h3>
+        <button id="closeShipModalBtn" class="modal-close-btn">&times;</button>
+      </div>
+      <form id="shipForm" class="modal-body">
+        <p class="modal-instruction">Enter verified courier tracking credentials before marking the order as shipped.</p>
+        <div class="form-group">
+          <label for="shipCourierName">Courier Partner Name</label>
+          <input type="text" id="shipCourierName" class="form-control" placeholder="e.g. Blue Dart Express, Delhivery, DTDC" required value="Blue Dart Express">
+        </div>
+        <div class="form-group">
+          <label for="shipAwbCode">AWB / Courier Tracking Number</label>
+          <input type="text" id="shipAwbCode" class="form-control" placeholder="e.g. 8921430012" required>
+        </div>
+        <div class="form-group">
+          <label for="shipNote">Dispatch Note (Optional)</label>
+          <input type="text" id="shipNote" class="form-control" placeholder="e.g. Picked up by morning depot vehicle">
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="cancelShipModalBtn" class="btn btn-text-sm">Cancel</button>
+          <button type="submit" id="confirmShipBtn" class="btn btn-primary">Confirm Dispatch</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>

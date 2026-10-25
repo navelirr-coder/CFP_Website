@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login / Register | Chaudhary Farm Products</title>
+  <meta name="description" content="Sign in to your Chaudhary Farm Products account or create a new account for fast checkout, order tracking, and exclusive discounts.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- MINIMAL HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-left">
+        <button class="icon-btn" id="hamburgerToggle" aria-label="Open Navigation Menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="header-center">
+        <a href="index.html" class="header-logo logo-icon-only" title="Chaudhary Farm Products Homepage">
+          <img src="CFP LOGO@3x-8.png" alt="CFP Logo" class="site-logo-img">
+        </a>
+      </div>
+
+      <div class="header-right">
+        <a href="cart.html" class="icon-btn cart-icon-btn" title="View Shopping Cart">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span class="cart-badge-count">0</span>
+        </a>
+
+        <a href="login.html" class="icon-btn" title="Login / Account">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAVIGATION SIDE DRAWER -->
+  <div class="drawer-overlay" id="drawerOverlay" aria-hidden="true"></div>
+
+  <aside class="nav-drawer" id="navDrawer" aria-label="Main Navigation Menu">
+    <div class="drawer-header">
+      <div class="drawer-title-box">
+        <div class="drawer-logo-icon">
+          <img src="CFP LOGO@3x-8.png" alt="CFP Logo" class="drawer-logo-img">
+        </div>
+        <span class="drawer-brand-name">Chaudhary Farm Products</span>
+      </div>
+      <button class="drawer-close-btn" id="closeNavBtn" aria-label="Close navigation">&times;</button>
+    </div>
+
+    <nav class="drawer-nav-menu">
+      <a href="index.html" class="nav-menu-item">Home <span class="arrow">→</span></a>
+      <a href="shop.html" class="nav-menu-item">SHOP <span class="arrow">→</span></a>
+      <a href="about.html" class="nav-menu-item">About Us <span class="arrow">→</span></a>
+      <a href="catalogues.html" class="nav-menu-item">CATALOGUES <span class="arrow">→</span></a>
+      <a href="contact.html" class="nav-menu-item">Contact Us <span class="arrow">→</span></a>
+    </nav>
+  </aside>
+
+  <!-- PAGE BANNER -->
+  <div class="page-banner">
+    <div class="container">
+      <h1 class="page-title" id="authPageTitle">My Account</h1>
+      <p id="authPageSubtitle" style="color: var(--color-text-muted); margin-top: 6px; font-size: 0.95rem;">Manage your profile, order history, and saved addresses</p>
+    </div>
+  </div>
+
+  <!-- MAIN CONTAINER: AUTHENTICATION OR ACCOUNT DASHBOARD -->
+  <main class="container" style="padding-top: 36px; padding-bottom: 60px;">
+
+    <!-- VIEW 1: AUTHENTICATION FORMS (Visible when logged out) -->
+    <div id="authFormsContainer" class="auth-container">
+      
+      <!-- Tab Controls -->
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-tab="login">Sign In</button>
+        <button class="auth-tab" data-tab="register">Create Account</button>
+      </div>
+
+      <!-- Login Form -->
+      <form id="loginForm">
+        <div class="form-group">
+          <label class="form-label" for="loginEmail">Email Address</label>
+          <input type="email" id="loginEmail" class="form-input" placeholder="john.doe@example.com" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="loginPassword">Password</label>
+          <input type="password" id="loginPassword" class="form-input" placeholder="••••••••" required>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; font-size: 0.85rem;">
+          <label style="display: flex; align-items: center; gap: 6px;">
+            <input type="checkbox" checked> Remember me
+          </label>
+          <a href="#" style="color: var(--color-green); font-weight: 600;">Forgot Password?</a>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg btn-block">Sign In →</button>
+      </form>
+
+      <!-- Register Form -->
+      <form id="registerForm" style="display: none;">
+        <div class="form-group">
+          <label class="form-label" for="regName">Full Name</label>
+          <input type="text" id="regName" class="form-input" placeholder="John Doe" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="regEmail">Email Address</label>
+          <input type="email" id="regEmail" class="form-input" placeholder="john.doe@example.com" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="regPassword">Create Password</label>
+          <input type="password" id="regPassword" class="form-input" placeholder="At least 8 characters" required>
+        </div>
+
+        <button type="submit" class="btn btn-secondary btn-lg btn-block">Create Account →</button>
+      </form>
+
+    </div>
+
+    <!-- VIEW 2: ACCOUNT OVERVIEW DASHBOARD (Visible when logged in) -->
+    <div id="accountDashboardContainer" class="account-dashboard-wrapper" style="display: none;">
+      <!-- Dynamically rendered via script.js -->
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h3 class="footer-brand-title">
+            <img src="CFP LOGO@3x-8.png" alt="CFP Logo" style="height: 36px; vertical-align: middle; margin-right: 8px;">
+            Chaudhary Farm Products
+          </h3>
+          <p class="footer-desc">India's favorite light, wholesome, and crunchy millet snacks.</p>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">SHOP</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="catalogues.html">CATALOGUES</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Customer Account</h4>
+          <ul class="footer-links">
+            <li><a href="cart.html">Shopping Cart</a></li>
+            <li><a href="checkout.html">Checkout</a></li>
+            <li><a href="login.html">Login / Account</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Contact Info</h4>
+          <ul class="footer-links">
+            <li>📍 Maharashtra, India</li>
+            <li>✉️ chaudharifarmproducts@gmail.com</li>
+            <li>📞 +91 97646 58181</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Chaudhary Farm Products. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

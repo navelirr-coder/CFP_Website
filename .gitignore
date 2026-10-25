@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+
+# Environment files and local secrets
+.env
+.env.*
+!.env.example
+
+# Logs and runtime output
+logs/
+*.log
+*.pid
+*.pid.lock
+
+# Test and build output
+coverage/
+dist/
+build/
+
+# Local database and uploaded/generated data
+*.sqlite
+*.sqlite3
+*.db
+uploads/
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.vscode/
+*.swp
+*.swo

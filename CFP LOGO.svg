@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1039.15 556.58">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        font-family: AcuminConcept-SemiCondSemibold, 'Acumin Variable Concept';
+        font-size: 46.54px;
+        font-variation-settings: 'wght' 600, 'wdth' 90, 'slnt' 0;
+        font-weight: 600;
+      }
+
+      .cls-1, .cls-3 {
+        fill: #f15f27;
+      }
+
+      .cls-4 {
+        letter-spacing: 0em;
+      }
+
+      .cls-5 {
+        letter-spacing: 0em;
+      }
+
+      .cls-2, .cls-6, .cls-7 {
+        fill: #075637;
+      }
+
+      .cls-8 {
+        letter-spacing: -.08em;
+      }
+
+      .cls-9 {
+        letter-spacing: 0em;
+      }
+
+      .cls-6 {
+        font-family: BluetagPERSONALUSE-Regular, 'Bluetag PERSONAL USE';
+        font-size: 55px;
+      }
+
+      .cls-10 {
+        letter-spacing: 0em;
+      }
+
+      .cls-11 {
+        letter-spacing: 0em;
+      }
+
+      .cls-12 {
+        letter-spacing: 0em;
+      }
+
+      .cls-13 {
+        letter-spacing: 0em;
+      }
+
+      .cls-14 {
+        letter-spacing: 0em;
+      }
+
+      .cls-15 {
+        letter-spacing: 0em;
+      }
+
+      .cls-16 {
+        fill: none;
+        stroke: url(#linear-gradient);
+        stroke-miterlimit: 10;
+        stroke-width: 6px;
+      }
+
+      .cls-17 {
+        letter-spacing: 0em;
+      }
+
+      .cls-18 {
+        fill: #699a4f;
+      }
+
+      .cls-19 {
+        letter-spacing: 0em;
+      }
+
+      .cls-20 {
+        fill: #f5b819;
+      }
+
+      .cls-21 {
+        letter-spacing: 0em;
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="165.78" y1="399.73" x2="871.44" y2="399.73" gradientUnits="userSpaceOnUse">
+      <stop offset=".45" stop-color="#075637"/>
+      <stop offset=".56" stop-color="#7a5a2f"/>
+      <stop offset=".66" stop-color="#cf5d29"/>
+      <stop offset=".7" stop-color="#f15f27"/>
+    </linearGradient>
+  </defs>
+  <g id="Layer_3" data-name="Layer 3">
+    <g>
+      <path class="cls-20" d="M823.77,0H215.37C96.42,0,0,96.43,0,215.37v125.83c0,118.95,96.42,215.38,215.37,215.38h608.4c118.95,0,215.38-96.43,215.38-215.38v-125.83c0-118.94-96.43-215.37-215.38-215.37ZM996.55,339.73c0,97.69-79.2,176.89-176.89,176.89H219.13c-97.7,0-176.9-79.2-176.9-176.89v-122.98c0-97.7,79.2-176.9,176.9-176.9h600.53c97.69,0,176.89,79.2,176.89,176.9v122.98Z"/>
+      <path class="cls-7" d="M413.56,176.6h6.3v-88.64h-6.3s-.6,9.45-10.68,11.36c0,0-7.02,1.66-16.85-1.79s-39.96-17.49-77.11-16.09-64.38,6-106.13,42.38c0,0-43.83,36.7-44.6,102.83,0,0-3.19,65.13,48.05,109.84,17.84,15.57,39.67,25.78,62.88,30.43,26.96,5.4,70.37,8.72,103.54-14.48,0,0,29.23-15.32,50.17-64.47l-5.62-2.94s-31.06,66.55-95.57,67.06c0,0-35.57,2.72-65.87-29.79,0,0-34.72-32.6-34.85-99.74,0,0,.04-66.21,42.34-105.79,0,0,21.74-22.56,54.57-22.5.99,0,1.99.02,2.98.02,6.21,0,41.52,1.48,67.22,33.42.83,1.03,1.66,2.04,2.55,3.01,3.55,3.84,15.54,18.32,22.98,45.86Z"/>
+      <path class="cls-18" d="M642.96,140.46h-4.94s-8.17-41.87-59.4-41.02h-58.21v151.23s12.85-48.85,57.53-59.19c0,0,30.64-5.23,44.55-10.72,0,0,20.81-8.68,28.72-22.47,0,0,1.02,52.81-28.21,89.11,0,0-26.68,36.81-74.17,25.4,0,0-24.85,13.27-24.85,53.79,0,.68-1.36,0-1.36,0,0,0-10.25-62.92,42.71-93.59,3.43-1.99,7.1-3.54,10.87-4.78,10.16-3.35,35.53-13.09,50-30.57,0,0-18.38,16.34-51.06,24.26,0,0-55.4,14.3-59.74,73.28,0,0-7.74,64.6,31.4,66.47v6.43h-103.2v-6.54s23.86-.39,27.27-24.05V121.65s3.83-25.28-26.3-27.91v-5.53l198.32.23.09,52.02Z"/>
+      <path class="cls-7" d="M663.18,94.3v-6.19h138.77s85.28,2.81,86.81,78.13c0,0,8.94,63.83-77.53,76.77,0,0-22.13,4.77-61.62-2.38l.34-7.06s81.19,17.56,84.09-67.22c0,0,2.64-71.93-74.98-66.99h-17.36v236.34s-2.21,22.98,26.55,25.19v6.13h-106.21v-5.79s24.17,2.04,26.72-25.02,0-215.74,0-215.74c0,0,1.79-27.28-25.57-26.15Z"/>
+      <line class="cls-16" x1="165.78" y1="399.73" x2="871.44" y2="399.73"/>
+      <text class="cls-2" transform="translate(205.53 452.53) scale(.77 1)"><tspan class="cls-13" x="0" y="0">N</tspan><tspan class="cls-9" x="32.25" y="0">U</tspan><tspan class="cls-4" x="63.2" y="0">R</tspan><tspan class="cls-19" x="91.77" y="0">T</tspan><tspan class="cls-9" x="116.9" y="0">U</tspan><tspan class="cls-14" x="147.85" y="0">R</tspan><tspan class="cls-19" x="176.38" y="0">IN</tspan><tspan class="cls-10" x="221.98" y="0">G </tspan><tspan class="cls-14" x="264.8" y="0">N</tspan><tspan class="cls-8" x="296.95" y="0">A</tspan><tspan class="cls-15" x="321.9" y="0">T</tspan><tspan class="cls-9" x="347.03" y="0">U</tspan><tspan class="cls-14" x="377.97" y="0">R</tspan><tspan class="cls-11" x="406.5" y="0">E</tspan></text>
+      <text class="cls-1" transform="translate(572.34 452.53) scale(.77 1)"><tspan class="cls-12" x="0" y="0">E</tspan><tspan class="cls-19" x="25.88" y="0">N</tspan><tspan class="cls-14" x="58.31" y="0">R</tspan><tspan class="cls-19" x="86.84" y="0">I</tspan><tspan class="cls-17" x="100.01" y="0">C</tspan><tspan class="cls-19" x="129.33" y="0">HIN</tspan><tspan class="cls-10" x="206.53" y="0">G </tspan><tspan class="cls-21" x="249.35" y="0">L</tspan><tspan class="cls-19" x="273.92" y="0">I</tspan><tspan class="cls-5" x="287.09" y="0">F</tspan><tspan class="cls-11" x="311.7" y="0">E</tspan></text>
+      <text class="cls-6" transform="translate(547.41 452.53) scale(.77 1)"><tspan x="0" y="0">,</tspan></text>
+      <circle class="cls-7" cx="184.12" cy="437.44" r="8.17"/>
+      <circle class="cls-3" cx="855.1" cy="437.44" r="8.17"/>
+    </g>
+  </g>
+</svg>
