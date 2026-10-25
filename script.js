@@ -1650,18 +1650,23 @@ document.addEventListener('DOMContentLoaded', () => {
     documents: {
       gst: {
         path: 'assets/documents/gst-registration.pdf',
-        available: false, // Set to true once gst-registration.pdf is uploaded
+        available: true,
         title: 'GST Registration'
       },
       fssai: {
         path: 'assets/documents/fssai-licence.pdf',
-        available: false, // Set to true once fssai-licence.pdf is uploaded
+        available: true,
         title: 'FSSAI Licence'
       },
-      apeda: {
-        path: 'assets/documents/apeda-registration.pdf',
-        available: false, // Set to true once apeda-registration.pdf is uploaded
-        title: 'APEDA Registration'
+      iec: {
+        path: 'assets/documents/iec-certificate.pdf',
+        available: true,
+        title: 'Importer Exporter Code (IEC)'
+      },
+      msme: {
+        path: 'assets/documents/msme-registration.pdf',
+        available: true,
+        title: 'MSME Registration'
       }
     },
     catalogues: {

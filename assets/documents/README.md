@@ -1,6 +1,6 @@
 # Legal & Registration Documents Repository
 
-Place official business PDF documents here:
+Official business PDFs linked from the registration cards on `about.html`:
 
 1. **`gst-registration.pdf`**
    - Document: GST Registration Certificate
@@ -10,12 +10,19 @@ Place official business PDF documents here:
    - Document: Food Safety and Standards Authority of India (FSSAI) Licence
    - Card location: Section 7 (Our Registrations & Licences) on `about.html`
 
-3. **`apeda-registration.pdf`**
-   - Document: APEDA Registration Document
+3. **`iec-certificate.pdf`**
+   - Document: Importer Exporter Code Certificate
    - Card location: Section 7 (Our Registrations & Licences) on `about.html`
 
-### How to Activate Documents:
-Once a PDF file is placed in this folder, open `script.js` and in the `CFP_DOC_REGISTRY` object, set the corresponding document `available: true`:
+4. **`msme-registration.pdf`**
+   - Document: MSME Registration
+   - Card location: Section 7 (Our Registrations & Licences) on `about.html`
+
+### Updating Documents
+All four documents are available. Each card opens its matching PDF in a new tab.
+Replace a PDF using the same filename to update its document without changing the link.
+When adding a new document, add its card to `about.html` and an entry in the
+`CFP_DOC_REGISTRY` object in `script.js` with `available: true`:
 
 ```javascript
 gst: {
