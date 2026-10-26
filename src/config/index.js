@@ -22,6 +22,7 @@ module.exports = {
     maxSavedAddresses: 5,
     supportEmail: process.env.SUPPORT_EMAIL || 'chaudharifarmproducts@gmail.com',
     supportPhone: process.env.SUPPORT_PHONE || '+91 9960725539',
+    whatsappNumber: '919960725539',
     emailFrom: process.env.EMAIL_FROM || '"Choudhari Farm Products" <orders@choudharifarmproducts.com>'
   },
 

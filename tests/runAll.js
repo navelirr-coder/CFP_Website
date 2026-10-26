@@ -5,6 +5,7 @@ const { runLifecycleTests } = require('./lifecycle.test');
 const { runStateMachineTests } = require('./stateMachine.test');
 const { runSecurityTests } = require('./security.test');
 const { runWebhookTests } = require('./webhooks.test');
+const { runEnquiryTests } = require('./enquiries.test');
 
 async function runAllTests() {
   console.log('====================================================');
@@ -17,6 +18,7 @@ async function runAllTests() {
     await runStateMachineTests();
     await runSecurityTests();
     await runWebhookTests();
+    await runEnquiryTests();
 
     const duration = ((Date.now() - startTime) / 1000).toFixed(2);
     console.log('\n====================================================');

@@ -35,21 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
   if (enquiry && subject && message) {
     if (!subject.value) subject.value = `Export enquiry — ${enquiry.name} / MOQ`;
     if (!message.value) message.value = `I would like to enquire about export supply of ${enquiry.name}.\n\nDestination country:\nRequired quantity:\nPacking preference:\n\nPlease share the MOQ, availability and a quotation.`;
-    const form=subject.closest('form');
-    const submit=form?.querySelector('button[type="submit"]');
-    if (form && submit) {
-      submit.textContent='Open email enquiry →';
-      const note=document.createElement('p');
-      note.textContent='Your email app will open with your enquiry. Review and send it there.';
-      note.style.cssText='font-size:.8rem;margin-top:12px;color:var(--color-text-muted)';
-      submit.after(note);
-      form.onsubmit=(event)=>{
-        event.preventDefault();
-        const name=document.getElementById('contactName').value;
-        const email=document.getElementById('contactEmail').value;
-        const body=`${message.value}\n\nName: ${name}\nEmail: ${email}`;
-        location.href=`mailto:chaudharifarmproducts@gmail.com?subject=${encodeURIComponent(subject.value)}&body=${encodeURIComponent(body)}`;
-      };
-    }
+    // The shared enquiry controller handles WhatsApp handoff and database recording.
   }
 });

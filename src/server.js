@@ -16,6 +16,7 @@ const orderRoutes = require('./routes/orderRoutes');
 const paymentRoutes = require('./routes/paymentRoutes');
 const webhookRoutes = require('./routes/webhookRoutes');
 const productRoutes = require('./routes/productRoutes');
+const enquiryRoutes = require('./routes/enquiryRoutes');
 const { processOutbox } = require('./services/notificationService');
 
 const app = express();
@@ -66,6 +67,7 @@ app.use('/api/orders', orderRoutes);
 app.use('/api/payments', paymentRoutes);
 app.use('/api/webhooks', webhookRoutes);
 app.use('/api/products', productRoutes);
+app.use('/api/enquiries', enquiryRoutes);
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {

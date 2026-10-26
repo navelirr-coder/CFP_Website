@@ -11,6 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="enquiry-form.css">
 </head>
 <body>
 
@@ -95,28 +96,31 @@
         <span class="badge-tag green">GET IN TOUCH</span>
         <h2 style="margin: 10px 0 20px 0;">We'd Love to Hear From You</h2>
         
-        <form id="contactForm" onsubmit="event.preventDefault(); alert('Thank you for reaching out to Chaudhary Farm Products! We will respond within 24 hours.');">
+        <form id="contactForm" aria-describedby="enquiryHelp">
           <div class="form-group">
             <label class="form-label" for="contactName">Your Full Name</label>
-            <input type="text" id="contactName" class="form-input" placeholder="John Doe" required>
+            <input type="text" id="contactName" name="fullName" minlength="2" maxlength="150" autocomplete="name" class="form-input" placeholder="John Doe" required>
           </div>
 
           <div class="form-group">
             <label class="form-label" for="contactEmail">Email Address</label>
-            <input type="email" id="contactEmail" class="form-input" placeholder="john.doe@example.com" required>
+            <input type="email" id="contactEmail" name="email" maxlength="254" autocomplete="email" class="form-input" placeholder="john.doe@example.com" required>
           </div>
 
           <div class="form-group">
             <label class="form-label" for="contactSubject">Subject</label>
-            <input type="text" id="contactSubject" class="form-input" placeholder="Product query, bulk order, feedback..." required>
+            <input type="text" id="contactSubject" name="subject" maxlength="200" class="form-input" placeholder="Product query, bulk order, feedback..." required>
           </div>
 
           <div class="form-group">
             <label class="form-label" for="contactMessage">Your Message</label>
-            <textarea id="contactMessage" class="form-input" rows="5" placeholder="Write your message here..." required></textarea>
+            <textarea id="contactMessage" name="message" maxlength="4000" class="form-input" rows="5" placeholder="Write your message here..." required></textarea>
           </div>
 
-          <button type="submit" class="btn btn-primary btn-lg btn-block">Send Message →</button>
+          <p id="enquiryHelp" class="enquiry-help">We will record your enquiry, then open WhatsApp to +91 9960725539. Review the message and press Send in WhatsApp.</p>
+          <button type="submit" id="enquirySubmit" class="btn btn-primary btn-lg btn-block">Send enquiry on WhatsApp →</button>
+          <p id="enquiryStatus" class="enquiry-status" role="status" aria-live="polite" tabindex="-1" hidden></p>
+          <a id="enquiryWhatsappLink" class="enquiry-whatsapp-link" href="https://wa.me/919960725539" target="_blank" rel="noopener noreferrer" hidden>Open WhatsApp →</a>
         </form>
       </div>
 
@@ -146,7 +150,7 @@
             <div style="font-size: 1.5rem;">📞</div>
             <div>
               <strong>Phone / WhatsApp</strong>
-              <p style="color: var(--color-text-muted); font-size: 0.9rem;">+91 9960725539 (Mon-Sat, 9am - 7pm IST)</p>
+              <p style="color: var(--color-text-muted); font-size: 0.9rem;"><a href="https://wa.me/919960725539" target="_blank" rel="noopener noreferrer">+91 9960725539</a> (Mon-Sat, 9am - 7pm IST)</p>
             </div>
           </div>
         </div>
@@ -239,5 +243,6 @@
 
   <script src="script.js"></script>
   <script src="turmeric-export.js"></script>
+  <script src="enquiry-form.js"></script>
 </body>
 </html>

@@ -1,0 +1,15 @@
+.enquiry-help,
+.enquiry-status {
+  margin: 12px 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.enquiry-help { color: var(--color-text-muted); }
+.enquiry-status { padding: 12px 16px; border-radius: var(--radius-md); }
+.enquiry-status[data-state="success"] { background: #e8f3ec; color: #15452c; }
+.enquiry-status[data-state="error"] { background: #fff0ed; color: #852c1d; }
+.enquiry-status[data-state="pending"] { background: var(--bg-subtle); }
+.enquiry-whatsapp-link { display: inline-block; margin-top: 8px; text-decoration: underline; font-weight: 600; }
+.enquiry-whatsapp-link[hidden], .enquiry-status[hidden] { display: none; }
+#enquirySubmit:disabled { opacity: 0.7; cursor: wait; }

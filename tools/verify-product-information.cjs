@@ -5,11 +5,12 @@ const { execFileSync } = require('node:child_process');
 const path = require('node:path');
 process.chdir(path.resolve(__dirname, '..'));
 const html = fs.readFileSync('shop.html', 'utf8');
-const baseline = execFileSync('git', ['show', '5c8466e:shop.html'], {encoding:'utf8'});
+// Baseline includes the replacement catalogue filenames committed before enquiry changes.
+const baseline = execFileSync('git', ['show', 'cd309e4:shop.html'], {encoding:'utf8'});
 const cardsIn = text => text.replace(/\r\n/g,'\n').match(/<article class="product-item-card"[\s\S]*?<\/article>/g);
 assert.deepEqual(cardsIn(html), cardsIn(baseline), 'All original card markup, images, navigation and cart metadata must remain intact');
 for (const file of ['script.js', 'style.css', 'product-details.html']) {
-  assert.equal(fs.readFileSync(file,'utf8').replace(/\r\n/g,'\n'), execFileSync('git',['show',`5c8466e:${file}`],{encoding:'utf8'}).replace(/\r\n/g,'\n'), `${file} unchanged`);
+  assert.equal(fs.readFileSync(file,'utf8').replace(/\r\n/g,'\n'), execFileSync('git',['show',`cd309e4:${file}`],{encoding:'utf8'}).replace(/\r\n/g,'\n'), `${file} unchanged`);
 }
 assert.equal((html.match(/id="productInformation"/g)||[]).length,1);
 assert.ok(html.indexOf('id="productInformation"') > html.lastIndexOf('</article>'));

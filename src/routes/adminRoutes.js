@@ -14,6 +14,7 @@ router.get('/me', requireAdminAuth, adminController.getMe);
 
 // Operations dashboard and metrics
 router.get('/dashboard', requireAdminAuth, adminController.getDashboard);
+router.get('/enquiries', requireAdminAuth, require('../controllers/enquiryController').list);
 router.get('/orders', requireAdminAuth, adminController.listOrders);
 router.get('/orders/:id', requireAdminAuth, adminController.getOrderDetails);
 
