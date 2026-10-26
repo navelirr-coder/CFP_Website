@@ -1671,12 +1671,12 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     catalogues: {
       crunchies: {
-        path: 'assets/catalogues/crunchies-catalogue.pdf',
+        path: 'assets/catalogues/Crunchies%20catalogue_Digital%20Copy.pdf',
         available: true,
         title: 'Crunchies Catalogue'
       },
       bites: {
-        path: 'assets/catalogues/bites-catalogue.pdf',
+        path: 'assets/catalogues/Bites%20Catalogue_Digital%20Copy.pdf',
         available: true,
         title: 'Bites Catalogue'
       },

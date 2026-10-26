@@ -6,11 +6,11 @@ using the same filenames to update the downloads.
 
 Catalogue files:
 
-1. **`crunchies-catalogue.pdf`**
+1. **`Crunchies catalogue_Digital Copy.pdf`**
    - Catalogue: CFP Crunchies Range Catalogue
    - Card location: Card 1 on `catalogues.html`
 
-2. **`bites-catalogue.pdf`**
+2. **`Bites Catalogue_Digital Copy.pdf`**
    - Catalogue: CFP Bites Range Catalogue
    - Card location: Card 2 on `catalogues.html`
 
@@ -23,7 +23,7 @@ Once a PDF file is placed in this folder, open `script.js` and in the `CFP_DOC_R
 
 ```javascript
 crunchies: {
-  path: 'assets/catalogues/crunchies-catalogue.pdf',
+  path: 'assets/catalogues/Crunchies%20catalogue_Digital%20Copy.pdf',
   available: true,
   title: 'Crunchies Catalogue'
 }
