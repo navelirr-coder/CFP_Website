@@ -11,6 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="product-information.css">
   <link rel="stylesheet" href="turmeric-export.css">
 </head>
 <body>
@@ -270,6 +271,16 @@
         </article>
 
       </div>
+
+      <section class="product-information" id="productInformation" aria-labelledby="productInformationTitle">
+        <header class="product-information-header">
+          <span class="editorial-eyebrow">KNOW YOUR SNACK</span>
+          <h2 id="productInformationTitle">Explore the ingredients behind every bite</h2>
+          <p id="productInformationHelp">Hover over a snack to preview its details. Click or tap a card to keep it selected. With a keyboard, focus a card and press Enter or Space.</p>
+          <p class="product-information-status" id="productInformationStatus" role="status" aria-live="polite" aria-atomic="true">Select a snack to explore its ingredients and nutrition.</p>
+        </header>
+        <div id="productInformationContent"></div>
+      </section>
     </div>
   </main>
 
@@ -322,5 +333,7 @@
   </footer>
 
   <script src="script.js"></script>
+  <script src="product-information-data.js"></script>
+  <script src="product-information.js"></script>
 </body>
 </html>

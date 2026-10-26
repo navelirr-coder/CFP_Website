@@ -1,0 +1,106 @@
+/* Scoped to the shared information section; existing card styles remain unchanged. */
+.product-information {
+  margin-top: 48px;
+  padding: clamp(20px, 4vw, 44px);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--bg-cream-card, #faf8f2);
+  scroll-margin-top: 100px;
+}
+
+.product-information-header {
+  margin-bottom: 28px;
+}
+
+.product-information h2 {
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  line-height: 1.25;
+  margin: 10px 0 14px;
+}
+
+.product-information p {
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.product-information-header > p {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.product-information .product-information-status {
+  color: var(--color-green);
+  font-weight: 600;
+  margin-top: 12px;
+}
+
+.product-information-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: clamp(24px, 4vw, 48px);
+}
+
+.product-information h3 {
+  font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+  margin: 8px 0 12px;
+}
+
+.product-information h4 {
+  font-size: 1.05rem;
+  margin: 22px 0 10px;
+}
+
+.product-information-nutrition h4 {
+  margin-top: 0;
+}
+
+.product-information-highlight {
+  color: var(--color-green);
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.product-information table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.product-information caption {
+  text-align: left;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.product-information th,
+.product-information td {
+  padding: 10px 8px;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.product-information thead th {
+  color: var(--color-green);
+  background: var(--bg-subtle);
+}
+
+.product-information tbody th {
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .product-information-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .product-information th,
+  .product-information td {
+    padding: 9px 5px;
+  }
+
+  .product-information table {
+    font-size: 0.8rem;
+  }
+}
