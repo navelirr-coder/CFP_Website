@@ -30,6 +30,21 @@ document.addEventListener('DOMContentLoaded', () => {
     return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`;
   }
 
+  function preparedUrl(values) {
+    const text = `Customer enquiry - Chaudhari Farm Products\nName: ${values.fullName}\nEmail: ${values.email}\nSubject: ${values.subject}\n\n${values.message}`;
+    return `https://wa.me/919960725539?text=${encodeURIComponent(text)}`;
+  }
+
+  function openPreparedMessage(url, popup) {
+    whatsappLink.href = url;
+    whatsappLink.hidden = false;
+    whatsappLink.textContent = 'Open your prepared WhatsApp message →';
+    if (popup && !popup.closed) {
+      try { popup.location.replace(url); }
+      catch { popup.close(); }
+    }
+  }
+
   form.addEventListener('submit', async event => {
     event.preventDefault();
     if (busy) return;
@@ -59,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
     whatsappLink.hidden = true;
     showStatus('Recording your enquiry before opening WhatsApp…', 'pending');
     const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), 15000);
+    const timer = setTimeout(() => controller.abort(), 6000);
 
     try {
       const response = await fetch('/api/enquiries', {
@@ -71,19 +86,16 @@ document.addEventListener('DOMContentLoaded', () => {
       const result = await response.json().catch(() => null);
       if (!response.ok || !result?.success) {
         if (response.status === 409) pending = null;
-        throw new Error(result?.error || 'We could not record your enquiry. Please try again or contact us directly on WhatsApp.');
+        const error = new Error(result?.error || 'We could not record your enquiry. Please try again.');
+        error.backendUnavailable = [404, 405, 500, 502, 503, 504].includes(response.status)
+          || (response.ok && !result?.success);
+        throw error;
       }
       const destination = new URL(result.whatsappUrl);
       if (destination.origin !== 'https://wa.me' || destination.pathname !== '/919960725539') {
         throw new Error('Your enquiry was recorded, but WhatsApp could not be opened. Please contact +91 9960725539.');
       }
-      whatsappLink.href = destination.href;
-      whatsappLink.hidden = false;
-      whatsappLink.textContent = 'Open your prepared WhatsApp message →';
-      if (whatsappWindow && !whatsappWindow.closed) {
-        try { whatsappWindow.location.replace(destination.href); }
-        catch { whatsappWindow.close(); }
-      }
+      openPreparedMessage(destination.href, whatsappWindow);
       // This confirms a database submission only. A chat link cannot confirm sending or delivery.
       showStatus('Thank you! Your enquiry has been recorded. Please press Send in WhatsApp to send your message to +91 9960725539. If WhatsApp did not open, use the link below.', 'success');
       form.reset();
@@ -91,12 +103,19 @@ document.addEventListener('DOMContentLoaded', () => {
       pending = null;
       status.focus();
     } catch (error) {
-      try { if (whatsappWindow && !whatsappWindow.closed) whatsappWindow.close(); } catch { /* Already closed. */ }
-      showStatus(error.name === 'AbortError' ? 'The request timed out. Your form is unchanged. Please try again.' : error.message, 'error');
-      const text = `Customer enquiry - Chaudhari Farm Products\nName: ${values.fullName}\nEmail: ${values.email}\nSubject: ${values.subject}\n\n${values.message}`;
-      whatsappLink.href = `https://wa.me/919960725539?text=${encodeURIComponent(text)}`;
-      whatsappLink.textContent = 'Contact us directly on WhatsApp →';
-      whatsappLink.hidden = false;
+      const unavailable = error.name === 'AbortError' || error.name === 'TypeError' || error.backendUnavailable;
+      if (unavailable) {
+        // Static hosting, offline API, or a failed database must not block the WhatsApp handoff.
+        // Retain the form/reference for a safe retry; never claim a database save or delivery.
+        openPreparedMessage(preparedUrl(values), whatsappWindow);
+        showStatus('Your message is ready in WhatsApp. Press Send there to reach us. We could not save a website copy, so your form has been kept for retry.', 'notice');
+      } else {
+        try { if (whatsappWindow && !whatsappWindow.closed) whatsappWindow.close(); } catch { /* Already closed. */ }
+        showStatus(error.message || 'Please try again or contact us on WhatsApp.', 'error');
+        whatsappLink.href = preparedUrl(values);
+        whatsappLink.textContent = 'Contact us directly on WhatsApp →';
+        whatsappLink.hidden = false;
+      }
       status.focus();
     } finally {
       clearTimeout(timer);

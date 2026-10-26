@@ -13,10 +13,14 @@ The website confirms **enquiry recorded**. A WhatsApp chat link cannot establish
 that the visitor pressed Send or that the message was delivered. Database status
 is therefore `submitted`, never `sent` or `delivered`.
 
-If a popup is blocked, the prepared WhatsApp link remains visible. If the API or
-database fails, the form retains all values, shows an error, and offers direct
-WhatsApp contact. An unchanged retry reuses the same random reference so a lost
-response does not create duplicate records. No enquiry content is stored in
+If a popup is blocked, the prepared WhatsApp link remains visible. If the API is
+unreachable, missing on static hosting, times out after six seconds, or reports a
+database/server outage, the prepared WhatsApp message opens automatically anyway.
+The website states that a website copy could not be saved and retains the form
+for retry; it does not claim that the enquiry was recorded or sent. Validation,
+rate-limit, and reference-conflict errors preserve the form and show the error.
+An unchanged retry reuses the same random reference so a lost response does not
+create duplicate records. No enquiry content is stored in
 browser localStorage or sessionStorage.
 
 ## GoDaddy deployment
@@ -46,5 +50,5 @@ configured PostgreSQL administration tools. There is no new admin dashboard tab.
 - `npm test`: includes enquiry persistence, validation, retry deduplication,
   WhatsApp content/number, admin authorization and database failure handling.
 - `node tools/verify-enquiry-form.cjs`: exercises browser-controller success,
-  popup blocking, errors, timeouts, retry IDs, and duplicate-submit suppression
+  popup blocking, errors, timeouts, offline WhatsApp fallback, retry IDs, and duplicate-submit suppression
   using local test doubles; it does not send any real WhatsApp messages.
