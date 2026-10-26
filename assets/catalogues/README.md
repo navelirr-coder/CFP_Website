@@ -1,6 +1,10 @@
 # Product Catalogues Repository
 
-Place official product catalogue PDF files here:
+Crunchies and Bites are available and open in a new tab from `catalogues.html`.
+Turmeric remains Coming Soon until its PDF is supplied. Replace existing PDFs
+using the same filenames to update the downloads.
+
+Catalogue files:
 
 1. **`crunchies-catalogue.pdf`**
    - Catalogue: CFP Crunchies Range Catalogue

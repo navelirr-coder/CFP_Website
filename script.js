@@ -1672,12 +1672,12 @@ document.addEventListener('DOMContentLoaded', () => {
     catalogues: {
       crunchies: {
         path: 'assets/catalogues/crunchies-catalogue.pdf',
-        available: false, // Set to true once crunchies-catalogue.pdf is uploaded
+        available: true,
         title: 'Crunchies Catalogue'
       },
       bites: {
         path: 'assets/catalogues/bites-catalogue.pdf',
-        available: false, // Set to true once bites-catalogue.pdf is uploaded
+        available: true,
         title: 'Bites Catalogue'
       },
       turmeric: {

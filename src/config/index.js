@@ -21,7 +21,7 @@ module.exports = {
     taxRatePercentage: 0.00, // All inclusive MRP prices
     maxSavedAddresses: 5,
     supportEmail: process.env.SUPPORT_EMAIL || 'chaudharifarmproducts@gmail.com',
-    supportPhone: process.env.SUPPORT_PHONE || '+91 97646 58181',
+    supportPhone: process.env.SUPPORT_PHONE || '+91 9960725539',
     emailFrom: process.env.EMAIL_FROM || '"Choudhari Farm Products" <orders@choudharifarmproducts.com>'
   },
 
