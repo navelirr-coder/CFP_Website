@@ -1,6 +1,29 @@
 # Choudhari Farm Products (CFP) Store Backend & Operations System
 
+In the architecture notes below, `src/`, `migrations/`, and `tests/` are relative
+to `backend/`; browser filenames are relative to `frontend/`.
+
 Phase 2 implementation: Production-oriented Node.js, Express, and PostgreSQL backend, operations admin dashboard, and customer order tracking system with Server-Sent Events (SSE).
+
+
+## Project folders and local commands
+
+- `frontend/`: storefront/admin HTML, CSS, browser JavaScript, images and public assets.
+- `backend/`: Express source in `src/`, migrations, tests, npm dependencies and private `.env`.
+- `docs/`: deployment/review notes and original source documents.
+- `tools/`: frontend verification scripts. `context.md` stays at the project root.
+
+From the project root, run `npm.cmd run setup` for a clean dependency installation,
+then `npm.cmd start`. The root package forwards server commands to `backend/`.
+Alternatively, run `npm.cmd start` directly inside `backend/`.
+The server serves `frontend/` at http://localhost:3000, so browser URLs and image
+paths remain unchanged. Backend source and project documentation are not served.
+Use `npm.cmd test` for backend tests and `npm.cmd run verify:frontend` for UI logic checks.
+
+For GoDaddy static hosting, copy the **contents of `frontend/`** into the domain's
+Document Root. For full functionality, run the Node.js app from `backend/`, keep
+`frontend/` alongside it, configure `backend/.env`, and route `/api/*` to Express.
+See [enquiry deployment](docs/ENQUIRY-DEPLOYMENT.md) for database requirements.
 
 ---
 
@@ -20,43 +43,30 @@ Phase 2 implementation: Production-oriented Node.js, Express, and PostgreSQL bac
 
 ## 2. Directory Structure
 
-```
+```text
 CFP_Website/
-├── .env.example                 # Template for environment configuration
-├── .env                         # Local environment configuration
-├── package.json                 # Project dependencies and script definitions
-├── README.md                    # System documentation
-│
-├── migrations/                  # Sequential SQL migration files
-│   ├── 001_initial_schema.sql   # Tables, constraints, and indexes
-│   └── 002_seed_products.sql    # Authoritative product catalogue seed
-│
-├── src/
-│   ├── config/                  # Environment variables and policy constants
-│   ├── database/                # Connection pool, transaction runner, migrator
-│   ├── repositories/            # Data access queries using parameterized SQL
-│   ├── services/                # Business logic, state machine, SSE, outbox, payments
-│   ├── controllers/             # REST API controllers
-│   ├── middleware/              # Auth guards, role checks, rate limiters, error handling
-│   ├── validators/              # Schema validation functions
-│   ├── routes/                  # Express route definitions
-│   ├── scripts/                 # CLI administrative provisioning tools
-│   ├── utils/                   # Monetary handling, cryptography, order numbers
-│   └── server.js                # Server entrypoint and static file hosting
-│
-├── tests/                       # Automated test suites
-│   ├── lifecycle.test.js        # Core end-to-end order lifecycle
-│   ├── stateMachine.test.js     # State transitions and inventory restocking
-│   ├── security.test.js         # Role isolation and address limits
-│   ├── webhooks.test.js         # Razorpay and Shiprocket signature verification
-│   └── runAll.js                # Master test runner
-│
-├── admin.html                   # Staff operations dashboard UI
-├── admin.css                    # Operations dashboard styling
-├── admin.js                     # Operations dashboard client logic
-├── track-order.html             # Customer live order tracking UI
-├── style.css                    # Global storefront stylesheet
-└── script.js                    # Storefront interaction and cart script
+├── frontend/                    # Public website files (served at /)
+│   ├── assets/                  # Catalogues, certifications and other assets
+│   ├── index.html
+│   ├── admin.html
+│   ├── shop.html
+│   ├── style.css
+│   └── ...                      # Other pages, browser scripts and images
+├── backend/
+│   ├── .env.example             # Environment template; .env stays private
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── src/                     # Server, routes, repositories and services
+│   ├── migrations/              # SQL schema and seeds
+│   └── tests/                   # Backend verification suites
+├── docs/
+│   ├── ENQUIRY-DEPLOYMENT.md
+│   ├── PRODUCT-INFORMATION-REVIEW.md
+│   └── source-documents/        # Original PDFs and reference folders
+├── tools/                       # Frontend verification scripts
+├── context.md
+├── package.json                 # Convenience commands from the root
+└── README.md
 ```
 
 ---
@@ -70,14 +80,14 @@ CFP_Website/
 ### Installation
 In the project root, run:
 ```bash
-npm.cmd install
+npm.cmd run setup
 ```
 *(On Windows PowerShell, use `npm.cmd`)*
 
 ### Environment Setup
 Copy the template configuration:
 ```bash
-copy .env.example .env
+copy backend\.env.example backend\.env
 ```
 Fill in the placeholders as appropriate for your environment.
 
@@ -106,7 +116,7 @@ npm.cmd run seed:admin <email> <password> "<Full Name>" <role>
 
 Example:
 ```bash
-node src/scripts/createAdmin.js admin@choudharifarmproducts.com CfpAdminSecure2026! "Store Operations Director" super_admin
+node backend/src/scripts/createAdmin.js admin@choudharifarmproducts.com CfpAdminSecure2026! "Store Operations Director" super_admin
 ```
 
 Available roles:
@@ -198,16 +208,16 @@ Verification coverage includes:
 2. Obtain your **Key ID** and **Key Secret**.
 3. In Webhooks settings, create a webhook pointing to `https://yourdomain.com/api/webhooks/razorpay`.
 4. Subscribe to `payment.captured`, `payment.failed`, and `order.paid`.
-5. Enter a secret key and copy it to `RAZORPAY_WEBHOOK_SECRET` in `.env`.
+5. Enter a secret key and copy it to `RAZORPAY_WEBHOOK_SECRET` in `backend/.env`.
 
 ### Shiprocket Production Setup
 1. Log in to the Shiprocket panel.
 2. Add API user credentials and copy email/password to `SHIPROCKET_EMAIL` and `SHIPROCKET_PASSWORD`.
 3. In Webhook configuration, set the tracking webhook URL to `https://yourdomain.com/api/webhooks/shiprocket`.
-4. Copy the webhook token to `SHIPROCKET_WEBHOOK_SECRET` in `.env`.
+4. Copy the webhook token to `SHIPROCKET_WEBHOOK_SECRET` in `backend/.env`.
 
 ### Transactional Email Setup
-1. Configure your SMTP provider (e.g. AWS SES, Mailgun, SendGrid) in `.env` (`SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`).
+1. Configure your SMTP provider (e.g. AWS SES, Mailgun, SendGrid) in `backend/.env` (`SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`).
 2. The persistent outbox queue (`notifications` table) automatically processes queued templates and logs delivery attempts.
 
 ### Production Security Checklist

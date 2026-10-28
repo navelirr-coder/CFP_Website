@@ -3,7 +3,7 @@ const fs = require('node:fs');
 const vm = require('node:vm');
 const { execFileSync } = require('node:child_process');
 const path = require('node:path');
-process.chdir(path.resolve(__dirname, '..'));
+process.chdir(path.resolve(__dirname, '../frontend'));
 const html = fs.readFileSync('shop.html', 'utf8');
 // Baseline includes the replacement catalogue filenames committed before enquiry changes.
 const baseline = execFileSync('git', ['show', 'cd309e4:shop.html'], {encoding:'utf8'});

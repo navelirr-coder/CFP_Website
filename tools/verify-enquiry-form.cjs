@@ -3,7 +3,7 @@ const fs = require('node:fs');
 const vm = require('node:vm');
 const crypto = require('node:crypto');
 const path = require('node:path');
-const code = fs.readFileSync(path.join(__dirname, '../enquiry-form.js'), 'utf8');
+const code = fs.readFileSync(path.join(__dirname, '../frontend/enquiry-form.js'), 'utf8');
 function setup({ blocked=false, search='', fetcher }={}) {
   const elements={};
   for (const id of ['contactName','contactEmail','contactSubject','contactMessage','enquirySubmit','enquiryStatus','enquiryWhatsappLink']) {

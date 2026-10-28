@@ -42,7 +42,7 @@ app.use(express.urlencoded({ extended: true, limit: '2mb' }));
 app.use(cookieParser(config.sessionSecret));
 
 // Static files (serves existing storefront HTML, CSS, images, and assets)
-const publicDir = path.resolve(__dirname, '..');
+const publicDir = path.resolve(__dirname, '../../frontend');
 app.use(express.static(publicDir, {
   extensions: ['html', 'htm'],
   maxAge: config.nodeEnv === 'production' ? '1h' : 0

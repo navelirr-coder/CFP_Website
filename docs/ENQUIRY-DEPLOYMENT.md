@@ -27,13 +27,14 @@ browser localStorage or sessionStorage.
 
 Copying HTML into `public_html` alone cannot save database records. Deploy the
 existing Node.js application with `/api/*` routed to Express, and configure a
-persistent PostgreSQL `DATABASE_URL`. Set `NODE_ENV=production`, configure the
-existing session/JWT secrets, and use HTTPS. Run `npm ci`, `npm run migrate`,
+persistent PostgreSQL `DATABASE_URL` in `backend/.env`. Set `NODE_ENV=production`, configure the
+existing session/JWT secrets, and use HTTPS. From `backend/`, run `npm ci` and `npm run migrate`,
 then start or restart the Node.js application with `npm start` (or the hosting
 process manager). Migration `003_customer_enquiries.sql` is safe to rerun.
 
-Deploy `contact.html`, `catalogues.html`, `enquiry-form.js`, `enquiry-form.css`,
-and the updated `turmeric-export.js` alongside the backend changes. In production,
+Deploy the contents of `frontend/` (including the contact/catalogue pages and
+enquiry scripts/styles) alongside the `backend/` application changes. Express
+expects the sibling `frontend/` directory to exist. In production,
 the enquiry API returns 503 rather than acknowledging a save to the temporary
 in-memory development database. Live deployment has not been performed by this
 change; server access and the production database are still required.

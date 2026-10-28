@@ -1,6 +1,6 @@
 # Product information source review
 
-Content is maintained in `product-information-data.js`, keyed by existing shop slugs.
+Content is maintained in `frontend/product-information-data.js`, keyed by existing shop slugs.
 Cart IDs, image paths, category IDs and existing card order are preserved. In particular,
 Jowar Chips remains c3 and Jowar Chivda remains c4; the source request lists these in
 a different order but explicitly requires preserving the existing order.
