@@ -1035,17 +1035,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const createdOrder = data.order;
 
-        // Save order into customer's local history for convenient dashboard view
-        const newOrderRecord = {
-          orderId: createdOrder.orderNumber,
-          date: new Date(createdOrder.createdAt).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }),
-          status: 'Placed',
-          items: summary.items,
-          subtotal: createdOrder.subtotal,
-          shipping: createdOrder.shippingFee,
-          total: createdOrder.totalAmount
-        };
-        saveUserOrder(newOrderRecord);
+        // Order history is retained by the backend, never cached in browser storage.
 
         // Clear cart
         localStorage.removeItem('cfp_cart');
@@ -1068,43 +1058,13 @@ document.addEventListener('DOMContentLoaded', () => {
   /* --------------------------------------------------------------------------
      8. LOGIN & REGISTER TAB SWITCHER & ACCOUNT DASHBOARD
      -------------------------------------------------------------------------- */
-  function getUserOrders() {
-    const user = getAuthUser();
-    if (!user) return [];
-    try {
-      const key = `cfp_orders_${user.email || 'guest'}`;
-      const raw = localStorage.getItem(key);
-      if (raw) return JSON.parse(raw);
-      // Sample realistic initial orders for member history
-      return [
-        {
-          orderId: 'CFP-982143',
-          date: '08 Oct 2026, 11:30 AM',
-          status: 'Delivered',
-          items: [
-            { name: 'Ragi Sticks', quantity: 2, price: 99, itemTotal: 198 },
-            { name: 'Millet Nutri Bar', quantity: 1, price: 49, itemTotal: 49 }
-          ],
-          subtotal: 247,
-          shipping: 50,
-          total: 297
-        }
-      ];
-    } catch (e) {
-      return [];
+  // Remove legacy browser-only history; database orders are the source of truth.
+  try {
+    for (let index = localStorage.length - 1; index >= 0; index--) {
+      const key = localStorage.key(index);
+      if (key && key.startsWith('cfp_orders_')) localStorage.removeItem(key);
     }
-  }
-
-  function saveUserOrder(order) {
-    const user = getAuthUser();
-    if (!user) return;
-    try {
-      const key = `cfp_orders_${user.email || 'guest'}`;
-      const orders = getUserOrders();
-      orders.unshift(order);
-      localStorage.setItem(key, JSON.stringify(orders));
-    } catch (e) {}
-  }
+  } catch (error) { /* Browser storage may be unavailable. */ }
 
   function getSavedAddresses() {
     const user = getAuthUser();
@@ -1152,7 +1112,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!user) {
       // Show login/registration view
       if (authForms) authForms.style.display = 'block';
-      if (dashboard) dashboard.style.display = 'none';
+      if (dashboard) { dashboard.style.display = 'none'; dashboard.replaceChildren(); }
       if (pageTitle) pageTitle.textContent = 'Login / Register';
       if (pageSubtitle) pageSubtitle.textContent = 'Sign in or create an account for express checkout and order tracking';
       return;
@@ -1169,7 +1129,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const memberSince = user.memberSince || 'October 2026';
     const userPhone = user.phone || '+91 98765 43210';
 
-    const orders = getUserOrders();
     const addresses = getSavedAddresses();
     const cart = getCart();
     const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -1327,63 +1286,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
         </div>
 
-        <!-- COLUMN 2: ALL PREVIOUS ORDERS HISTORY -->
+        <!-- COLUMN 2: SERVER-SOURCED ORDER HISTORY -->
         <div>
           <div class="account-card">
             <div class="account-card-header">
-              <h3 class="account-card-title">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-                  <line x1="3" y1="6" x2="21" y2="6"></line>
-                  <path d="M16 10a4 4 0 0 1-8 0"></path>
-                </svg>
-                Previous Orders (${orders.length})
-              </h3>
+              <h3 class="account-card-title" id="accountOrdersHeading">Previous Orders</h3>
               <span style="font-size: 0.82rem; color: var(--color-text-muted); font-weight: 700;">All Order Records</span>
             </div>
-
-            ${orders.length === 0 ? `
-              <div style="text-align: center; padding: 40px 20px; color: var(--color-text-muted);">
-                <p style="font-size: 1.05rem; font-weight: 700; margin-bottom: 8px;">No orders found yet</p>
-                <p style="margin-bottom: 18px; font-size: 0.9rem;">Your past purchases will appear here automatically.</p>
-                <a href="shop.html" class="btn btn-primary btn-sm">Start Shopping →</a>
-              </div>
-            ` : `
-              <div class="orders-history-list">
-                ${orders.map(order => `
-                  <div class="order-card-item">
-                    <div class="order-card-top">
-                      <div>
-                        <span class="order-number-tag">Order #${order.orderId}</span>
-                        <div class="order-date-text">Placed on ${order.date}</div>
-                      </div>
-                      <span class="order-status-badge ${order.status.toLowerCase() === 'delivered' ? 'status-delivered' : 'status-processing'}">${order.status}</span>
-                    </div>
-
-                    <table class="order-items-table">
-                      <tbody>
-                        ${order.items.map(item => `
-                          <tr>
-                            <td><strong>${item.name}</strong> <span style="color: var(--color-text-muted); font-size: 0.82rem;">(x${item.quantity})</span></td>
-                            <td style="text-align: right; font-weight: 700;">₹${item.itemTotal || (item.price * item.quantity)}</td>
-                          </tr>
-                        `).join('')}
-                      </tbody>
-                    </table>
-
-                    <div class="order-total-row">
-                      <span style="color: var(--color-text-muted); font-size: 0.88rem;">Shipping: ${order.shipping === 0 ? 'FREE' : '₹' + order.shipping}</span>
-                      <strong>Total Paid: ₹${order.total}</strong>
-                    </div>
-                  </div>
-                `).join('')}
-              </div>
-            `}
+            <div id="accountOrderHistory" aria-labelledby="accountOrdersHeading" aria-live="polite" aria-busy="true">
+              <p>Loading your order history…</p>
+            </div>
           </div>
         </div>
 
       </div>
     `;
+
+    document.dispatchEvent(new Event('cfp:account-rendered'));
 
     // 1. Dashboard Logout Button
     const dashLogoutBtn = document.getElementById('dashLogoutBtn');

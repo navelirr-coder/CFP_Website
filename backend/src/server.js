@@ -2,7 +2,6 @@
 // Choudhari Farm Products (CFP) Store Server
 
 const express = require('express');
-const path = require('path');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const config = require('./config');
@@ -16,7 +15,6 @@ const orderRoutes = require('./routes/orderRoutes');
 const paymentRoutes = require('./routes/paymentRoutes');
 const webhookRoutes = require('./routes/webhookRoutes');
 const productRoutes = require('./routes/productRoutes');
-const enquiryRoutes = require('./routes/enquiryRoutes');
 const { processOutbox } = require('./services/notificationService');
 
 const app = express();
@@ -41,12 +39,10 @@ app.use(express.json({
 app.use(express.urlencoded({ extended: true, limit: '2mb' }));
 app.use(cookieParser(config.sessionSecret));
 
-// Static files (serves existing storefront HTML, CSS, images, and assets)
-const publicDir = path.resolve(__dirname, '../../frontend');
-app.use(express.static(publicDir, {
-  extensions: ['html', 'htm'],
-  maxAge: config.nodeEnv === 'production' ? '1h' : 0
-}));
+// API-only server. Frontend files are served independently by Apache or the preview command.
+app.get('/', (req, res) => {
+  res.json({ service: 'CFP Backend API', health: '/api/health' });
+});
 
 const migrationPromise = runMigrations().catch(err => {
   console.error('Failed to run initial migrations on app start:', err.message);
@@ -67,7 +63,6 @@ app.use('/api/orders', orderRoutes);
 app.use('/api/payments', paymentRoutes);
 app.use('/api/webhooks', webhookRoutes);
 app.use('/api/products', productRoutes);
-app.use('/api/enquiries', enquiryRoutes);
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
@@ -96,9 +91,9 @@ async function startServer() {
 
     const server = app.listen(config.port, () => {
       console.log(`====================================================`);
-      console.log(` CFP Store Server running on ${config.appUrl}`);
-      console.log(` Admin Dashboard available at: ${config.appUrl}/admin.html`);
-      console.log(` Storefront available at: ${config.appUrl}/index.html`);
+      console.log(` CFP Backend API running on ${config.appUrl}`);
+      console.log(` Health check: ${config.appUrl}/api/health`);
+      console.log(` Frontend is separate. Start it only when needed with: npm run frontend`);
       console.log(`====================================================`);
     });
 

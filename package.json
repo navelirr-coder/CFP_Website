@@ -10,6 +10,7 @@
     "migrate": "npm --prefix backend run migrate",
     "seed:admin": "npm --prefix backend run seed:admin --",
     "test": "npm --prefix backend test",
-    "verify:frontend": "node tools/verify-enquiry-form.cjs && node tools/verify-product-information.cjs"
+    "verify:frontend": "node tools/verify-enquiry-form.cjs && node tools/verify-product-information.cjs && node tools/verify-order-history.cjs",
+    "frontend": "node tools/frontend-server.cjs"
   }
 }

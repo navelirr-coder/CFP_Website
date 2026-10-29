@@ -7,6 +7,7 @@ const { runSecurityTests } = require('./security.test');
 const { runWebhookTests } = require('./webhooks.test');
 const { runEnquiryTests } = require('./enquiries.test');
 const { runServerLayoutTests } = require('./serverLayout.test');
+const { runAccountOrdersTests } = require('./accountOrders.test');
 
 async function runAllTests() {
   console.log('====================================================');
@@ -21,6 +22,7 @@ async function runAllTests() {
     await runWebhookTests();
     await runEnquiryTests();
     await runServerLayoutTests();
+    await runAccountOrdersTests();
 
     const duration = ((Date.now() - startTime) / 1000).toFixed(2);
     console.log('\n====================================================');

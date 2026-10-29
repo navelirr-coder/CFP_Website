@@ -9,9 +9,13 @@ const html = fs.readFileSync('shop.html', 'utf8');
 const baseline = execFileSync('git', ['show', 'cd309e4:shop.html'], {encoding:'utf8'});
 const cardsIn = text => text.replace(/\r\n/g,'\n').match(/<article class="product-item-card"[\s\S]*?<\/article>/g);
 assert.deepEqual(cardsIn(html), cardsIn(baseline), 'All original card markup, images, navigation and cart metadata must remain intact');
-for (const file of ['script.js', 'style.css', 'product-details.html']) {
+for (const file of ['style.css', 'product-details.html']) {
   assert.equal(fs.readFileSync(file,'utf8').replace(/\r\n/g,'\n'), execFileSync('git',['show',`cd309e4:${file}`],{encoding:'utf8'}).replace(/\r\n/g,'\n'), `${file} unchanged`);
 }
+const currentScript = fs.readFileSync('script.js', 'utf8').replace(/\r\n/g,'\n');
+const originalScript = execFileSync('git', ['show', 'cd309e4:script.js'], {encoding:'utf8'}).replace(/\r\n/g,'\n');
+const productController = source => source.slice(source.indexOf('  const categoryPills ='), source.indexOf('     5. PRODUCT DETAILS QUANTITY PICKER'));
+assert.equal(productController(currentScript), productController(originalScript), 'Category and image-hover controllers unchanged');
 assert.equal((html.match(/id="productInformation"/g)||[]).length,1);
 assert.ok(html.indexOf('id="productInformation"') > html.lastIndexOf('</article>'));
 

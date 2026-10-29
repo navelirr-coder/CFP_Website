@@ -55,7 +55,18 @@ async function createOrder(req, res, next) {
 
 async function getMyOrders(req, res, next) {
   try {
-    const orders = await orderRepository.listByUserId(req.user.userId);
+    const records = await orderRepository.listByUserId(req.user.userId);
+    const orders = await Promise.all(records.map(async order => ({
+      id: order.id,
+      order_number: order.order_number,
+      items: (await orderItemRepository.findByOrderId(order.id)).map(item => ({
+        product_id: item.product_id,
+        product_name: item.product_name,
+        quantity: item.quantity
+      }))
+    })));
+
+    res.set('Cache-Control', 'no-store');
     return res.json({ success: true, orders });
   } catch (err) {
     next(err);

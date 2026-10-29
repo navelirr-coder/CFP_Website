@@ -6,6 +6,19 @@ to `backend/`; browser filenames are relative to `frontend/`.
 Phase 2 implementation: Production-oriented Node.js, Express, and PostgreSQL backend, operations admin dashboard, and customer order tracking system with Server-Sent Events (SSE).
 
 
+## Current responsibilities (2026-10-29)
+
+- Backend: account registration/login with hashed passwords, existing checkout,
+  order records/history, and server-side payment/shipping/email integration code.
+- Frontend: product pages, cart UI and direct WhatsApp enquiries. Contact forms
+  do not save to a backend database or wait for an API.
+- Customer order history is read from the authenticated backend and displays
+  ordered items/quantities only. No history is persisted in browser storage.
+- Checkout is retained as requested. Live Razorpay, Shiprocket and email-provider
+  calls are still unfinished; placing their code in the backend does not make
+  them live integrations. Credentials must not be put in frontend files.
+- See [current enquiry/data flow](docs/ENQUIRY-DEPLOYMENT.md).
+
 ## Project folders and local commands
 
 - `frontend/`: storefront/admin HTML, CSS, browser JavaScript, images and public assets.
@@ -16,13 +29,18 @@ Phase 2 implementation: Production-oriented Node.js, Express, and PostgreSQL bac
 From the project root, run `npm.cmd run setup` for a clean dependency installation,
 then `npm.cmd start`. The root package forwards server commands to `backend/`.
 Alternatively, run `npm.cmd start` directly inside `backend/`.
-The server serves `frontend/` at http://localhost:3000, so browser URLs and image
-paths remain unchanged. Backend source and project documentation are not served.
+The backend serves APIs only at http://localhost:3000. Its root returns a JSON
+service description; website pages are not served there. To preview the frontend
+separately, run `npm.cmd run frontend` in another terminal and open
+http://localhost:5173 (admin: http://localhost:5173/admin.html). This optional
+command does not start the backend. It proxies `/api/*` to port 3000 for login,
+checkout, order history and tracking when the backend is running. Override the
+preview port with `FRONTEND_PORT` or backend origin with `BACKEND_URL` if needed.
 Use `npm.cmd test` for backend tests and `npm.cmd run verify:frontend` for UI logic checks.
 
 For GoDaddy static hosting, copy the **contents of `frontend/`** into the domain's
-Document Root. For full functionality, run the Node.js app from `backend/`, keep
-`frontend/` alongside it, configure `backend/.env`, and route `/api/*` to Express.
+Document Root. For full functionality, run the Node.js app from `backend/`, configure `backend/.env`, and route
+`/api/*` from your public domain to Express. Apache serves the frontend separately.
 See [enquiry deployment](docs/ENQUIRY-DEPLOYMENT.md) for database requirements.
 
 ---
@@ -134,11 +152,11 @@ npm.cmd start
 ```
 By default, the server starts on `http://localhost:3000`.
 
-Access points:
-- Storefront Homepage: `http://localhost:3000/index.html`
-- Storefront Shop: `http://localhost:3000/shop.html`
-- Live Order Tracker: `http://localhost:3000/track-order.html`
-- Operations Admin Dashboard: `http://localhost:3000/admin.html`
+Access points (start the optional frontend preview for the website pages):
+- Storefront Homepage: `http://localhost:5173/index.html`
+- Storefront Shop: `http://localhost:5173/shop.html`
+- Live Order Tracker: `http://localhost:5173/track-order.html`
+- Operations Admin Dashboard: `http://localhost:5173/admin.html`
 - Health Check: `http://localhost:3000/api/health`
 
 ---

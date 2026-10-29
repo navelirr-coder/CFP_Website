@@ -1,6 +1,6 @@
 # CFP Website Context
 
-Last updated: 2026-10-28 (Asia/Calcutta).
+Last updated: 2026-10-29 (Asia/Calcutta).
 
 ## Repository and current status
 
@@ -19,7 +19,7 @@ Last updated: 2026-10-28 (Asia/Calcutta).
 - `docs/` contains deployment/review notes; `docs/source-documents/` contains the original PDFs and reference folders.
 - Root `package.json` forwards start/dev/migration/test/admin-seeding commands to `backend/`. `npm.cmd start` still works from the root or directly inside `backend/`.
 - Root `npm.cmd run setup` installs backend dependencies; `npm.cmd run verify:frontend` checks frontend controllers.
-- Express serves only `frontend/`; public URLs remain unchanged. Copy only its contents into a static hosting Document Root. Full Node.js deployment must retain the sibling frontend/backend layout.
+- Backend startup is now API-only on port 3000; it does not serve frontend pages or assets. Root `npm.cmd run frontend` starts an independent optional preview on port 5173 with an `/api/*` proxy to the backend. Neither command starts the other. Copy frontend contents into the static hosting Document Root and configure public `/api/*` routing separately.
 - Paths in feature descriptions below are relative to `frontend/` for public files and `backend/` for source, migrations and tests unless an explicit folder is given.
 
 ## Completed website changes
@@ -47,6 +47,7 @@ Last updated: 2026-10-28 (Asia/Calcutta).
 - The catalogue page includes a direct WhatsApp enquiry button using the same number.
 - Footer spelling is **Chaudhari Farm Products**. The name stays on one line; email, phone and location icons use aligned contact rows.
 - Login icons on About Us and Catalogues were corrected.
+- Removed the Google Maps / farm location placeholder from the Contact Us page.
 
 ### Shared product information panel
 
@@ -58,23 +59,33 @@ Last updated: 2026-10-28 (Asia/Calcutta).
 - Jowar Chips remains `c3`; Jowar Chivda remains `c4`; Nutri Millet Bar uses existing slug `millet-nutri-bar` and cart ID `b4`.
 - Review `docs/PRODUCT-INFORMATION-REVIEW.md` before publishing nutrition claims: ladoo serving sizes conflict with footnotes, Millet Ladoo serving carbohydrate is supplied as 60.63 g, several cookie serving values are inconsistent, and the Nutri Millet Bar name remains provisional. Values were preserved without recalculation.
 
-## WhatsApp enquiry flow and database
+## Independent frontend/backend processes
 
-- General contact and turmeric export enquiries share `enquiry-form.js` and `enquiry-form.css`.
-- `turmeric-export.js` still prefills export subject/message fields, but no longer replaces submission with an email handler.
-- `POST /api/enquiries` validates name, email, subject, message, source and a random request ID, then saves to `customer_enquiries`.
-- Schema: `migrations/003_customer_enquiries.sql`; API code: `src/routes/enquiryRoutes.js`, `src/controllers/enquiryController.js`, `src/repositories/enquiryRepository.js`.
-- An unchanged retry reuses its request ID, preventing duplicate database rows after a lost response. Different content under an existing ID returns a conflict.
-- Successful save opens the prepared WhatsApp message, confirms **enquiry recorded**, and clears the form.
-- The visitor still presses Send inside WhatsApp. The user explicitly requested no additional visitor confirmation step on the website.
-- A normal WhatsApp chat link cannot confirm sending or delivery. Database status is `submitted`, never an unverified `sent` or `delivered`.
-- If the API is unreachable, missing on static hosting, times out after six seconds, or reports a server/database outage, WhatsApp still opens with the enquiry text. The notice states that a website copy could not be saved; the form stays filled for retry.
-- Blocked popups have a visible prepared-message link. Validation/rate-limit/reference errors keep the form and show an error.
-- The explanatory paragraph beginning "We will record your enquiry, then open WhatsApp..." was removed at the user's request. Raw "Failed to fetch" errors are replaced by the WhatsApp fallback for network failures.
-- No enquiry content is stored in browser localStorage/sessionStorage.
-- Authenticated staff can retrieve the latest 100 records through `GET /api/admin/enquiries`. Anonymous visitors and customer sessions cannot list them. No admin dashboard tab was added.
-- Production enquiry recording refuses the temporary in-memory development database. Persistent PostgreSQL must be configured.
-- Detailed deployment and behaviour notes: `docs/ENQUIRY-DEPLOYMENT.md`.
+- `npm.cmd start` (root or backend folder) starts backend APIs only. http://localhost:3000 returns JSON; HTML/assets return 404.
+- `npm.cmd run frontend` (root) starts the website on http://localhost:5173. It is optional and does not start the backend. Its dev proxy preserves same-origin cookie/API behaviour.
+- WhatsApp enquiries work with the frontend alone. Login, checkout and database order history need the backend independently running.
+- The frontend preview is for local development; GoDaddy Apache serves `public_html` independently in production.
+
+## Current backend/frontend responsibilities (2026-10-29)
+
+- User initially requested the backend only for login/credentials and all enquiries forwarded through frontend WhatsApp. They then explicitly requested checkout remain unchanged and order history remain backend-only.
+- Latest clarification keeps Razorpay order creation/payment verification, Shiprocket booking, email sending and trusted order/payment state in the backend. Customer history should show ordered items only, without delivery/payment status.
+- Account registration/login already stores bcrypt password hashes, not plaintext passwords. Persistent PostgreSQL is still needed in production; local pg-mem records disappear on restart.
+- Checkout and its server-side order creation remain enabled. Only the browser copy of completed checkout history was removed.
+- `frontend/order-history.js` loads authenticated `GET /api/orders` with `cache: no-store`. The endpoint uses owner-scoped database queries, returns ordered product IDs/names/quantities grouped by order reference, and sends `Cache-Control: no-store`.
+- The account history UI does not display payment/delivery status, prices, totals, shipping details or fabricated sample orders. Legacy `cfp_orders_*` localStorage keys are removed; no new order history is persisted in browser storage.
+- Other existing account/cart behaviour is retained. This does not claim Shiprocket booking is live or delete checkout shipping records.
+- Razorpay/Shiprocket/email provider calls remain unfinished as previously inspected. No secret integration code is moved to the frontend.
+
+## Frontend-only WhatsApp enquiries
+
+- Contact and turmeric export enquiries are prepared entirely by `frontend/enquiry-form.js`, with no API/database request or browser persistence.
+- Destination is `https://wa.me/919960725539`; visitor presses Send in WhatsApp. No extra website confirmation is required, and the website does not claim sent/delivered/database-recorded status.
+- The form clears after opening the prepared message. If popups are blocked, it retains values until the visitor uses the prepared message link.
+- Turmeric prefilling and catalogue WhatsApp links are preserved. The removed explanatory paragraph stays removed.
+- Former `/api/enquiries` and `/api/admin/enquiries` routes are no longer mounted. Existing enquiry records/migrations/source are preserved, not deleted.
+- The earlier backend-recording and offline-fallback implementations (`103ad12`, `55ce7fd`) are historical and superseded by this frontend-only flow.
+- Current deployment and security boundaries: `docs/ENQUIRY-DEPLOYMENT.md`.
 
 ## GoDaddy / cPanel deployment and unresolved issues
 
@@ -84,12 +95,14 @@ Last updated: 2026-10-28 (Asia/Calcutta).
 - There is no `.cpanel.yml` deployment configuration yet.
 - The user reported cPanel error 128: `fatal: not a git repository (or any of the parent directories): .git`. Advice was to check the registered Repository Path and hidden `.git`; if missing, clone into a new empty folder outside the live Document Root. The actual cause and repair were not verified.
 - HTTPS guidance was provided: install a valid SSL certificate/AutoSSL if available, then enable Force HTTPS Redirect. SSL installation and live HTTPS status have not been verified.
-- The user reported "Failed to fetch" from the enquiry form. A local static-host fallback was implemented and verified, but the actual live API connection failure has not been diagnosed because the public URL/server access is unavailable.
+- The earlier enquiry "Failed to fetch" dependency is superseded by frontend-only WhatsApp submission. Login, checkout and order history still require a reachable backend; the live server configuration remains unverified.
 - Full functionality requires a running Node.js/Express backend, `/api/*` routing, a persistent PostgreSQL `DATABASE_URL`, production secrets and HTTPS. Copying frontend files alone cannot save enquiries or run authentication/orders.
 - Deploy backend changes, from `backend/` run `npm ci` and `npm run migrate`, then start/restart via `npm start` or the hosting process manager. Do not claim the production database has been updated without verifying the live deployment.
 - No authenticated SSH session was established; the earlier connection reached the server but authentication failed. Only a public key/path was supplied. A matching private key would be required for SSH changes. No server configuration was changed by the assistant.
 
 ## Verification history
+
+- On 2026-10-29, all seven backend suites passed, including credential hashing, item-only history, ownership isolation and no-store responses. All three frontend verification scripts passed. Browser QA used a temporary local account/order to verify the item/quantity-only history view; no production data or live provider integration was used.
 
 - On 2026-10-28 after reorganisation, root `npm.cmd test` passed all six suites, including new frontend/backend routing and private-file checks. Root `npm.cmd run verify:frontend` passed both controller checks. All 95 moved frontend files were byte-for-byte preserved; tracked public assets were also checked against Git history (normalizing text line endings).
 
@@ -103,6 +116,6 @@ Last updated: 2026-10-28 (Asia/Calcutta).
 ## Next steps
 
 - Obtain the public website URL, cPanel Repository Path and domain Document Root.
-- Confirm the deployed Node.js process, API routing, PostgreSQL connection and migration 003; diagnose the live enquiry API and verify persistent records.
+- Confirm the deployed Node.js process, API routing, PostgreSQL connection and migration 003; diagnose the live enquiry API and verify persistent account/order records.
 - Verify cPanel Git repair, latest deployment and HTTPS independently of GitHub push status.
 - Resolve the documented product nutrition/name discrepancies with the owner before treating them as verified claims.
