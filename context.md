@@ -24,6 +24,14 @@ Last updated: 2026-10-29 (Asia/Calcutta).
 
 ## Completed website changes
 
+### Phone layouts (2026-10-29)
+
+- All ten customer-facing HTML pages load `frontend/mobile.css` after their existing styles. Admin styling is outside this change.
+- Responsive styles fix narrow-header overlap, navigation drawer stacking, homepage nutrition-strip overflow, footer alignment, product thumbnails/tables and tracking-page spacing. Carousel height stays stable across slides on phones; wide campaign images are contained rather than cropped.
+- Cart rows become labelled mobile item cards with 44px quantity/remove buttons. Existing cart totals and checkout submission logic are retained.
+- Checkout fields stack on phones and include associated labels, shipping autofill hints and numeric pincode keyboard input. Form text is at least 16px on phones.
+- Browser verification covered ten pages at 320, 390, 430, 768 and 1280px, plus both turmeric detail routes at 320/390px, with no horizontal page overflow or overlapping header controls. See `docs/MOBILE-OPTIMIZATION.md` for validation and limits.
+
 ### Registration documents
 
 - About Us registration cards open matching PDFs in new tabs:

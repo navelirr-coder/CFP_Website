@@ -832,15 +832,15 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
           </div>
         </td>
-        <td>₹${item.price}</td>
-        <td>
+        <td data-label="Price">₹${item.price}</td>
+        <td data-label="Quantity">
           <div style="display: flex; align-items: center; gap: 8px;">
             <button class="qty-control-btn cart-minus" data-id="${item.id}" aria-label="Decrease quantity">-</button>
             <span style="min-width: 24px; text-align: center; font-weight: 700;">${item.quantity}</span>
             <button class="qty-control-btn cart-plus" data-id="${item.id}" aria-label="Increase quantity">+</button>
           </div>
         </td>
-        <td><strong>₹${item.itemTotal}</strong></td>
+        <td data-label="Total"><strong>₹${item.itemTotal}</strong></td>
         <td>
           <button class="cart-remove-btn" data-id="${item.id}" aria-label="Remove item" style="color: var(--color-green); font-weight: 800; font-size: 1.25rem; cursor: pointer; border: none; background: transparent; padding: 4px 8px;">&times;</button>
         </td>

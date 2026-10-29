@@ -10,7 +10,9 @@ const baseline = execFileSync('git', ['show', 'cd309e4:shop.html'], {encoding:'u
 const cardsIn = text => text.replace(/\r\n/g,'\n').match(/<article class="product-item-card"[\s\S]*?<\/article>/g);
 assert.deepEqual(cardsIn(html), cardsIn(baseline), 'All original card markup, images, navigation and cart metadata must remain intact');
 for (const file of ['style.css', 'product-details.html']) {
-  assert.equal(fs.readFileSync(file,'utf8').replace(/\r\n/g,'\n'), execFileSync('git',['show',`cd309e4:${file}`],{encoding:'utf8'}).replace(/\r\n/g,'\n'), `${file} unchanged`);
+  // The shared responsive stylesheet is the only allowed product-detail markup addition.
+  const current = fs.readFileSync(file,'utf8').replace(/\r\n/g,'\n').replace('  <link rel="stylesheet" href="mobile.css">\n', '');
+  assert.equal(current, execFileSync('git',['show',`cd309e4:${file}`],{encoding:'utf8'}).replace(/\r\n/g,'\n'), `${file} original design and product content preserved`);
 }
 const currentScript = fs.readFileSync('script.js', 'utf8').replace(/\r\n/g,'\n');
 const originalScript = execFileSync('git', ['show', 'cd309e4:script.js'], {encoding:'utf8'}).replace(/\r\n/g,'\n');
