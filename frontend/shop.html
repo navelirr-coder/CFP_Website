@@ -35,24 +35,6 @@
           <img src="CFP LOGO@3x-8.png" alt="CFP Logo" class="site-logo-img">
         </a>
       </div>
-
-      <div class="header-right">
-        <a href="cart.html" class="icon-btn cart-icon-btn" title="View Shopping Cart">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-            <line x1="3" y1="6" x2="21" y2="6"></line>
-            <path d="M16 10a4 4 0 0 1-8 0"></path>
-          </svg>
-          <span class="cart-badge-count">0</span>
-        </a>
-
-        <a href="login.html" class="icon-btn" title="Login / Account">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-            <circle cx="12" cy="7" r="4"></circle>
-          </svg>
-        </a>
-      </div>
     </div>
   </header>
 
@@ -106,7 +88,7 @@
 
 
 
-      <!-- Products Grid -->
+      <!-- Four individual products with permanent order controls. -->
       <div class="product-cards-grid" id="shopProductsGrid">
         
         <!-- ==========================================
@@ -115,66 +97,213 @@
 
         <!-- PRODUCT 1: RAGI STICKS -->
         <article class="product-item-card" data-category="crunchies" data-product="ragi-sticks">
+          <div class="product-preview"><span class="product-number">01</span>
           <div class="product-image-container">
             <img src="Ragi Sticks  Product image.png" alt="Ragi Sticks" class="default-product-img">
             <img src="Ragi Sticks  pop.png" alt="Ragi Sticks Pop View" class="pop-product-img">
           </div>
           <div class="product-card-body">
-            <a href="product-details.html?product=ragi-sticks" class="product-title-link">Ragi Sticks</a>
-            <p class="product-short-desc">Nutritious roasted finger millet sticks tossed with authentic mild spices.</p>
+            <button type="button" class="product-title-link product-details-toggle" aria-controls="details-ragi-sticks" aria-expanded="false">Ragi Sticks</button>
+            <p class="product-short-desc">Crunchy ragi sticks with dals, rice and homemade masala.</p>
             <div class="product-card-bottom">
               <span class="product-price-val">₹99</span>
-              <button class="btn btn-secondary btn-sm add-to-cart-btn" data-id="c1" data-name="Ragi Sticks" data-price="99">+ Add to Cart</button>
             </div>
           </div>
+          </div>
+          <!-- PRODUCT ORDER START -->
+            <div class="product-order-actions">
+              <div class="product-packet-picker" role="group" aria-label="Packets of Ragi Sticks">
+                <button type="button" class="packet-minus" aria-label="Decrease Ragi Sticks packets" disabled>−</button>
+                <input class="packet-quantity" type="number" min="0" max="9007199254740991" step="1" inputmode="numeric" value="0" aria-label="Number of packets of Ragi Sticks">
+                <button type="button" class="packet-plus" aria-label="Increase Ragi Sticks packets">+</button>
+              </div>
+              <a class="btn btn-primary product-order-link" href="https://wa.me/919960725539?text=Hello%20CFP%2C%20I%20would%20like%20to%20place%20an%20order%3A%0A%0A1.%20%22Ragi%20Sticks%22%20%E2%80%94%201%20packet%0A%0APlease%20confirm%20availability%2C%20packing%20and%20total%20price." target="_blank" rel="noopener noreferrer" aria-label="Place Order for Ragi Sticks on WhatsApp">Place Order ↗</a>
+            </div>
+            <!-- PRODUCT ORDER END -->
+            <!-- PRODUCT INFORMATION START -->
+            <section class="product-information" id="details-ragi-sticks" aria-labelledby="heading-ragi-sticks" hidden>
+              <h3 id="heading-ragi-sticks">Ragi Sticks</h3>
+              <p class="product-information-highlight">Calcium rich</p>
+              <p class="product-full-description">Crunchy, flavour-packed sticks made with ragi and a blend of dals, rice and homemade masala. A fun, savoury snack that brings the goodness of millets into everyday munching.</p>
+              <h4>Ingredients</h4>
+              <p class="product-ingredients">Ragi (40%), urad dal (15%), rice (15%), tapioca starch (15%), sunflower oil, homemade masala (5%), iodised salt (2%).</p>
+              <h4>Nutritional information</h4>
+              <table>
+                <caption>Values per 100 g and per 30 g serving</caption>
+                <thead><tr><th scope="col">Nutrient</th><th scope="col">Per 100 g</th><th scope="col">Per 30 g</th></tr></thead>
+                <tbody><tr><th scope="row">Energy</th><td>418 kcal</td><td>125 kcal</td></tr>
+                  <tr><th scope="row">Carbohydrates</th><td>67.8 g</td><td>20.3 g</td></tr>
+                  <tr><th scope="row">Total fat</th><td>9.5 g</td><td>2.9 g</td></tr>
+                  <tr><th scope="row">Saturated fat</th><td>1.2 g</td><td>0.36 g</td></tr>
+                  <tr><th scope="row">Trans fat</th><td>0 g</td><td>0 g</td></tr>
+                  <tr><th scope="row">Protein</th><td>10.3 g</td><td>3.1 g</td></tr>
+                  <tr><th scope="row">Dietary fibre</th><td>6.2 g</td><td>1.9 g</td></tr>
+                  <tr><th scope="row">Total sugar</th><td>1.8 g</td><td>0.5 g</td></tr>
+                  <tr><th scope="row">Sodium</th><td>780 mg</td><td>234 mg</td></tr>
+                  <tr><th scope="row">Cholesterol</th><td>0 mg</td><td>0 mg</td></tr>
+                  <tr><th scope="row">Calcium</th><td>150 mg</td><td>45 mg</td></tr></tbody>
+              </table>
+              <button class="product-information-close" type="button">Close details ↑</button>
+            </section>
+            <!-- PRODUCT INFORMATION END -->
         </article>
 
         <!-- PRODUCT 2: BAJRA CHIVDA -->
         <article class="product-item-card" data-category="crunchies" data-product="bajra-chivda">
+          <div class="product-preview"><span class="product-number">02</span>
           <div class="product-image-container">
             <img src="Bajra Chivda Product image.png" alt="Bajra Chivda" class="default-product-img">
             <img src="Bajra Chivda pop.png" alt="Bajra Chivda Pop View" class="pop-product-img">
           </div>
           <div class="product-card-body">
-            <a href="product-details.html?product=bajra-chivda" class="product-title-link">Bajra Chivda</a>
-            <p class="product-short-desc">Crisp roasted pearl millet chivda with golden peanuts and curry leaves.</p>
+            <button type="button" class="product-title-link product-details-toggle" aria-controls="details-bajra-chivda" aria-expanded="false">Bajra Chivda</button>
+            <p class="product-short-desc">Pearl millet flakes with roasted chana, peanuts, cashews and masala.</p>
             <div class="product-card-bottom">
               <span class="product-price-val">₹99</span>
-              <button class="btn btn-secondary btn-sm add-to-cart-btn" data-id="c2" data-name="Bajra Chivda" data-price="99">+ Add to Cart</button>
             </div>
           </div>
+          </div>
+          <!-- PRODUCT ORDER START -->
+            <div class="product-order-actions">
+              <div class="product-packet-picker" role="group" aria-label="Packets of Bajra Chivda">
+                <button type="button" class="packet-minus" aria-label="Decrease Bajra Chivda packets" disabled>−</button>
+                <input class="packet-quantity" type="number" min="0" max="9007199254740991" step="1" inputmode="numeric" value="0" aria-label="Number of packets of Bajra Chivda">
+                <button type="button" class="packet-plus" aria-label="Increase Bajra Chivda packets">+</button>
+              </div>
+              <a class="btn btn-primary product-order-link" href="https://wa.me/919960725539?text=Hello%20CFP%2C%20I%20would%20like%20to%20place%20an%20order%3A%0A%0A1.%20%22Bajra%20Chivda%22%20%E2%80%94%201%20packet%0A%0APlease%20confirm%20availability%2C%20packing%20and%20total%20price." target="_blank" rel="noopener noreferrer" aria-label="Place Order for Bajra Chivda on WhatsApp">Place Order ↗</a>
+            </div>
+            <!-- PRODUCT ORDER END -->
+            <!-- PRODUCT INFORMATION START -->
+            <section class="product-information" id="details-bajra-chivda" aria-labelledby="heading-bajra-chivda" hidden>
+              <h3 id="heading-bajra-chivda">Bajra Chivda</h3>
+              <p class="product-information-highlight">High fibre</p>
+              <p class="product-full-description">A crunchy, savoury mix made with pearl millet flakes, roasted chana, peanuts and cashews, finished with a touch of masala and turmeric. A satisfying, flavourful twist on a familiar Indian snack.</p>
+              <h4>Ingredients</h4>
+              <p class="product-ingredients">Pearl millet flakes (50%), rice bran oil (19.80%), roasted chana dal (10%), peanut (10%), cashew (2%), raisin (2%), masala (2%), sugar powder (1.70%), turmeric powder (0.50%).</p>
+              <h4>Nutritional information</h4>
+              <table>
+                <caption>Values per 100 g and per 30 g serving</caption>
+                <thead><tr><th scope="col">Nutrient</th><th scope="col">Per 100 g</th><th scope="col">Per 30 g</th></tr></thead>
+                <tbody><tr><th scope="row">Energy</th><td>481 kcal</td><td>144.3 kcal</td></tr>
+                  <tr><th scope="row">Carbohydrates</th><td>48.91 g</td><td>14.67 g</td></tr>
+                  <tr><th scope="row">Total fat</th><td>28.52 g</td><td>8.56 g</td></tr>
+                  <tr><th scope="row">Saturated fat</th><td>5.79 g</td><td>1.74 g</td></tr>
+                  <tr><th scope="row">Trans fat</th><td>0 g</td><td>0 g</td></tr>
+                  <tr><th scope="row">Protein</th><td>10.83 g</td><td>3.25 g</td></tr>
+                  <tr><th scope="row">Dietary fibre</th><td>6.69 g</td><td>2.01 g</td></tr>
+                  <tr><th scope="row">Total sugar</th><td>5.11 g</td><td>1.53 g</td></tr>
+                  <tr><th scope="row">Sodium</th><td>521 mg</td><td>156.3 mg</td></tr>
+                  <tr><th scope="row">Iron</th><td>3.1 mg</td><td>0.93 mg</td></tr>
+                  <tr><th scope="row">Calcium</th><td>41.4 mg</td><td>12.4 mg</td></tr></tbody>
+              </table>
+              <button class="product-information-close" type="button">Close details ↑</button>
+            </section>
+            <!-- PRODUCT INFORMATION END -->
         </article>
 
         <!-- PRODUCT 3: JOWAR CHIPS -->
         <article class="product-item-card" data-category="crunchies" data-product="jowar-chips">
+          <div class="product-preview"><span class="product-number">03</span>
           <div class="product-image-container">
             <img src="Jowar Chips Product image.png" alt="Jowar Chips" class="default-product-img">
             <img src="Jowar chips pop.png" alt="Jowar Chips Pop View" class="pop-product-img">
           </div>
           <div class="product-card-body">
-            <a href="product-details.html?product=jowar-chips" class="product-title-link">Jowar Chips</a>
-            <p class="product-short-desc">Air-puffed sorghum chips seasoned with tangy rock salt and desi spices.</p>
+            <button type="button" class="product-title-link product-details-toggle" aria-controls="details-jowar-chips" aria-expanded="false">Jowar Chips</button>
+            <p class="product-short-desc">Crispy jowar chips with lentils, rice and homemade masala.</p>
             <div class="product-card-bottom">
               <span class="product-price-val">₹99</span>
-              <button class="btn btn-secondary btn-sm add-to-cart-btn" data-id="c3" data-name="Jowar Chips" data-price="99">+ Add to Cart</button>
             </div>
           </div>
+          </div>
+          <!-- PRODUCT ORDER START -->
+            <div class="product-order-actions">
+              <div class="product-packet-picker" role="group" aria-label="Packets of Jowar Chips">
+                <button type="button" class="packet-minus" aria-label="Decrease Jowar Chips packets" disabled>−</button>
+                <input class="packet-quantity" type="number" min="0" max="9007199254740991" step="1" inputmode="numeric" value="0" aria-label="Number of packets of Jowar Chips">
+                <button type="button" class="packet-plus" aria-label="Increase Jowar Chips packets">+</button>
+              </div>
+              <a class="btn btn-primary product-order-link" href="https://wa.me/919960725539?text=Hello%20CFP%2C%20I%20would%20like%20to%20place%20an%20order%3A%0A%0A1.%20%22Jowar%20Chips%22%20%E2%80%94%201%20packet%0A%0APlease%20confirm%20availability%2C%20packing%20and%20total%20price." target="_blank" rel="noopener noreferrer" aria-label="Place Order for Jowar Chips on WhatsApp">Place Order ↗</a>
+            </div>
+            <!-- PRODUCT ORDER END -->
+            <!-- PRODUCT INFORMATION START -->
+            <section class="product-information" id="details-jowar-chips" aria-labelledby="heading-jowar-chips" hidden>
+              <h3 id="heading-jowar-chips">Jowar Chips</h3>
+              <p class="product-information-highlight">High fibre</p>
+              <p class="product-full-description">Crispy jowar-based chips with a satisfying crunch and a savoury homemade masala flavour. Made with millet, lentils and rice, they bring a familiar chip-style snack into a millet-inspired range.</p>
+              <h4>Ingredients</h4>
+              <p class="product-ingredients">Jowar (40%), urad dal (15%), rice (15%), tapioca starch (15%), sunflower oil (8%), homemade masala (5%), iodised salt (2%).</p>
+              <h4>Nutritional information</h4>
+              <table>
+                <caption>Values per 100 g and per 30 g serving</caption>
+                <thead><tr><th scope="col">Nutrient</th><th scope="col">Per 100 g</th><th scope="col">Per 30 g</th></tr></thead>
+                <tbody><tr><th scope="row">Energy</th><td>520.48 kcal</td><td>156.14 kcal</td></tr>
+                  <tr><th scope="row">Carbohydrates</th><td>56.05 g</td><td>16.82 g</td></tr>
+                  <tr><th scope="row">Total fat</th><td>28.64 g</td><td>8.59 g</td></tr>
+                  <tr><th scope="row">Saturated fat</th><td>9.08 g</td><td>2.72 g</td></tr>
+                  <tr><th scope="row">Trans fat</th><td>0 g</td><td>0 g</td></tr>
+                  <tr><th scope="row">Protein</th><td>9.1 g</td><td>2.73 g</td></tr>
+                  <tr><th scope="row">Dietary fibre</th><td>6.48 g</td><td>2.05 g</td></tr>
+                  <tr><th scope="row">Total sugar</th><td>1 g</td><td>0.30 g</td></tr>
+                  <tr><th scope="row">Sodium</th><td>315.22 mg</td><td>94.57 mg</td></tr>
+                  <tr><th scope="row">Cholesterol</th><td>0 mg</td><td>0 mg</td></tr></tbody>
+              </table>
+              <button class="product-information-close" type="button">Close details ↑</button>
+            </section>
+            <!-- PRODUCT INFORMATION END -->
         </article>
 
         <!-- PRODUCT 4: JOWAR CHIVDA -->
         <article class="product-item-card" data-category="crunchies" data-product="jowar-chivda">
+          <div class="product-preview"><span class="product-number">04</span>
           <div class="product-image-container">
             <img src="Jowar Chivda Product image.png" alt="Jowar Chivda" class="default-product-img">
             <img src="Jowar Chivda pop.png" alt="Jowar Chivda Pop View" class="pop-product-img">
           </div>
           <div class="product-card-body">
-            <a href="product-details.html?product=jowar-chivda" class="product-title-link">Jowar Chivda</a>
-            <p class="product-short-desc">Aromatic slow-roasted sorghum flakes blended with roasted nuts and seasoning.</p>
+            <button type="button" class="product-title-link product-details-toggle" aria-controls="details-jowar-chivda" aria-expanded="false">Jowar Chivda</button>
+            <p class="product-short-desc">Jowar flakes with roasted chana, peanuts, cashews and masala.</p>
             <div class="product-card-bottom">
               <span class="product-price-val">₹99</span>
-              <button class="btn btn-secondary btn-sm add-to-cart-btn" data-id="c4" data-name="Jowar Chivda" data-price="99">+ Add to Cart</button>
             </div>
           </div>
+          </div>
+          <!-- PRODUCT ORDER START -->
+            <div class="product-order-actions">
+              <div class="product-packet-picker" role="group" aria-label="Packets of Jowar Chivda">
+                <button type="button" class="packet-minus" aria-label="Decrease Jowar Chivda packets" disabled>−</button>
+                <input class="packet-quantity" type="number" min="0" max="9007199254740991" step="1" inputmode="numeric" value="0" aria-label="Number of packets of Jowar Chivda">
+                <button type="button" class="packet-plus" aria-label="Increase Jowar Chivda packets">+</button>
+              </div>
+              <a class="btn btn-primary product-order-link" href="https://wa.me/919960725539?text=Hello%20CFP%2C%20I%20would%20like%20to%20place%20an%20order%3A%0A%0A1.%20%22Jowar%20Chivda%22%20%E2%80%94%201%20packet%0A%0APlease%20confirm%20availability%2C%20packing%20and%20total%20price." target="_blank" rel="noopener noreferrer" aria-label="Place Order for Jowar Chivda on WhatsApp">Place Order ↗</a>
+            </div>
+            <!-- PRODUCT ORDER END -->
+            <!-- PRODUCT INFORMATION START -->
+            <section class="product-information" id="details-jowar-chivda" aria-labelledby="heading-jowar-chivda" hidden>
+              <h3 id="heading-jowar-chivda">Jowar Chivda</h3>
+              <p class="product-information-highlight">High protein</p>
+              <p class="product-full-description">A crunchy, savoury snack made with jowar flakes, roasted chana, peanuts and cashews. Blended with masala, a hint of sweetness and turmeric, it offers a moreish take on everyday snacking.</p>
+              <h4>Ingredients</h4>
+              <p class="product-ingredients">Jowar (sorghum) flakes (50%), rice bran oil (19.80%), roasted chana dal (10%), peanut (10%), cashew (2%), raisin (2%), masala (2%), sugar powder (1.70%), turmeric powder (0.50%).</p>
+              <h4>Nutritional information</h4>
+              <table>
+                <caption>Values per 100 g and per 30 g serving</caption>
+                <thead><tr><th scope="col">Nutrient</th><th scope="col">Per 100 g</th><th scope="col">Per 30 g</th></tr></thead>
+                <tbody><tr><th scope="row">Energy</th><td>475 kcal</td><td>142.5 kcal</td></tr>
+                  <tr><th scope="row">Carbohydrates</th><td>47.8 g</td><td>14.34 g</td></tr>
+                  <tr><th scope="row">Total fat</th><td>28.1 g</td><td>8.43 g</td></tr>
+                  <tr><th scope="row">Saturated fat</th><td>5.4 g</td><td>1.62 g</td></tr>
+                  <tr><th scope="row">Trans fat</th><td>0 g</td><td>0 g</td></tr>
+                  <tr><th scope="row">Protein</th><td>10.2 g</td><td>3.06 g</td></tr>
+                  <tr><th scope="row">Dietary fibre</th><td>7.1 g</td><td>2.13 g</td></tr>
+                  <tr><th scope="row">Total sugar</th><td>5 g</td><td>1.5 g</td></tr>
+                  <tr><th scope="row">Sodium</th><td>520 mg</td><td>156 mg</td></tr>
+                  <tr><th scope="row">Iron</th><td>3 mg</td><td>0.9 mg</td></tr>
+                  <tr><th scope="row">Calcium</th><td>40 mg</td><td>12 mg</td></tr></tbody>
+              </table>
+              <button class="product-information-close" type="button">Close details ↑</button>
+            </section>
+            <!-- PRODUCT INFORMATION END -->
         </article>
 
         <!-- ==========================================
@@ -183,66 +312,209 @@
 
         <!-- PRODUCT 5: RAGI LADOO -->
         <article class="product-item-card" data-category="bites" data-product="ragi-ladoo" style="display: none;">
+          <div class="product-preview"><span class="product-number">01</span>
           <div class="product-image-container">
             <img src="Ragi Ladoo Packaging.png" alt="Ragi Ladoo Packaging" class="default-product-img">
             <img src="Ragi Ladoo Packaging2.png" alt="Ragi Ladoo Packaging Angle 2" class="pop-product-img">
           </div>
           <div class="product-card-body">
-            <a href="product-details.html?product=ragi-ladoo" class="product-title-link">Ragi Ladoo</a>
-            <p class="product-short-desc">Melt-in-mouth roasted finger millet ladoos crafted with pure cow ghee & dry fruits.</p>
+            <button type="button" class="product-title-link product-details-toggle" aria-controls="details-ragi-ladoo" aria-expanded="false">Ragi Ladoo</button>
+            <p class="product-short-desc">Ragi ladoos with jaggery, cow ghee, dates, nuts and cardamom.</p>
             <div class="product-card-bottom">
               <span class="product-price-val">₹199</span>
-              <button class="btn btn-secondary btn-sm add-to-cart-btn" data-id="b1" data-name="Ragi Ladoo" data-price="199">+ Add to Cart</button>
             </div>
           </div>
+          </div>
+          <!-- PRODUCT ORDER START -->
+            <div class="product-order-actions">
+              <div class="product-packet-picker" role="group" aria-label="Packets of Ragi Ladoo">
+                <button type="button" class="packet-minus" aria-label="Decrease Ragi Ladoo packets" disabled>−</button>
+                <input class="packet-quantity" type="number" min="0" max="9007199254740991" step="1" inputmode="numeric" value="0" aria-label="Number of packets of Ragi Ladoo">
+                <button type="button" class="packet-plus" aria-label="Increase Ragi Ladoo packets">+</button>
+              </div>
+              <a class="btn btn-primary product-order-link" href="https://wa.me/919960725539?text=Hello%20CFP%2C%20I%20would%20like%20to%20place%20an%20order%3A%0A%0A1.%20%22Ragi%20Ladoo%22%20%E2%80%94%201%20packet%0A%0APlease%20confirm%20availability%2C%20packing%20and%20total%20price." target="_blank" rel="noopener noreferrer" aria-label="Place Order for Ragi Ladoo on WhatsApp">Place Order ↗</a>
+            </div>
+            <!-- PRODUCT ORDER END -->
+            <!-- PRODUCT INFORMATION START -->
+            <section class="product-information" id="details-ragi-ladoo" aria-labelledby="heading-ragi-ladoo" hidden>
+              <h3 id="heading-ragi-ladoo">Ragi Ladoo</h3>
+              <p class="product-information-highlight">Calcium rich</p>
+              <p class="product-full-description">Traditional-style ladoos made with ragi flour, organic jaggery, pure cow ghee and date paste, with cashews, almonds and cardamom for added flavour. A millet-based take on a familiar Indian sweet.</p>
+              <h4>Ingredients</h4>
+              <p class="product-ingredients">Ragi (finger millet) flour (54%), organic jaggery (17.74%), pure cow ghee (13.5%), date paste (10.52%), cashew (3%), almond (0.9%), cardamom powder (0.15%).</p>
+              <h4>Nutritional information</h4>
+              <table>
+                <caption>Values per 100 g and per 20 g serving</caption>
+                <thead><tr><th scope="col">Nutrient</th><th scope="col">Per 100 g</th><th scope="col">Per 20 g</th></tr></thead>
+                <tbody><tr><th scope="row">Energy</th><td>422 kcal</td><td>84.45 kcal</td></tr>
+                  <tr><th scope="row">Carbohydrates</th><td>67.67 g</td><td>13.52 g</td></tr>
+                  <tr><th scope="row">Total sugar</th><td>24.84 g</td><td>4.97 g</td></tr>
+                  <tr><th scope="row">Protein</th><td>10.5 g</td><td>2.1 g</td></tr>
+                  <tr><th scope="row">Total fat</th><td>16.12 g</td><td>3.22 g</td></tr>
+                  <tr><th scope="row">Saturated fat</th><td>8.53 g</td><td>1.71 g</td></tr>
+                  <tr><th scope="row">Trans fat</th><td>0.4 g</td><td>0.1 g</td></tr>
+                  <tr><th scope="row">Dietary fibre</th><td>2.99 g</td><td>0.6 g</td></tr>
+                  <tr><th scope="row">Iron</th><td>4.39 mg</td><td>0.88 mg</td></tr>
+                  <tr><th scope="row">Calcium</th><td>210.7 mg</td><td>42.15 mg</td></tr>
+                  <tr><th scope="row">Zinc</th><td>1.78 mg</td><td>0.36 mg</td></tr></tbody>
+              </table>
+              <button class="product-information-close" type="button">Close details ↑</button>
+            </section>
+            <!-- PRODUCT INFORMATION END -->
         </article>
 
         <!-- PRODUCT 6: MILLET LADOO -->
         <article class="product-item-card" data-category="bites" data-product="millet-ladoo" style="display: none;">
+          <div class="product-preview"><span class="product-number">02</span>
           <div class="product-image-container">
             <img src="Millet Ladoo Packaging.png" alt="Millet Ladoo Packaging" class="default-product-img">
             <img src="Millet Ladoo Packaging2.png" alt="Millet Ladoo Packaging Angle 2" class="pop-product-img">
           </div>
           <div class="product-card-body">
-            <a href="product-details.html?product=millet-ladoo" class="product-title-link">Millet Ladoo</a>
-            <p class="product-short-desc">Traditional multi-millet sweet balls enriched with cardamom, saffron, and pistachios.</p>
+            <button type="button" class="product-title-link product-details-toggle" aria-controls="details-millet-ladoo" aria-expanded="false">Millet Ladoo</button>
+            <p class="product-short-desc">Four-millet ladoos with jaggery, dates, nuts and cardamom.</p>
             <div class="product-card-bottom">
               <span class="product-price-val">₹199</span>
-              <button class="btn btn-secondary btn-sm add-to-cart-btn" data-id="b2" data-name="Millet Ladoo" data-price="199">+ Add to Cart</button>
             </div>
           </div>
+          </div>
+          <!-- PRODUCT ORDER START -->
+            <div class="product-order-actions">
+              <div class="product-packet-picker" role="group" aria-label="Packets of Millet Ladoo">
+                <button type="button" class="packet-minus" aria-label="Decrease Millet Ladoo packets" disabled>−</button>
+                <input class="packet-quantity" type="number" min="0" max="9007199254740991" step="1" inputmode="numeric" value="0" aria-label="Number of packets of Millet Ladoo">
+                <button type="button" class="packet-plus" aria-label="Increase Millet Ladoo packets">+</button>
+              </div>
+              <a class="btn btn-primary product-order-link" href="https://wa.me/919960725539?text=Hello%20CFP%2C%20I%20would%20like%20to%20place%20an%20order%3A%0A%0A1.%20%22Millet%20Ladoo%22%20%E2%80%94%201%20packet%0A%0APlease%20confirm%20availability%2C%20packing%20and%20total%20price." target="_blank" rel="noopener noreferrer" aria-label="Place Order for Millet Ladoo on WhatsApp">Place Order ↗</a>
+            </div>
+            <!-- PRODUCT ORDER END -->
+            <!-- PRODUCT INFORMATION START -->
+            <section class="product-information" id="details-millet-ladoo" aria-labelledby="heading-millet-ladoo" hidden>
+              <h3 id="heading-millet-ladoo">Millet Ladoo</h3>
+              <p class="product-information-highlight">Four-millet blend</p>
+              <p class="product-full-description">A millet-rich take on a traditional ladoo, combining bajra, jowar, foxtail millet and ragi with organic jaggery and date paste. Cashews, almonds and cardamom round out this nutty, naturally sweet Indian treat.</p>
+              <h4>Ingredients</h4>
+              <p class="product-ingredients">Bajra (pearl millet) flour (13.5%), jowar (sorghum) flour (13.5%), foxtail millet flour (13.5%), ragi (finger millet) flour (13.5%), organic jaggery (17.74%), date paste (10.52%), cashew (3%), almond (0.9%), cardamom powder (0.15%).</p>
+              <h4>Nutritional information</h4>
+              <table>
+                <caption>Values per 100 g and per 20 g serving</caption>
+                <thead><tr><th scope="col">Nutrient</th><th scope="col">Per 100 g</th><th scope="col">Per 20 g</th></tr></thead>
+                <tbody><tr><th scope="row">Energy</th><td>464 kcal</td><td>93.98 kcal</td></tr>
+                  <tr><th scope="row">Carbohydrates</th><td>60.63 g</td><td>60.63 g</td></tr>
+                  <tr><th scope="row">Total sugar</th><td>28.48 g</td><td>5.70 g</td></tr>
+                  <tr><th scope="row">Protein</th><td>13.41 g</td><td>2.68 g</td></tr>
+                  <tr><th scope="row">Total fat</th><td>19.86 g</td><td>3.97 g</td></tr>
+                  <tr><th scope="row">Saturated fat</th><td>11.53 g</td><td>2.31 g</td></tr>
+                  <tr><th scope="row">Trans fat</th><td>0.0011 g</td><td>0 g</td></tr>
+                  <tr><th scope="row">Dietary fibre</th><td>3.87 g</td><td>0.77 g</td></tr>
+                  <tr><th scope="row">Iron</th><td>23.6 mg</td><td>4.72 mg</td></tr>
+                  <tr><th scope="row">Calcium</th><td>79.26 mg</td><td>15.85 mg</td></tr>
+                  <tr><th scope="row">Zinc</th><td>4.7 mg</td><td>0.94 mg</td></tr></tbody>
+              </table>
+              <button class="product-information-close" type="button">Close details ↑</button>
+            </section>
+            <!-- PRODUCT INFORMATION END -->
         </article>
 
         <!-- PRODUCT 7: MILLET COOKIES -->
         <article class="product-item-card" data-category="bites" data-product="millet-cookies" style="display: none;">
+          <div class="product-preview"><span class="product-number">03</span>
           <div class="product-image-container">
             <img src="Millet Cookie Packaging.png" alt="Millet Cookie Packaging" class="default-product-img">
             <img src="Millet Cookie Packaging2.png" alt="Millet Cookie Packaging Angle 2" class="pop-product-img">
           </div>
           <div class="product-card-body">
-            <a href="product-details.html?product=millet-cookies" class="product-title-link">Millet Cookies</a>
-            <p class="product-short-desc">Hand-baked crunchy whole grain cookies packed with rolled oats, seeds & 0% maida.</p>
+            <button type="button" class="product-title-link product-details-toggle" aria-controls="details-millet-cookies" aria-expanded="false">Millet Cookies</button>
+            <p class="product-short-desc">Jowar and ragi cookies with wheat flour, jaggery and vanilla.</p>
             <div class="product-card-bottom">
               <span class="product-price-val">₹99</span>
-              <button class="btn btn-secondary btn-sm add-to-cart-btn" data-id="b3" data-name="Millet Cookies" data-price="99">+ Add to Cart</button>
             </div>
           </div>
+          </div>
+          <!-- PRODUCT ORDER START -->
+            <div class="product-order-actions">
+              <div class="product-packet-picker" role="group" aria-label="Packets of Millet Cookies">
+                <button type="button" class="packet-minus" aria-label="Decrease Millet Cookies packets" disabled>−</button>
+                <input class="packet-quantity" type="number" min="0" max="9007199254740991" step="1" inputmode="numeric" value="0" aria-label="Number of packets of Millet Cookies">
+                <button type="button" class="packet-plus" aria-label="Increase Millet Cookies packets">+</button>
+              </div>
+              <a class="btn btn-primary product-order-link" href="https://wa.me/919960725539?text=Hello%20CFP%2C%20I%20would%20like%20to%20place%20an%20order%3A%0A%0A1.%20%22Millet%20Cookies%22%20%E2%80%94%201%20packet%0A%0APlease%20confirm%20availability%2C%20packing%20and%20total%20price." target="_blank" rel="noopener noreferrer" aria-label="Place Order for Millet Cookies on WhatsApp">Place Order ↗</a>
+            </div>
+            <!-- PRODUCT ORDER END -->
+            <!-- PRODUCT INFORMATION START -->
+            <section class="product-information" id="details-millet-cookies" aria-labelledby="heading-millet-cookies" hidden>
+              <h3 id="heading-millet-cookies">Millet Cookies</h3>
+              <p class="product-information-highlight">Jowar and ragi flour</p>
+              <p class="product-full-description">Crisp, ridged cookies made with a blend of jowar and ragi flour alongside wheat flour, jaggery and vanilla. A familiar cookie experience with millet ingredients worked into every bite.</p>
+              <h4>Ingredients</h4>
+              <p class="product-ingredients">Jowar flour (13%), ragi flour (6.5%), wheat flour (20%), edible vegetable oil (20%), jaggery powder (18%), milk powder (2%), baking powder (0.65%), vanilla essence.</p>
+              <h4>Nutritional information</h4>
+              <table>
+                <caption>Values per 100 g and per 12 g serving</caption>
+                <thead><tr><th scope="col">Nutrient</th><th scope="col">Per 100 g</th><th scope="col">Per 12 g</th></tr></thead>
+                <tbody><tr><th scope="row">Energy</th><td>510 kcal</td><td>51 kcal</td></tr>
+                  <tr><th scope="row">Carbohydrates</th><td>52 g</td><td>5.2 g</td></tr>
+                  <tr><th scope="row">Total sugar</th><td>21.6 g</td><td>2.16 g</td></tr>
+                  <tr><th scope="row">Protein</th><td>7.5 g</td><td>0.75 g</td></tr>
+                  <tr><th scope="row">Total fat</th><td>10.5 g</td><td>0.10 g</td></tr>
+                  <tr><th scope="row">Saturated fat</th><td>6.2 g</td><td>0.62 g</td></tr>
+                  <tr><th scope="row">Dietary fibre</th><td>2.5 g</td><td>0.25 g</td></tr>
+                  <tr><th scope="row">Sodium</th><td>12 mg</td><td>1.2 mg</td></tr></tbody>
+              </table>
+              <button class="product-information-close" type="button">Close details ↑</button>
+            </section>
+            <!-- PRODUCT INFORMATION END -->
         </article>
 
         <!-- PRODUCT 8: MILLET NUTRI BAR -->
         <article class="product-item-card" data-category="bites" data-product="millet-nutri-bar" style="display: none;">
+          <div class="product-preview"><span class="product-number">04</span>
           <div class="product-image-container nutri-bar-container">
             <img src="Nutri Bar Packaging.png" alt="Nutri Bar Packaging" class="default-product-img nutri-bar-img">
             <img src="Nutri Bar Packaging2.png" alt="Nutri Bar Packaging Angle 2" class="pop-product-img nutri-bar-pop">
           </div>
           <div class="product-card-body">
-            <a href="product-details.html?product=millet-nutri-bar" class="product-title-link">Millet Nutri Bar</a>
-            <p class="product-short-desc">Wholesome on-the-go snack bar infused with puffed millets, raw honey, and roasted almonds.</p>
+            <button type="button" class="product-title-link product-details-toggle" aria-controls="details-millet-nutri-bar" aria-expanded="false">Millet Nutri Bar</button>
+            <p class="product-short-desc">Peanuts, seeds and puffed millets with jaggery and date paste.</p>
             <div class="product-card-bottom">
               <span class="product-price-val">₹49</span>
-              <button class="btn btn-secondary btn-sm add-to-cart-btn" data-id="b4" data-name="Millet Nutri Bar" data-price="49">+ Add to Cart</button>
             </div>
           </div>
+          </div>
+          <!-- PRODUCT ORDER START -->
+            <div class="product-order-actions">
+              <div class="product-packet-picker" role="group" aria-label="Packets of Millet Nutri Bar">
+                <button type="button" class="packet-minus" aria-label="Decrease Millet Nutri Bar packets" disabled>−</button>
+                <input class="packet-quantity" type="number" min="0" max="9007199254740991" step="1" inputmode="numeric" value="0" aria-label="Number of packets of Millet Nutri Bar">
+                <button type="button" class="packet-plus" aria-label="Increase Millet Nutri Bar packets">+</button>
+              </div>
+              <a class="btn btn-primary product-order-link" href="https://wa.me/919960725539?text=Hello%20CFP%2C%20I%20would%20like%20to%20place%20an%20order%3A%0A%0A1.%20%22Millet%20Nutri%20Bar%22%20%E2%80%94%201%20packet%0A%0APlease%20confirm%20availability%2C%20packing%20and%20total%20price." target="_blank" rel="noopener noreferrer" aria-label="Place Order for Millet Nutri Bar on WhatsApp">Place Order ↗</a>
+            </div>
+            <!-- PRODUCT ORDER END -->
+            <!-- PRODUCT INFORMATION START -->
+            <section class="product-information" id="details-millet-nutri-bar" aria-labelledby="heading-millet-nutri-bar" hidden>
+              <h3 id="heading-millet-nutri-bar">Nutri Millet Bar</h3>
+              <p class="product-information-highlight">Nuts, seeds and millets</p>
+              <p class="product-full-description">A crunchy nut-and-seed bar combining peanuts, jaggery and date paste with flaxseed, sesame and a mix of puffed Indian millets. A compact, textured snack with a satisfying combination of nuts, seeds and grains.</p>
+              <h4>Ingredients</h4>
+              <p class="product-ingredients">Peanuts (34.29%), jaggery (28.57%), glucose syrup (8.57%), date paste (4.86%), flaxseed (4.29%), sesame seeds (4.29%), ragi puff (2.86%), bajra puff (2.86%), jowar puff (2.86%), rajgira puff (2.86%), sorbitol (2.29%), little flakes (1.43%), vanilla essence.</p>
+              <h4>Nutritional information</h4>
+              <table>
+                <caption>Values per 100 g and per 30 g serving</caption>
+                <thead><tr><th scope="col">Nutrient</th><th scope="col">Per 100 g</th><th scope="col">Per 30 g</th></tr></thead>
+                <tbody><tr><th scope="row">Energy</th><td>487 kcal</td><td>146.1 kcal</td></tr>
+                  <tr><th scope="row">Carbohydrates</th><td>52.8 g</td><td>15.84 g</td></tr>
+                  <tr><th scope="row">Protein</th><td>13.9 g</td><td>4.17 g</td></tr>
+                  <tr><th scope="row">Total fat</th><td>24.8 g</td><td>7.44 g</td></tr>
+                  <tr><th scope="row">Saturated fat</th><td>4.5 g</td><td>1.35 g</td></tr>
+                  <tr><th scope="row">Trans fat</th><td>0.02 g</td><td>0.006 g</td></tr>
+                  <tr><th scope="row">Dietary fibre</th><td>6.8 g</td><td>2.04 g</td></tr>
+                  <tr><th scope="row">Iron</th><td>3.9 mg</td><td>1.17 mg</td></tr>
+                  <tr><th scope="row">Calcium</th><td>118 mg</td><td>35.4 mg</td></tr></tbody>
+              </table>
+              <button class="product-information-close" type="button">Close details ↑</button>
+            </section>
+            <!-- PRODUCT INFORMATION END -->
         </article>
 
         <!-- ==========================================
@@ -272,16 +544,6 @@
         </article>
 
       </div>
-
-      <section class="product-information" id="productInformation" aria-labelledby="productInformationTitle">
-        <header class="product-information-header">
-          <span class="editorial-eyebrow">KNOW YOUR SNACK</span>
-          <h2 id="productInformationTitle">Explore the ingredients behind every bite</h2>
-          <p id="productInformationHelp">Hover over a snack to preview its details. Click or tap a card to keep it selected. With a keyboard, focus a card and press Enter or Space.</p>
-          <p class="product-information-status" id="productInformationStatus" role="status" aria-live="polite" aria-atomic="true">Select a snack to explore its ingredients and nutrition.</p>
-        </header>
-        <div id="productInformationContent"></div>
-      </section>
     </div>
   </main>
 
@@ -309,15 +571,6 @@
         </div>
 
         <div>
-          <h4 class="footer-heading">Customer Account</h4>
-          <ul class="footer-links">
-            <li><a href="cart.html">Shopping Cart</a></li>
-            <li><a href="checkout.html">Checkout</a></li>
-            <li><a href="login.html">Login / Account</a></li>
-          </ul>
-        </div>
-
-        <div>
           <h4 class="footer-heading">Contact Info</h4>
           <ul class="footer-links">
             <li class="footer-contact-row"><svg class="footer-contact-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0z"></path><circle cx="12" cy="10" r="2.5"></circle></svg><span>Maharashtra, India</span></li>
@@ -334,7 +587,6 @@
   </footer>
 
   <script src="script.js"></script>
-  <script src="product-information-data.js"></script>
-  <script src="product-information.js"></script>
+  <script src="product-orders.js"></script>
 </body>
 </html>

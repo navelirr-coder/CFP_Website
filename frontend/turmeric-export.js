@@ -6,6 +6,12 @@ document.addEventListener('DOMContentLoaded', () => {
   };
   const params = new URLSearchParams(location.search);
   const productKey = params.get('product');
+  const snackProducts = window.CFP_PRODUCT_INFORMATION;
+  const snack = snackProducts && Object.hasOwn(snackProducts, productKey) ? snackProducts[productKey] : null;
+  if (snack && location.pathname.endsWith('product-details.html')) {
+    location.replace(`shop.html?category=${snack.category}#details-${productKey}`);
+    return;
+  }
   const product = Object.hasOwn(products,productKey) ? products[productKey] : null;
   const main = document.querySelector('main');
   if (location.pathname.endsWith('product-details.html') && product && main) {
@@ -35,6 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
   if (enquiry && subject && message) {
     if (!subject.value) subject.value = `Export enquiry — ${enquiry.name} / MOQ`;
     if (!message.value) message.value = `I would like to enquire about export supply of ${enquiry.name}.\n\nDestination country:\nRequired quantity:\nPacking preference:\n\nPlease share the MOQ, availability and a quotation.`;
-    // The shared enquiry controller handles WhatsApp handoff and database recording.
+    // The shared enquiry controller handles the frontend WhatsApp handoff.
   }
 });

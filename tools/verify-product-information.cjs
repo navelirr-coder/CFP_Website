@@ -1,91 +1,60 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
+const path = require('node:path');
 const vm = require('node:vm');
 const { execFileSync } = require('node:child_process');
-const path = require('node:path');
-process.chdir(path.resolve(__dirname, '../frontend'));
-const html = fs.readFileSync('shop.html', 'utf8');
-// Baseline includes the replacement catalogue filenames committed before enquiry changes.
-const baseline = execFileSync('git', ['show', 'cd309e4:shop.html'], {encoding:'utf8'});
-const cardsIn = text => text.replace(/\r\n/g,'\n').match(/<article class="product-item-card"[\s\S]*?<\/article>/g);
-assert.deepEqual(cardsIn(html), cardsIn(baseline), 'All original card markup, images, navigation and cart metadata must remain intact');
-for (const file of ['style.css', 'product-details.html']) {
-  // The shared responsive stylesheet is the only allowed product-detail markup addition.
-  const current = fs.readFileSync(file,'utf8').replace(/\r\n/g,'\n').replace('  <link rel="stylesheet" href="mobile.css">\n', '');
-  assert.equal(current, execFileSync('git',['show',`cd309e4:${file}`],{encoding:'utf8'}).replace(/\r\n/g,'\n'), `${file} original design and product content preserved`);
-}
-const currentScript = fs.readFileSync('script.js', 'utf8').replace(/\r\n/g,'\n');
-const originalScript = execFileSync('git', ['show', 'cd309e4:script.js'], {encoding:'utf8'}).replace(/\r\n/g,'\n');
-const productController = source => source.slice(source.indexOf('  const categoryPills ='), source.indexOf('     5. PRODUCT DETAILS QUANTITY PICKER'));
-assert.equal(productController(currentScript), productController(originalScript), 'Category and image-hover controllers unchanged');
-assert.equal((html.match(/id="productInformation"/g)||[]).length,1);
-assert.ok(html.indexOf('id="productInformation"') > html.lastIndexOf('</article>'));
-
-class Element {
-  constructor(tag='div') { this.tag=tag; this.children=[]; this.attributes={}; this.listeners={}; this.dataset={}; this.style={}; this.textContent=''; }
-  append(...nodes) { this.children.push(...nodes); }
-  replaceChildren(...nodes) { this.children=nodes; }
-  setAttribute(name,value) { this.attributes[name]=value; }
-  querySelector(selector) { return selector==='.product-short-desc' ? this.description : null; }
-  addEventListener(type,callback) { (this.listeners[type]??=[]).push(callback); }
-  closest() { return this.interactive ? this : null; }
-  emit(type, options={}) {
-    const event={target:this,preventDefault(){this.prevented=true;},...options};
-    for (const handler of this.listeners[type]??[]) handler(event);
-    return event;
+const { products } = require('./build-product-catalogue.cjs');
+const frontend = path.resolve(__dirname, '../frontend');
+const html = fs.readFileSync(path.join(frontend, 'shop.html'), 'utf8');
+const source = fs.readFileSync(path.join(frontend, 'script.js'), 'utf8');
+const baseline = execFileSync('git', ['show', 'HEAD:frontend/shop.html'], { encoding: 'utf8' });
+const baselineData = execFileSync('git', ['show', 'HEAD:frontend/product-information-data.js'], { encoding: 'utf8' });
+assert.equal(fs.readFileSync(path.join(frontend, 'product-information-data.js'), 'utf8').replace(/\r\n/g, '\n'), baselineData.replace(/\r\n/g, '\n'), 'All supplied nutrition and ingredient source data preserved');
+const cardsIn = text => [...text.matchAll(/<article class="product-item-card"[^>]*data-product="([^"]+)"[\s\S]*?<\/article>/g)];
+const cards = cardsIn(html);
+assert.deepEqual(cards.map(match => match[1]), cardsIn(baseline).map(match => match[1]), 'All ten products remain in their original order');
+const esc = value => String(value).replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
+let totalRows = 0;
+for (const [index, match] of cards.entries()) {
+  const card = match[0], slug = match[1], original = cardsIn(baseline)[index][0];
+  assert.deepEqual([...card.matchAll(/<img[^>]*src="([^"]+)"/g)].map(m => m[1]), [...original.matchAll(/<img[^>]*src="([^"]+)"/g)].map(m => m[1]), `${slug}: original artwork`);
+  if (!products[slug]) continue;
+  const product = products[slug];
+  assert.ok(card.indexOf('class="product-preview"') < card.indexOf('class="product-information"'), 'Preview precedes details');
+  assert.ok(card.includes(`<span class="product-number">0${index % 4 + 1}</span>`));
+  for (const value of [product.name, product.highlight, product.description, product.ingredients]) assert.ok(card.includes(esc(value)), `${slug}: complete supplied content`);
+  assert.match(card, /class="product-information"[^>]* hidden>/, 'Details start hidden');
+  assert.ok(card.indexOf('class="product-order-actions"') < card.indexOf('class="product-information"'), 'Order controls remain outside the hidden details');
+  assert.match(card, /class="packet-quantity"[^>]*min="0"[^>]*value="0"/);
+  for (const row of product.nutrition) {
+    assert.ok(card.includes(`<th scope="row">${esc(row.nutrient)}</th><td>${esc(row.per100g ?? 'Not provided')}</td><td>${esc(row.perServing ?? 'Not provided')}</td>`));
   }
+  totalRows += product.nutrition.length;
+  const href = card.match(/class="btn btn-primary product-order-link" href="([^"]+)"/)[1].replace(/&amp;/g, '&');
+  const url = new URL(href);
+  assert.equal(url.origin, 'https://wa.me'); assert.equal(url.pathname, '/919960725539');
+  const displayedName = card.match(/class="product-title-link product-details-toggle"[^>]*>([^<]+)/)[1];
+  assert.ok(url.searchParams.get('text').includes(displayedName), `${slug}: WhatsApp uses the displayed product name`);
 }
-const textOf = node => [node.textContent,...node.children.map(textOf)].join(' ');
-function setup(hover=true) {
-  const window={matchMedia:()=>({matches:hover})};
-  vm.runInNewContext(fs.readFileSync('product-information-data.js','utf8'),{window});
-  const products=window.CFP_PRODUCT_INFORMATION;
-  const cards=Object.entries(products).map(([slug,p])=>{
-    const card=new Element('article'); card.dataset={product:slug,category:p.category};
-    card.style.display=p.category==='crunchies'?'flex':'none'; card.description=new Element('p'); return card;
-  });
-  const grid=new Element(); grid.querySelectorAll=()=>cards;
-  const elements={shopProductsGrid:grid,productInformation:new Element('section'),productInformationContent:new Element(),productInformationStatus:new Element()};
-  let observer;
-  const document={getElementById:id=>elements[id],createElement:tag=>new Element(tag),addEventListener:(name,callback)=>callback()};
-  class MutationObserver {constructor(callback){observer=callback;} observe(){}}
-  vm.runInNewContext(fs.readFileSync('product-information.js','utf8'),{document,window,MutationObserver});
-  return {cards,products,elements,changed:()=>observer(),text:()=>textOf(elements.productInformationContent)};
+assert.equal(totalRows, 82);
+function fake(attributes = {}) {
+  const classes = new Set();
+  return { attributes, style: {}, listeners: {}, classList: { toggle(name, active) { active ? classes.add(name) : classes.delete(name); }, remove(name) { classes.delete(name); }, contains: name => classes.has(name), add: name => classes.add(name) }, getAttribute: name => attributes[name], setAttribute(name, value) { attributes[name] = value; }, addEventListener(name, fn) { this.listeners[name] = fn; }, querySelector() { return null; } };
 }
-const app=setup();
-assert.equal(Object.keys(app.products).length,8);
-assert.equal(Object.values(app.products).reduce((sum,p)=>sum+p.nutrition.length,0),82);
-assert.match(app.text(), /Ragi Sticks/);
-const [ragi,bajra,jowarChivda,jowarChips]=app.cards;
-bajra.emit('mouseenter'); assert.match(app.text(),/Bajra Chivda/);
-bajra.emit('click'); assert.match(app.elements.productInformationStatus.textContent,/selected/);
-ragi.emit('mouseenter'); assert.match(app.text(),/Bajra Chivda/,'hover must not replace pinned selection');
-jowarChips.emit('click'); assert.match(app.text(),/Jowar Chips/);
-assert.match(jowarChips.attributes['aria-label'],/, selected/);
-assert.doesNotMatch(bajra.attributes['aria-label'],/, selected/);
-ragi.emit('keydown',{key:'Enter'}); assert.match(app.text(),/Ragi Sticks/);
-jowarChivda.emit('keydown',{key:' '}); assert.match(app.text(),/Jowar Chivda/);
-const button=new Element('button');button.interactive=true;
-const event=ragi.emit('click',{target:button});assert.ok(!event.prevented);assert.match(app.text(),/Jowar Chivda/,'purchase controls must not select details');
-const link=new Element('a');link.interactive=true;
-const linkEvent=ragi.emit('click',{target:link});assert.ok(!linkEvent.prevented);assert.match(app.text(),/Jowar Chivda/);
-for (const card of app.cards) {
- card.emit('click'); const product=app.products[card.dataset.product];
- assert.ok(app.text().includes(product.name)); assert.ok(app.text().includes(product.description));
- assert.ok(app.text().includes(product.ingredients));assert.ok(app.text().includes(product.highlight));
- for (const row of product.nutrition) for (const value of Object.values(row)) assert.ok(app.text().includes(value));
- assert.equal(card.description.textContent,product.shortDescription);
+const fakeCards = cards.map(match => fake({ 'data-category': match[0].match(/data-category="([^"]+)"/)[1] }));
+const pills = ['crunchies', 'bites', 'turmeric'].map(cat => fake({ 'data-category': cat }));
+const title = {}, count = {}, grid = fake(), back = fake();
+const context = { URLSearchParams, window: { location: { search: '?category=bites', hash: '' }, scrollTo() {} }, document: { querySelectorAll: selector => selector === '.category-pill-btn' ? pills : fakeCards, getElementById: id => ({ goingBackBtn: back, currentCategoryTitle: title, currentCategoryCount: count, shopProductsGrid: grid })[id] || null } };
+const category = source.slice(source.indexOf('  const categoryPills ='), source.indexOf('     4B. PRODUCT CARD HOVER POP ANIMATION'));
+vm.runInNewContext(category.slice(0, category.lastIndexOf('  /*')), context);
+assert.equal(title.textContent, 'BITES'); assert.equal(count.textContent, '4 Products');
+for (const [i, name] of ['crunchies', 'bites', 'turmeric'].entries()) {
+  pills[i].listeners.click();
+  assert.equal(grid.attributes['data-category'], name);
+  assert.equal(fakeCards.filter(card => card.style.display === 'flex').length, name === 'turmeric' ? 2 : 4);
+  assert.ok(fakeCards.filter(card => card.style.display === 'flex').every(card => card.attributes['data-category'] === name));
 }
-assert.equal(app.products['millet-ladoo'].nutrition.find(r=>r.nutrient==='Carbohydrates').perServing,'60.63 g');
-assert.equal(app.products['millet-cookies'].nutrition.find(r=>r.nutrient==='Total fat').perServing,'0.10 g');
-assert.equal(app.products['ragi-ladoo'].servingSize,'20 g');
-assert.equal(app.products['millet-cookies'].servingSize,'12 g');
-assert.ok(!app.products['millet-cookies'].nutrition.some(r=>r.nutrient==='Trans fat'),'missing nutrients must not be invented');
-const touch=setup(false);
-touch.cards[1].emit('mouseenter'); assert.match(touch.text(),/Ragi Sticks/);
-touch.cards[1].emit('click'); assert.match(touch.text(),/Bajra Chivda/,'tap click selects without hover');
-const category=setup();
-category.cards.forEach(c=>{c.style.display=c.dataset.category==='bites'?'flex':'none';});
-category.changed(); assert.match(category.text(),/Ragi Ladoo/);
-category.cards.forEach(c=>{c.style.display='none';});category.changed();assert.match(category.text(),/Choose a Crunchies or Bites/);
-console.log('PASS: all eight products and 82 nutrition rows, hover, pin/reselect, keyboard, touch, categories, native controls, and original card integrity.');
+assert.match(source, /card\.addEventListener\('mouseenter'/);
+assert.match(source, /card\.classList\.add\('is-popped'\)/);
+assert.match(fs.readFileSync(path.join(frontend, 'style.css'), 'utf8'), /@keyframes popOvershootSequence/);
+console.log('PASS: original product order/artwork, all eight descriptions and ingredients, 82 exact nutrient rows, initially hidden details, permanent order controls and category navigation.');

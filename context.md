@@ -1,129 +1,42 @@
 # CFP Website Context
 
-Last updated: 2026-10-29 (Asia/Calcutta).
+Last updated: 2026-10-30 (Asia/Calcutta).
 
-## Repository and current status
+## Current scope
 
-- GitHub: https://github.com/navelirr-coder/CFP_Website
-- Branch: `main`; local branch tracks `origin/main`.
-- Latest website behaviour change before the folder reorganisation: `55ce7fd` (WhatsApp fallback when the backend is unavailable).
-- GitHub pushes are separate from deployment to GoDaddy. A successful push does not establish that the live server has pulled or deployed the files.
-- `.env` and `node_modules/` are excluded by `.gitignore`. Never commit credentials or private keys.
+The user requested complete removal of the backend, accounts/login, shopping cart and Add to Cart controls. Checkout, tracking and admin pages were removed with those dependent features. Previous decisions to keep checkout or backend order history are superseded.
 
-## Current folder structure
+The website is now a static product catalogue with WhatsApp enquiries and orders. No database, API calls, customer browser storage, payment gateway, shipment booking or email worker remains. HTTPS redirect rules are retained. The local deletion does not establish that an external service/database or old hosted files were removed.
 
-- Frontend/backend reorganisation completed on 2026-10-28; root start commands and serving paths were verified.
+## Structure and commands
 
-- `frontend/` contains all website HTML, CSS, browser JavaScript, images and `assets/`.
-- `backend/` contains `src/`, `migrations/`, `tests/`, npm manifests/dependencies, `.env` and `.env.example`.
-- `docs/` contains deployment/review notes; `docs/source-documents/` contains the original PDFs and reference folders.
-- Root `package.json` forwards start/dev/migration/test/admin-seeding commands to `backend/`. `npm.cmd start` still works from the root or directly inside `backend/`.
-- Root `npm.cmd run setup` installs backend dependencies; `npm.cmd run verify:frontend` checks frontend controllers.
-- Backend startup is now API-only on port 3000; it does not serve frontend pages or assets. Root `npm.cmd run frontend` starts an independent optional preview on port 5173 with an `/api/*` proxy to the backend. Neither command starts the other. Copy frontend contents into the static hosting Document Root and configure public `/api/*` routing separately.
-- Paths in feature descriptions below are relative to `frontend/` for public files and `backend/` for source, migrations and tests unless an explicit folder is given.
+- `frontend/`: six HTML pages (Home, Shop, About, Catalogues, Contact, Product Details), shared CSS/JavaScript, supplied images/fonts, documents and catalogues.
+- `tools/`: dependency-free static preview, catalogue content generator and frontend verification scripts.
+- `docs/`: content review, preview/deployment and responsive layout notes; original PDFs are preserved in `docs/source-documents/`.
+- `npm.cmd start`, `npm.cmd run dev` or `npm.cmd run frontend`: optional static preview at http://localhost:5173. Run from the repository root. Ctrl+C stops it. No install or backend process is needed.
+- `npm.cmd run build:catalogue`: regenerate the eight static snack information sections from `frontend/product-information-data.js`.
+- `npm.cmd test` / `npm.cmd run verify:frontend`: static boundaries, asset links/served bytes, product information/category behavior, hover/click details and combined packet order drafts, WhatsApp enquiry and hero gesture checks.
 
-## Completed website changes
+## Product presentation
 
-### Phone layouts (2026-10-29)
+The user's latest layout replaces the earlier stacked-card experiment. Crunchies and Bites each show four individual smaller numbered cards, left to right in the original card order. Card dimensions and layered artwork/pop hover animation are retained. Descriptions, ingredients, highlights, serving sizes and all nutrition rows below each preview start hidden, open on desktop hover, close on pointer leave, and stay open when the image/name is clicked. Name buttons support keyboard activation; Close details and Escape dismiss the information. Deep links open the relevant information. Permanent Place Order links have adjacent minus/number/plus packet controls outside the hidden sections. Guidance and selection-status subtext under both headings are removed; cards start directly beneath the category heading and product count. Desktop uses four columns; tablet two; phone one so all content remains readable.
 
-- All ten customer-facing HTML pages load `frontend/mobile.css` after their existing styles. Admin styling is outside this change.
-- Responsive styles fix narrow-header overlap, navigation drawer stacking, homepage nutrition-strip overflow, footer alignment, product thumbnails/tables and tracking-page spacing. Carousel height stays stable across slides on phones; wide campaign images are contained rather than cropped.
-- Cart rows become labelled mobile item cards with 44px quantity/remove buttons. Existing cart totals and checkout submission logic are retained.
-- Checkout fields stack on phones and include associated labels, shipping autofill hints and numeric pincode keyboard input. Form text is at least 16px on phones.
-- Browser verification covered ten pages at 320, 390, 430, 768 and 1280px, plus both turmeric detail routes at 320/390px, with no horizontal page overflow or overlapping header controls. See `docs/MOBILE-OPTIMIZATION.md` for validation and limits.
+Original snack order: Ragi Sticks, Bajra Chivda, Jowar Chips, Jowar Chivda; Ragi Ladoo, Millet Ladoo, Millet Cookies, Millet Nutri Bar. All eight supplied data records and 82 nutrition rows are unchanged. Read `docs/PRODUCT-INFORMATION-REVIEW.md` for unresolved serving-size and provisional name discrepancies; do not infer replacement values. Legacy snack product-detail URLs redirect to the relevant catalogue category and detail anchor. Turmeric details retain export descriptions and contact-prefill enquiry actions.
 
-### Registration documents
+Homepage hero supports horizontal pointer swipes/drags, while vertical scrolling and pinch zoom remain native. Autoplay pauses during gestures and resumes. Hero controls, homepage millet animations and document/catalogue downloads remain.
 
-- About Us registration cards open matching PDFs in new tabs:
-  - GST: `assets/documents/gst-registration.pdf`
-  - FSSAI: `assets/documents/fssai-licence.pdf`
-  - IEC: `assets/documents/iec-certificate.pdf`
-  - MSME: `assets/documents/msme-registration.pdf`
-- The former APEDA placeholder was replaced with IEC; MSME was added as the fourth card.
-- Original registration PDFs also exist at the `docs/source-documents/`, originally committed separately in `1b9eed3`.
+## Enquiries and orders
 
-### Product catalogues
+All public contact/WhatsApp numbers use +91 9960725539. Snack quantities start at zero, cannot go below zero, and can be typed or changed with plus/minus. Ordering an unset product adds one packet of it. Each order link includes all positive selections from both Crunchies and Bites, numbered in original catalogue order, with quoted displayed product names and packet counts. Quantities survive category switching in page memory but reset on reload; no cart, storage or backend is introduced. Product order links open WhatsApp at 919960725539 with the prepared combined list. The contact form validates its fields and opens a prepared WhatsApp message; it clears on a successful handoff, with a fallback link for blocked popups. There is no visitor confirmation step, automatic sending, delivery verification or database storage. Website status text must not claim a message was sent or stored.
 
-- Current downloads are `assets/catalogues/Bites Catalogue_Digital Copy.pdf` and `assets/catalogues/Crunchies catalogue_Digital Copy.pdf`.
-- HTML and the registry in `script.js` use these filenames, with spaces URL-encoded.
-- Earlier lowercase `bites-catalogue.pdf` and `crunchies-catalogue.pdf` files were removed and replaced. Do not restore stale links to those names.
-- Turmeric catalogue remains Coming Soon; no PDF was supplied.
+## Documents and catalogues
 
-### Contact details, footer and icons
+About registration cards open `assets/documents/gst-registration.pdf`, `fssai-licence.pdf`, `iec-certificate.pdf` and `msme-registration.pdf`. Catalogue files are `assets/catalogues/Bites Catalogue_Digital Copy.pdf` and `Crunchies catalogue_Digital Copy.pdf`. Turmeric catalogue remains unavailable. Preserve the supplied PDFs and artwork. Footer uses Chaudhari, a single-line brand name and aligned email/icon.
 
-- The contact and WhatsApp number is **+91 9960725539**. WhatsApp links use `https://wa.me/919960725539`.
-- The catalogue page includes a direct WhatsApp enquiry button using the same number.
-- Footer spelling is **Chaudhari Farm Products**. The name stays on one line; email, phone and location icons use aligned contact rows.
-- Login icons on About Us and Catalogues were corrected.
-- Removed the Google Maps / farm location placeholder from the Contact Us page.
+## Repository and hosting
 
-### Shared product information panel
+GitHub: https://github.com/navelirr-coder/CFP_Website ; branch main tracks origin/main. Changes from this work are local until explicitly committed/pushed. A push is separate from deployment to GoDaddy.
 
-- `shop.html` has one information section below the complete product-card grid.
-- Central content: `product-information-data.js`; controller: `product-information.js`; scoped styles: `product-information.css`.
-- Eight snack products include approved highlights, descriptions, ingredients and 82 supplied nutrition rows.
-- Hover or keyboard focus previews a product until selected. Clicking/tapping a non-interactive card area, Enter or Space pins it; another selection replaces it. Pinned details remain across category changes.
-- Existing title links still navigate; cart buttons still purchase. Card designs, image paths/order, hover animations, category IDs, product ordering and cart/checkout code were preserved.
-- Jowar Chips remains `c3`; Jowar Chivda remains `c4`; Nutri Millet Bar uses existing slug `millet-nutri-bar` and cart ID `b4`.
-- Review `docs/PRODUCT-INFORMATION-REVIEW.md` before publishing nutrition claims: ladoo serving sizes conflict with footnotes, Millet Ladoo serving carbohydrate is supplied as 60.63 g, several cookie serving values are inconsistent, and the Nutri Millet Bar name remains provisional. Values were preserved without recalculation.
+Domain: https://chaudharifarmproducts.com/ ; user-reported plan: GoDaddy Web Hosting Starter. Deploy frontend contents directly into the domain Document Root, commonly public_html, including .htaccess. Remove obsolete hosted cart/checkout/login/track-order/admin files separately; a normal upload does not delete them. Install a valid domain SSL certificate for the HTTPS redirect to work correctly. No authenticated SSH deployment has been established in this session.
 
-## Independent frontend/backend processes
-
-- `npm.cmd start` (root or backend folder) starts backend APIs only. http://localhost:3000 returns JSON; HTML/assets return 404.
-- `npm.cmd run frontend` (root) starts the website on http://localhost:5173. It is optional and does not start the backend. Its dev proxy preserves same-origin cookie/API behaviour.
-- WhatsApp enquiries work with the frontend alone. Login, checkout and database order history need the backend independently running.
-- The frontend preview is for local development; GoDaddy Apache serves `public_html` independently in production.
-
-## Current backend/frontend responsibilities (2026-10-29)
-
-- User initially requested the backend only for login/credentials and all enquiries forwarded through frontend WhatsApp. They then explicitly requested checkout remain unchanged and order history remain backend-only.
-- Latest clarification keeps Razorpay order creation/payment verification, Shiprocket booking, email sending and trusted order/payment state in the backend. Customer history should show ordered items only, without delivery/payment status.
-- Account registration/login already stores bcrypt password hashes, not plaintext passwords. Persistent PostgreSQL is still needed in production; local pg-mem records disappear on restart.
-- Checkout and its server-side order creation remain enabled. Only the browser copy of completed checkout history was removed.
-- `frontend/order-history.js` loads authenticated `GET /api/orders` with `cache: no-store`. The endpoint uses owner-scoped database queries, returns ordered product IDs/names/quantities grouped by order reference, and sends `Cache-Control: no-store`.
-- The account history UI does not display payment/delivery status, prices, totals, shipping details or fabricated sample orders. Legacy `cfp_orders_*` localStorage keys are removed; no new order history is persisted in browser storage.
-- Other existing account/cart behaviour is retained. This does not claim Shiprocket booking is live or delete checkout shipping records.
-- Razorpay/Shiprocket/email provider calls remain unfinished as previously inspected. No secret integration code is moved to the frontend.
-
-## Frontend-only WhatsApp enquiries
-
-- Contact and turmeric export enquiries are prepared entirely by `frontend/enquiry-form.js`, with no API/database request or browser persistence.
-- Destination is `https://wa.me/919960725539`; visitor presses Send in WhatsApp. No extra website confirmation is required, and the website does not claim sent/delivered/database-recorded status.
-- The form clears after opening the prepared message. If popups are blocked, it retains values until the visitor uses the prepared message link.
-- Turmeric prefilling and catalogue WhatsApp links are preserved. The removed explanatory paragraph stays removed.
-- Former `/api/enquiries` and `/api/admin/enquiries` routes are no longer mounted. Existing enquiry records/migrations/source are preserved, not deleted.
-- The earlier backend-recording and offline-fallback implementations (`103ad12`, `55ce7fd`) are historical and superseded by this frontend-only flow.
-- Current deployment and security boundaries: `docs/ENQUIRY-DEPLOYMENT.md`.
-
-## GoDaddy / cPanel deployment and unresolved issues
-
-- The user connected this GitHub repository through GoDaddy cPanel Git Version Control. The exact repository path, public domain and Document Root have not been provided.
-- Static frontend files must be deployed into the domain Document Root, commonly `public_html`, with `index.html` directly inside it. Preserve asset paths and back up an existing site before replacement.
-- Keep backend source, environment files, database files and Git metadata outside the static public directory. Preserve the original repository's `.git` directory when copying frontend files.
-- There is no `.cpanel.yml` deployment configuration yet.
-- The user reported cPanel error 128: `fatal: not a git repository (or any of the parent directories): .git`. Advice was to check the registered Repository Path and hidden `.git`; if missing, clone into a new empty folder outside the live Document Root. The actual cause and repair were not verified.
-- HTTPS guidance was provided: install a valid SSL certificate/AutoSSL if available, then enable Force HTTPS Redirect. SSL installation and live HTTPS status have not been verified.
-- The earlier enquiry "Failed to fetch" dependency is superseded by frontend-only WhatsApp submission. Login, checkout and order history still require a reachable backend; the live server configuration remains unverified.
-- Full functionality requires a running Node.js/Express backend, `/api/*` routing, a persistent PostgreSQL `DATABASE_URL`, production secrets and HTTPS. Copying frontend files alone cannot save enquiries or run authentication/orders.
-- Deploy backend changes, from `backend/` run `npm ci` and `npm run migrate`, then start/restart via `npm start` or the hosting process manager. Do not claim the production database has been updated without verifying the live deployment.
-- No authenticated SSH session was established; the earlier connection reached the server but authentication failed. Only a public key/path was supplied. A matching private key would be required for SSH changes. No server configuration was changed by the assistant.
-
-## Verification history
-
-- On 2026-10-29, all seven backend suites passed, including credential hashing, item-only history, ownership isolation and no-store responses. All three frontend verification scripts passed. Browser QA used a temporary local account/order to verify the item/quantity-only history view; no production data or live provider integration was used.
-
-- On 2026-10-28 after reorganisation, root `npm.cmd test` passed all six suites, including new frontend/backend routing and private-file checks. Root `npm.cmd run verify:frontend` passed both controller checks. All 95 moved frontend files were byte-for-byte preserved; tracked public assets were also checked against Git history (normalizing text line endings).
-
-
-- On 2026-10-26, `npm.cmd test` passed all five suites: lifecycle, state machine, security, webhooks and enquiries. Enquiry tests used the in-memory PostgreSQL-compatible development engine, not the production database.
-- `node tools/verify-enquiry-form.cjs` passed success/reset, offline/static-host fallback, popup blocking, timeouts, retry IDs, duplicate submits and destination checks after the latest fix.
-- `node tools/verify-product-information.cjs` passed product data, interactions and original-card integrity checks. Its baseline includes the replacement catalogue links from `cd309e4`.
-- Browser checks covered product information at desktop and 390px width, enquiry save/reset against a local test database, and WhatsApp fallback on a local static-only site. No actual WhatsApp message was sent during QA.
-- The 2026-10-26 results are historical; the 2026-10-28 checks above were run for the folder reorganisation.
-
-## Next steps
-
-- Obtain the public website URL, cPanel Repository Path and domain Document Root.
-- Confirm the deployed Node.js process, API routing, PostgreSQL connection and migration 003; diagnose the live enquiry API and verify persistent account/order records.
-- Verify cPanel Git repair, latest deployment and HTTPS independently of GitHub push status.
-- Resolve the documented product nutrition/name discrepancies with the owner before treating them as verified claims.
+Do not commit private keys or credentials. .gitignore still excludes local secrets and dependency/runtime output.

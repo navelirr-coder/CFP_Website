@@ -2,15 +2,13 @@
   "name": "cfp_website_workspace",
   "version": "1.0.0",
   "private": true,
-  "description": "Frontend and backend launch commands for CFP Website",
+  "description": "Static CFP product catalogue with WhatsApp orders; no backend or dependencies",
   "scripts": {
-    "setup": "npm --prefix backend ci",
-    "start": "npm --prefix backend start",
-    "dev": "npm --prefix backend run dev",
-    "migrate": "npm --prefix backend run migrate",
-    "seed:admin": "npm --prefix backend run seed:admin --",
-    "test": "npm --prefix backend test",
-    "verify:frontend": "node tools/verify-enquiry-form.cjs && node tools/verify-product-information.cjs && node tools/verify-order-history.cjs",
-    "frontend": "node tools/frontend-server.cjs"
+    "start": "node tools/frontend-server.cjs",
+    "dev": "node tools/frontend-server.cjs",
+    "frontend": "node tools/frontend-server.cjs",
+    "build:catalogue": "node tools/build-product-catalogue.cjs",
+    "test": "npm run verify:frontend",
+    "verify:frontend": "node tools/verify-static-catalogue.cjs && node tools/verify-enquiry-form.cjs && node tools/verify-product-information.cjs && node tools/verify-product-orders.cjs && node tools/verify-hero-swipe.cjs"
   }
 }
